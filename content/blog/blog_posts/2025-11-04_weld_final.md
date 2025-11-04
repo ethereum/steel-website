@@ -47,7 +47,7 @@ Initialization of the developer environment has been streamlined:
 
 #### Tooling: Spec Line Coverage
 
-Basic line coverage of the Python specs (EELS) can be easily calculated from the `fill` command, for example, for [EIP-7823: Set upper bounds for MODEXP](https://eips.ethereum.org/EIPS/eip-7823):
+Basic line coverage of the Python specs (EELS) can be easily generated from the `fill` command, for example, for [EIP-7823: Set upper bounds for MODEXP](https://eips.ethereum.org/EIPS/eip-7823):
 
 ```bash
 uv run fill --fork=Osaka --clean \
