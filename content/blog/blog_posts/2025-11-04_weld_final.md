@@ -28,13 +28,59 @@ By combining these repositories, we've eliminated these pain points and created 
 
 ### For Spec Developers
 
-**Before:** Spec PRs in [ethereum/execution-specs](https://github.com/ethereum/execution-specs)<br/>
-**After:** Same workflow, but now you can easily write tests alongside your spec!
+- **Before:** Spec PRs in [ethereum/execution-specs](https://github.com/ethereum/execution-specs)<br/>
+- **After:** Same workflow, but now you can easily write tests alongside your spec!
 
 ### For Test Developers
 
-**Before:** Test PRs in [ethereum/execution-spec-tests](https://github.com/ethereum/execution-spec-tests)<br/>
-**After:** Test PRs now go to [ethereum/execution-specs](https://github.com/ethereum/execution-specs)
+#### PRs
+
+- **Before:** Test and test framework PRs targeted the [ethereum/execution-spec-tests](https://github.com/ethereum/execution-spec-tests) `main` branch.<br/>
+- **After:** Test and test framework PRs should target the appropriate [ethereum/execution-specs](https://github.com/ethereum/execution-specs) fork or EIP branch, e.g., `forks/osaka`, `forks/amsterdam` or `eips/amsterdam/eip-7928`.
+
+#### Tooling
+
+Initialization of the developer environment has been streamlined:
+
+- **Before:** `uv sync --all-extras`.
+- **After:** `uv sync` (still in the repo root directory).
+
+#### Test Code
+
+1. The line length of test and test framework source was previously 99; post-Weld it is 79 for consistency with the specs (EELS). This can still be applied via `uv run ruff format tests/`, for example.
+2. The layout and packaging of the test framework libraries has been improved. Commonly used objects can now be directly importing from the top-level `execution_testing` package. For example:
+
+    - **Before:**
+
+        ```python
+        from ethereum_test_checklists import EIPChecklist
+        from ethereum_test_forks import Fork
+        from ethereum_test_tools import (
+            Account,
+            Alloc,
+            Block,
+            BlockchainTestFiller,
+            Transaction,
+            TransactionException,
+        )
+        from ethereum_test_vm import Opcodes as Op
+        ```
+
+    - **After:**
+
+        ```python
+        from execution_testing import (
+        Account,
+        Alloc,
+        Block,
+        BlockchainTestFiller,
+        EIPChecklist,
+        Fork,
+        Op,
+        Transaction,
+        TransactionException,
+        )
+        ```
 
 ### For Client Developers
 
