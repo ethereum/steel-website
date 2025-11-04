@@ -38,12 +38,27 @@ By combining these repositories, we've eliminated these pain points and created 
 - **Before:** Test and test framework PRs targeted the [ethereum/execution-spec-tests](https://github.com/ethereum/execution-spec-tests) `main` branch.<br/>
 - **After:** Test and test framework PRs should target the appropriate [ethereum/execution-specs](https://github.com/ethereum/execution-specs) fork or EIP branch, e.g., `forks/osaka`, `forks/amsterdam` or `eips/amsterdam/eip-7928`.
 
-#### Tooling
+#### Tooling: Development Setup
 
 Initialization of the developer environment has been streamlined:
 
 - **Before:** `uv sync --all-extras`.
 - **After:** `uv sync` (still in the repo root directory).
+
+#### Tooling: Spec Line Coverage
+
+Basic line coverage of the Python specs (EELS) can be easily calculated from the `fill` command, for example, for [EIP-7823: Set upper bounds for MODEXP](https://eips.ethereum.org/EIPS/eip-7823):
+
+```bash
+uv run fill --fork=Osaka --clean \
+    tests/osaka/eip7823_modexp_upper_bounds/ \
+    --cov=src/ethereum \
+    --cov-report=html:/tmp/modexp_upper_bounds_cov
+```
+
+The relevant coverage can be browsed from `/tmp/modexp_upper_bounds_cov/index.html`.
+
+<img src="/images/blog/2025-11-04_weld-final/eels_coverage.jpg" alt="Coverage of modexp upper bounds in EELS" style="width: 70%; height: auto;">
 
 #### Test Code
 
@@ -111,7 +126,7 @@ These improvements will build on the foundation laid by the weld, making the uni
 
 These steps are an ongoing process and will be implemented incrementally over time. We'll continue to refine and improve the integration as we learn from the community and discover new opportunities for optimization.
 
-## We're Open for Business!
+## We're Open for Business
 
 The weld process is complete, and the unified repository is fully operational. **We're ready to accept contributions again!**
 
