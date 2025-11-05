@@ -40,6 +40,11 @@ By combining these repositories, we've eliminated these pain points and created 
 - **Before:** Test and test framework PRs targeted the [ethereum/execution-spec-tests](https://github.com/ethereum/execution-spec-tests) `main` branch.<br/>
 - **After:** Test and test framework PRs should target the appropriate [ethereum/execution-specs](https://github.com/ethereum/execution-specs) fork or EIP branch, e.g., `forks/osaka`, `forks/amsterdam` or `eips/amsterdam/eip-7928`.
 
+#### Config
+
+- ***Before:*** The EELS branch defining the reference EVM had to be configured in `eels_resolutions.json`.
+- ***After:*** No configuration is required, the EELS reference EVM implementation in the current branch is used out of the box.
+
 #### Tooling: Development Setup
 
 Initialization of the developer environment has been streamlined:
