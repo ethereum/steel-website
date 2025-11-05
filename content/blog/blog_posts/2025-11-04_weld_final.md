@@ -1,11 +1,13 @@
 +++
-title = 'The Weld is Complete: Welcome to the world of Unified STEEL'
+title = 'The Weld is Complete: Welcome to Unified Specs and Tests'
 weight = 100
 draft = false
 summary = "execution-spec-tests has successfully merged into execution-specs. We're ready for contributions!"
 date = 2025-11-04T10:00:00Z
 author = "Guruprasad Kamath"
 +++
+
+<img src="/images/blog/2025-11-04_weld_final/weld_meme.jpg" alt="The WELD" style="width: 70%; height: auto;">
 
 We're excited to announce that **The Weld is complete!** The [ethereum/execution-spec-tests](https://github.com/ethereum/execution-spec-tests) repository has been successfully merged into [ethereum/execution-specs](https://github.com/ethereum/execution-specs), and we're now accepting contributions in the unified repository.
 
@@ -17,10 +19,10 @@ As we announced in our [September post](https://steel.ethereum.foundation/blog/b
 
 The separation of specs and tests across two repositories created unnecessary complexity:
 
-1. **Multiple repository management**: New spec developers had to clone and manage two separate repositories
-2. **Manual configuration overhead**: Test developers needed to manually configure the EELS branch and fork in EEST to generate test vectors
-3. **Complicated test coverage**: Getting test coverage against the spec was non-trivial
-4. **Debugging difficulties**: It wasn't possible to drop into spec code from a test in a debugger, as the source was obfuscated via HTTP requests to the Resolver
+1. **Multiple repository management**: New spec developers had to clone and manage two separate repositories.
+2. **Manual configuration overhead**: Test developers needed to manually configure the EELS branch and fork in EEST to generate test vectors.
+3. **Complicated test coverage**: Getting test coverage against the spec was non-trivial.
+4. **Debugging difficulties**: It wasn't possible to drop into spec code from a test in a debugger, as the source was obfuscated via HTTP requests to the Resolver.
 
 By combining these repositories, we've eliminated these pain points and created a streamlined development experience.
 
@@ -28,7 +30,7 @@ By combining these repositories, we've eliminated these pain points and created 
 
 ### For Spec Developers
 
-- **Before:** Spec PRs in [ethereum/execution-specs](https://github.com/ethereum/execution-specs)<br/>
+- **Before:** Spec PRs in [ethereum/execution-specs](https://github.com/ethereum/execution-specs).<br/>
 - **After:** Same workflow, but now you can easily write tests alongside your spec!
 
 ### For Test Developers
@@ -58,7 +60,7 @@ uv run fill --fork=Osaka --clean \
 
 The relevant coverage can be browsed from `/tmp/modexp_upper_bounds_cov/index.html`.
 
-<img src="/images/blog/2025-11-04_weld-final/eels_coverage.jpg" alt="Coverage of modexp upper bounds in EELS" style="width: 70%; height: auto;">
+<img src="/images/blog/2025-11-04_weld_final/eels_coverage.png" alt="Coverage of modexp upper bounds in EELS" style="width: 70%; height: auto;">
 
 #### Test Code
 
@@ -99,17 +101,8 @@ The relevant coverage can be browsed from `/tmp/modexp_upper_bounds_cov/index.ht
 
 ### For Client Developers
 
-**Before:** Releases from [ethereum/execution-spec-tests](https://github.com/ethereum/execution-spec-tests/releases)<br/>
-**After:** No change - continue using the same release location
-
-## Benefits of the Unified Repository
-
-With specs and tests now living together, developers can enjoy:
-
-- **Zero version incompatibilities**: Specs and tests are always in sync
-- **One repository**: No need to juggle multiple clones and branches
-- **Seamless debugging**: Drop from test code directly into the spec
-- **Faster iteration**: Write a test next to your spec change in the same PR
+**Before:** Releases from [ethereum/execution-spec-tests](https://github.com/ethereum/execution-spec-tests/releases).<br/>
+**After:** No change - continue using the same release location.
 
 ## What's Next for STEEL with respect to the WELD?
 
@@ -117,10 +110,10 @@ The STEEL team is now focused on creating a more **native integration** between 
 
 Our roadmap includes:
 
-- **Shared type systems**: Unifying the type definitions used across specs and tests to eliminate redundancy and improve consistency
-- **Common abstractions**: Creating shared utility functions and abstractions that both specs and tests can leverage
-- **Tighter coupling**: Enabling tests to directly import and use spec types and functions, rather than interfacing through intermediate layers
-- **Improved developer ergonomics**: Streamlining the workflow further so that writing a test that validates a spec change feels completely natural
+- **Shared type systems**: Unifying the type definitions used across specs and tests to eliminate redundancy and improve consistency.
+- **Common abstractions**: Creating shared utility functions and abstractions that both specs and tests can leverage.
+- **Tighter coupling**: Enabling tests to directly import and use spec types and functions, rather than interfacing through intermediate layers.
+- **Improved developer ergonomics**: Streamlining the workflow further so that writing a test that validates a spec change feels completely natural.
 
 These improvements will build on the foundation laid by the weld, making the unified repository not just a collection of code in one place, but a truly integrated development environment for Ethereum execution layer specifications and testing.
 
