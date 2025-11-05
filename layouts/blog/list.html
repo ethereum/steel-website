@@ -9,7 +9,7 @@
     
     <!-- List all blog posts -->
     <div class="blog-posts" style="padding-left: 2rem; padding-right: 2rem;">
-        {{ range where .Site.RegularPages "Section" "blog" }}
+        {{ range (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
         <article class="blog-preview">
             <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
             {{ if .Summary }}
