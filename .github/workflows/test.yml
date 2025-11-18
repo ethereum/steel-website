@@ -35,6 +35,25 @@ jobs:
       - name: Run spellcheck with codespell
         run: uvx tox -e spellcheck
 
+  # check_links:
+  #   name: Check links with lychee
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout ethereum/steel-website
+  #       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+  #     - name: Run lychee
+  #       uses: lycheeverse/lychee-action@a8c4c7cb88f0c7386610c35eb25108e448569cb0 # 2.7.0
+  #       with:
+  #         args: >
+  #           --root-dir "$(pwd)"
+  #           --no-progress
+  #           README.md
+  #           ./docs/**/*.md
+  #         fail: true
+  #         format: markdown
+  #         jobSummary: true
+  #         output: lychee/out.md
+
   build:
     name: Build the site with zensical
     runs-on: ubuntu-latest
