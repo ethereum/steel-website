@@ -1,0 +1,115 @@
+/* Team page - force single column */
+.grid.cards[data-columns="1"] {
+  grid-template-columns: 1fr !important;
+}
+
+/* Team avatar styling */
+.team-avatar {
+  border-radius: 50% !important;
+  width: 100px !important;
+  height: 100px !important;
+  object-fit: cover !important;
+  flex-shrink: 0 !important;
+}
+
+/* Team card layout - use grid for left-right layout */
+.grid.cards[data-columns="1"] > ul > li > article {
+  text-align: left !important;
+  display: grid !important;
+  grid-template-columns: 100px 1fr !important;
+  grid-template-rows: auto auto 1fr !important;
+  gap: 0 1.5rem !important;
+  align-items: start !important;
+}
+
+/* Avatar spans all rows */
+.grid.cards[data-columns="1"] > ul > li > article > p:first-child {
+  grid-row: 1 / -1 !important;
+  grid-column: 1 !important;
+  margin: 0 !important;
+}
+
+/* Name heading */
+.grid.cards[data-columns="1"] > ul > li > article > h3 {
+  grid-row: 1 !important;
+  grid-column: 2 !important;
+  margin-top: 0 !important;
+}
+
+/* Description */
+.grid.cards[data-columns="1"] > ul > li > article > p:not(:first-child):not(:last-child) {
+  grid-row: 2 !important;
+  grid-column: 2 !important;
+}
+
+/* Social icons at bottom */
+.grid.cards[data-columns="1"] > ul > li > article > p:last-of-type {
+  grid-row: 3 !important;
+  grid-column: 2 !important;
+  align-self: end !important;
+  margin-top: auto !important;
+}
+
+/* Style social link buttons to be icon-only circles */
+.grid.cards .md-button {
+  min-width: 2.5rem !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  margin: 0.25rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+/* Center the icon inside the button */
+.grid.cards .md-button svg {
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* Theme-aware logo switching for home page */
+[data-md-color-scheme="default"] .logo-dark {
+  display: none !important;
+}
+
+[data-md-color-scheme="slate"] .logo-light {
+  display: none !important;
+}
+
+[data-md-color-scheme="slate"] .logo-dark {
+  display: block !important;
+  margin: 0 auto;
+}
+
+[data-md-color-scheme="default"] .logo-light {
+  display: block !important;
+  margin: 0 auto;
+}
+
+/* Theme-aware header logo switching */
+[data-md-color-scheme="default"] .md-header__button.md-logo img,
+[data-md-color-scheme="default"] .md-logo img {
+  content: url("../images/home/steel.png") !important;
+}
+
+[data-md-color-scheme="slate"] .md-header__button.md-logo img,
+[data-md-color-scheme="slate"] .md-logo img {
+  content: url("../images/home/steel-dark.png") !important;
+}
+
+/* Blog metadata styling */
+.blog-metadata {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.blog-metadata .twemoji {
+  height: 1.1em;
+  vertical-align: text-bottom;
+}

@@ -1,15 +1,13 @@
 # Steel Team Website
 
-This repository contains a simple Hugo-based website for the EF STEEL Team.
+This repository contains a simple [zensical](https://zensical.org)-based website for the Ethereum Foundation STEEL Team.
 
 ## Prerequisites
 
-[Hugo](https://github.com/gohugoio/hugo) - Binaries can be downloaded from their [releases page](https://github.com/gohugoio/hugo/releases).
-
-Install on Debian-based systems with:
+[uv](https://docs.astral.sh/uv/):
 
 ```bash
-sudo apt install hugo
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 ## Usage
@@ -17,5 +15,27 @@ sudo apt install hugo
 Serve the page locally:
 
 ```bash
-hugo server
+uv run zensical serve
+```
+
+## Verifying local changes
+
+Run the same checks as CI via:
+
+```bash
+uvx tox
+```
+
+The available environments can be listed via:
+
+```bash
+uvx tox -la
+```
+
+Outputs:
+
+```bash
+uv  # check uv.lock file is up-to-date
+spellcheck  # spellcheck markdown
+build  # build with zensical
 ```
