@@ -1,0 +1,3 @@
+# List of URLs lychee should ignore
+# Ignore file:// URLs within docs - these are relative links that work in the built site
+file:///.*/docs/.*

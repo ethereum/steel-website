@@ -72,6 +72,6 @@ Our work is very collaborative in nature, we work closely with:
 - EELS Repository: [ethereum/execution-specs](https://github.com/ethereum/execution-specs).
 - EEST Repository: [ethereum/execution-spec-test](https://github.com/ethereum/execution-spec-tests).
 - [EELS Documentation](https://ethereum.github.io/execution-specs/).
-- [EEST Tooling Documentation](https://eest.ethereum.org/execution-spec-tests/main/).
-- [EEST Test Case Documentation](https://eest.ethereum.org/execution-spec-tests/main/tests).
+- [EEST Tooling Documentation](https://eest.ethereum.org/main/).
+- [EEST Test Case Documentation](https://eest.ethereum.org/main/tests).
 - [Previous Presentations](https://github.com/ethsteel/presentations/blob/main/README.md).

@@ -2,10 +2,10 @@
 title: About
 ---
 
-<img src="../assets/images/home/steel.png" alt="STEEL Logo" class="logo-light" style="margin: 0 auto; width: 15%;">
-<img src="../assets/images/home/steel-dark.png" alt="STEEL Logo" class="logo-dark" style="margin: 0 auto; width: 15%;">
+<img src="assets/images/home/steel.png" alt="STEEL Logo" class="logo-light" style="margin: 0 auto; width: 15%;">
+<img src="assets/images/home/steel-dark.png" alt="STEEL Logo" class="logo-dark" style="margin: 0 auto; width: 15%;">
 
-The STEEL Team (Specifications and Testing for the Ethereum Execution Layer) is an Ethereum Foundation team in [Protocol](https://protocol.ethereum.foundation/) that is responsible for maintaining Ethereum's Execution Layer [specifications](https://ethereum.github.io/execution-specs/src/ethereum/osaka/blocks.py.html), [consensus tests](https://eest.ethereum.org/main/tests/) and EVM [benchmark tests](https://eest.ethereum.org/main/tests/benchmark/).
+The STEEL Team (Specifications and Testing for the Ethereum Execution Layer) is an Ethereum Foundation team in [Protocol](https://protocol.ethereum.foundation/) that is responsible for maintaining Ethereum's Execution Layer [specifications](https://ethereum.github.io/execution-specs/src/ethereum/forks/osaka/__init__.py.html), [consensus tests](https://eest.ethereum.org/main/tests/) and EVM [benchmark tests](https://eest.ethereum.org/main/tests/benchmark/).
 
 Our main focus is ensuring **accurate specifications and comprehensive testing coverage** for the next [Ethereum hard fork](https://forkcast.org/). Alongside this work, we aim to **accelerate Ethereum development** by supporting researchers to implement specifications and tests proposed for subsequent forks and contribute to the effort to [**Scale the L1**](https://protocol.ethereum.foundation/) by providing [computational- and state-intensive test cases](https://eest.ethereum.org/main/tests/benchmark/) that help client teams prepare for pathological scenarios and support Ethereum safely raise the block gas limit.
 
