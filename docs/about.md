@@ -16,7 +16,7 @@ One of our major goals is to empower these Ethereum core developers to expedite 
 - **Researchers** by providing the best tooling to quickly prototype and verify specifications, facilitating the EIP inclusion process for future forks and enabling parallel development.
 - **Client Developers** by providing new test formats and frameworks in order to quickly verify client functionality and easily debug problems when they arise.
 
-We maintain the [ethereum/execution-specs](https://github.com/ethereum/execution-specs) and [ethereum/execution-spec-tests](https://github.com/ethereum/execution-spec-tests) repositories. You can learn more about our work on the [responsibilities page](responsibilities.md) or from our [previous presentations](https://github.com/ethsteel/presentations/blob/main/README.md).
+We maintain the [ethereum/execution-specs](https://github.com/ethereum/execution-specs) repository which contains the EL specifications as executable code and the specification tests. You can learn more about our work on the [responsibilities page](responsibilities.md) or from our [previous presentations](https://github.com/ethsteel/presentations/blob/main/README.md).
 
 !!! success "Contact Us"
     You can reach us via:
