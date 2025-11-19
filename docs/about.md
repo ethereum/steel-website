@@ -9,7 +9,7 @@ The STEEL Team (Specifications and Testing for the Ethereum Execution Layer) is 
 
 Our main focus is ensuring **accurate specifications and comprehensive testing coverage** for the next [Ethereum hard fork](https://forkcast.org/). Alongside this work, we aim to **accelerate Ethereum development** by supporting researchers to implement specifications and tests proposed for subsequent forks and contribute to the effort to [**Scale the L1**](https://protocol.ethereum.foundation/) by providing [computational- and state-intensive test cases](https://eest.ethereum.org/main/tests/benchmark/) that help client teams prepare for pathological scenarios and support Ethereum safely raise the block gas limit.
 
-As such, our work is a deeply collaborative effort with many other teams in EF Protocol (such as Prototyping, [ethPandaOps](https://ethpandaops.io/), [Geth](https://geth.ethereum.org/), [Stateless Consensus](https://stateless.fyi/), zkEVM and [Security](https://security.ethereum.org/)), the Mainnet Execution Layer client teams (e.g., Geth, Nethermind, Besu, Erigon, Reth) and other independent Ethereum researchers.
+As such, our work is a deeply collaborative effort with many other teams in EF Protocol (such as [Prototyping](https://prototyping.ethereum.foundation/), [ethPandaOps](https://ethpandaops.io/), [Geth](https://geth.ethereum.org/), [Stateless Consensus](https://stateless.fyi/), [zkEVM](https://zkevm.ethereum.foundation/) and [Security](https://security.ethereum.org/)), the Mainnet Execution Layer client teams (e.g., Geth, Nethermind, Besu, Erigon, Reth) and other independent Ethereum researchers.
 
 One of our major goals is to empower these Ethereum core developers to expedite Ethereum development. We aim to enable:
 
