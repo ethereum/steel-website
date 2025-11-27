@@ -50,9 +50,10 @@ nav = [
     { "Responsibilities" = "responsibilities.md" },
     { "Team" = "team.md" },
     { "Blog" = [
+        "blog/2025-11-27_osaka_mainnet_tests.md",
         "blog/2025-11-04_weld_final.md",
         "blog/2025-09-15_eth-config.md",
-        "blog/2025-09-11_weld-announcement.md",
+        "blog/2025-09-11_weld-announcement.md"
     ] },
 ]
 
