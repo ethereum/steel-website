@@ -35,7 +35,9 @@ This post provides an overview of which execution-specs tests will be run on mai
 ### Command
 
 ```bash
-uv run execute blob-sender -v -s --fork=Osaka --rpc-seed-key=0000000000000000000000000000000000000000000000000000000000000001 --rpc-endpoint=<put-here> --chain-id=1 --eest-log-level=INFO --blob-seed=5 --blob-amount=3
+uv run execute blob-sender -v -s --fork=Osaka --rpc-seed-key=<put-here> \
+--rpc-endpoint=<put-here> --chain-id=1 --eest-log-level=INFO \
+--blob-seed=5 --blob-amount=3
 ```
 
 ### Transaction Hashes
@@ -55,7 +57,13 @@ uv run execute blob-sender -v -s --fork=Osaka --rpc-seed-key=0000000000000000000
 ### Command
 
 ```bash
-uv run execute remote --tx-wait-timeout=600 --sender-funding-txs-gas-price=1000000000 --rpc-seed-key=<put-here> --rpc-endpoint=<put-here> --eoa-fund-amount-default=100000000000000000 --chain-id=1 --fork=osaka ./tests/osaka/eip7883_modexp_gas_increase/test_eip_mainnet.py -v -s --eest-log-level=INFO
+uv run execute remote --tx-wait-timeout=600 \
+--sender-funding-txs-gas-price=1000000000 \
+--rpc-seed-key=<put-here> --rpc-endpoint=<put-here> \
+--eoa-fund-amount-default=100000000000000000 \
+--chain-id=1 --fork=osaka \
+./tests/osaka/eip7883_modexp_gas_increase/test_eip_mainnet.py \
+-v -s --eest-log-level=INFO
 ```
 
 ### Transaction Hashes
@@ -75,7 +83,13 @@ uv run execute remote --tx-wait-timeout=600 --sender-funding-txs-gas-price=10000
 ### Command
 
 ```bash
-uv run execute remote --tx-wait-timeout=600 --sender-funding-txs-gas-price=1000000000 --rpc-seed-key=<put-here> --rpc-endpoint=<put-here> --eoa-fund-amount-default=100000000000000000 --chain-id=1 --fork=osaka ./tests/osaka/eip7951_p256verify_precompiles/test_eip_mainnet.py -v -s --eest-log-level=INFO
+uv run execute remote --tx-wait-timeout=600 \
+--sender-funding-txs-gas-price=1000000000 \
+--rpc-seed-key=<put-here> --rpc-endpoint=<put-here> \
+--eoa-fund-amount-default=100000000000000000 \
+--chain-id=1 --fork=osaka \
+./tests/osaka/eip7951_p256verify_precompiles/test_eip_mainnet.py \
+-v -s --eest-log-level=INFO
 ```
 
 ### Transaction Hashes
