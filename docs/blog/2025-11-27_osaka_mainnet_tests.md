@@ -19,7 +19,7 @@ This post provides an overview of which execution-specs tests will be run on mai
 
 ## Schedule
 
-* Tests will be run as soon as Osaka is activated
+* Tests will be run as soon as Osaka is activated.
 
 ## Test Spec
 
