@@ -48,7 +48,59 @@ uv run execute blob-sender -v -s --fork=Osaka --rpc-seed-key=<put-here> \
 
 * TODO: will be added here
 
-## EIP-7883 (ModEXP)
+## EIP-7823 (ModEXP Upper Bound)
+
+### Description
+
+* Three test cases that have an invalid parameter length (> 1024 bytes).
+
+### Command
+
+```bash
+uv run execute remote --tx-wait-timeout=600 \
+--sender-funding-txs-gas-price=1000000000 \
+--rpc-seed-key=<put-here> --rpc-endpoint=<put-here> \
+--eoa-fund-amount-default=100000000000000000 \
+--chain-id=1 --fork=osaka \
+./tests/osaka/eip7823_modexp_upper_bounds/test_eip_mainnet.py \
+-v -s --eest-log-level=INFO
+```
+
+### Transaction Hashes
+
+* TODO: will be added here
+
+### Outcome
+
+* TODO: will be added here
+
+## EIP-7825 (Transaction Gas Limit Cap)
+
+### Description
+
+* Test case that tries to use up more gas than allowed by spamming `BALANCE`.
+
+### Command
+
+```bash
+uv run execute remote --tx-wait-timeout=600 \
+--sender-funding-txs-gas-price=1000000000 \
+--rpc-seed-key=<put-here> --rpc-endpoint=<put-here> \
+--eoa-fund-amount-default=100000000000000000 \
+--chain-id=1 --fork=osaka \
+./tests/osaka/eip7825_transaction_gas_limit_cap/test_eip_mainnet.py \
+-v -s --eest-log-level=INFO
+```
+
+### Transaction Hashes
+
+* TODO: will be added here
+
+### Outcome
+
+* TODO: will be added here
+
+## EIP-7883 (ModEXP Gas Repricing)
 
 ### Description
 
@@ -63,6 +115,32 @@ uv run execute remote --tx-wait-timeout=600 \
 --eoa-fund-amount-default=100000000000000000 \
 --chain-id=1 --fork=osaka \
 ./tests/osaka/eip7883_modexp_gas_increase/test_eip_mainnet.py \
+-v -s --eest-log-level=INFO
+```
+
+### Transaction Hashes
+
+* TODO: will be added here
+
+### Outcome
+
+* TODO: will be added here
+
+## EIP-7939 (CLZ)
+
+### Description
+
+* Three CLZ test cases to ensure clients are working as intended.
+
+### Command
+
+```bash
+uv run execute remote --tx-wait-timeout=600 \
+--sender-funding-txs-gas-price=1000000000 \
+--rpc-seed-key=<put-here> --rpc-endpoint=<put-here> \
+--eoa-fund-amount-default=100000000000000000 \
+--chain-id=1 --fork=osaka \
+./tests/osaka/eip7939_count_leading_zeros/test_eip_mainnet.py \
 -v -s --eest-log-level=INFO
 ```
 
