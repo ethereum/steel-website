@@ -13,6 +13,8 @@ As part of the hard-fork verification process, the STEEL Team executes a subset 
 
 In this post you can find details about which tests were executed and the corresponding transaction hashes. The corresponding semi-manual testing effort for Prague can be found [in this report](https://notes.ethereum.org/@marioevz/pectra-mainnet-testing).
 
+![Lighthouse Fulu Ascii Art](../assets/images/blog/2025-11-27_osaka_mainnet_tests/lighthouse_fulu.png)
+
 ## Summary
 
 - Test transactions were sent to mainnet for each EIP using EELS's `execute` subcommands.
