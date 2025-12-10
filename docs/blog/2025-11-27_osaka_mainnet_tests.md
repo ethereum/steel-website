@@ -21,8 +21,8 @@ In this post you can find details about which tests were executed and the corres
 
 ## Schedule
 
-- Fork Epoch: [411392](https://light-mainnet.beaconcha.in/epoch/411392) (`Dec-03-2025 09:49:11 PM UTC`).
-- Fork Expected Finalization Epoch: [411394](https://light-mainnet.beaconcha.in/epoch/411394) (`Dec-03-2025 10:01:59 PM UTC`).
+- Fork Epoch: [411392](https://beaconscan.com/epoch/411392) (`Dec-03-2025 09:49:11 PM UTC`).
+- Fork Expected Finalization Epoch: [411394](https://beaconscan.com/epoch/411394) (`Dec-03-2025 10:01:59 PM UTC`).
 - Testing commenced at the fork finalization epoch after the chain finalized successfully.
 
 ## Test Specification
