@@ -60,6 +60,8 @@ The following EIPs were not testable via EL transactions:
 
 ### Command
 
+Tests: [test_eip_mainnet.py@2b7dc12](https://github.com/ethereum/execution-specs/blob/2b7dc12d89bc9daa45a0737ab36c14fe55eaad5b/tests/osaka/eip7823_modexp_upper_bounds/test_eip_mainnet.py)
+
 ```bash
 uv run execute remote --fork=Osaka -m mainnet \
 tests/osaka/eip7823_modexp_upper_bounds/test_eip_mainnet.py \
@@ -86,6 +88,8 @@ tests/osaka/eip7823_modexp_upper_bounds/test_eip_mainnet.py \
 - Sent a transaction with the gas limit cap and above.
 
 ### Command
+
+Tests: [test_eip_mainnet.py@2b7dc12](https://github.com/ethereum/execution-specs/blob/2b7dc12d89bc9daa45a0737ab36c14fe55eaad5b/tests/osaka/eip7825_transaction_gas_limit_cap/test_eip_mainnet.py)
 
 ```bash
 uv run execute remote --fork=Osaka -m mainnet \
@@ -116,6 +120,8 @@ Note: `test_tx_gas_limit_cap_exceeded` had no direct test transaction as expecte
 - Triggered the gas cost changes in the ModExp precompile with five test cases.
 
 ### Command
+
+Tests: [test_eip_mainnet.py@2b7dc12](https://github.com/ethereum/execution-specs/blob/2b7dc12d89bc9daa45a0737ab36c14fe55eaad5b/tests/osaka/eip7883_modexp_gas_increase/test_eip_mainnet.py)
 
 ```bash
 uv run execute remote --fork=Osaka -m mainnet \
@@ -169,6 +175,8 @@ This was a regular call to a node's JSON RPC to request information; it did not 
 
 ### Command
 
+Tests: [test_eip_mainnet.py@2b7dc12](https://github.com/ethereum/execution-specs/blob/2b7dc12d89bc9daa45a0737ab36c14fe55eaad5b/tests/osaka/eip7939_count_leading_zeros/test_eip_mainnet.py)
+
 ```bash
 uv run execute remote --fork=Osaka -m mainnet \
 tests/osaka/eip7939_count_leading_zeros/test_eip_mainnet.py \
@@ -195,6 +203,8 @@ tests/osaka/eip7939_count_leading_zeros/test_eip_mainnet.py \
 - Executed the precompile with different inputs, including a negative test that used a signature valid only on secp256k1.
 
 ### Command
+
+Tests: [test_eip_mainnet.py@2b7dc12](https://github.com/ethereum/execution-specs/blob/2b7dc12d89bc9daa45a0737ab36c14fe55eaad5b/tests/osaka/eip7951_p256verify_precompiles/test_eip_mainnet.py)
 
 ```bash
 uv run execute remote --fork=Osaka -m mainnet \
