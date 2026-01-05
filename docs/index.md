@@ -101,6 +101,14 @@ STEEL <span class="highlight">bridges</span> EVM research, prototyping, and prod
   flex-wrap: wrap;
 }
 
+/* Ensure uniform button widths for clean wrapping */
+.hero-buttons .btn-primary,
+.hero-buttons .btn-secondary {
+  flex: 0 0 225px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
 .btn-primary {
   display: inline-block;
   padding: 0.875rem 2rem;
