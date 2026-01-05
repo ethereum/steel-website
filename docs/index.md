@@ -111,7 +111,7 @@ STEEL <span class="highlight">bridges</span> EVM research, prototyping, and prod
 
 .btn-primary {
   display: inline-block;
-  padding: 0.875rem 2rem;
+  padding: 0.875rem 1.25rem;
   background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
   color: #ffffff !important;
   text-decoration: none !important;
@@ -129,7 +129,7 @@ STEEL <span class="highlight">bridges</span> EVM research, prototyping, and prod
 
 .btn-secondary {
   display: inline-block;
-  padding: 0.875rem 2rem;
+  padding: 0.875rem 1.25rem;
   background: transparent;
   color: #ff9800 !important;
   text-decoration: none !important;
