@@ -9,9 +9,9 @@ description: "How execution-specs tested Osaka on mainnet"
 :material-account: **Felix, Mario** · :material-calendar: November 27, 2025 · :material-clock-outline: 5 min read
 </div>
 
-As part of the hard-fork verification process, the STEEL Team executes a subset of consensus tests from [ethereum/execution-specs](https://github.com/ethereum/execution-specs) directly on Ethereum mainnet - we're happy to report that all the tests selected for the Osaka hard fork passed!
+All tests selected for the Osaka hard fork passed! As part of our verification process, the STEEL Team ran a subset of consensus tests from [ethereum/execution-specs](https://github.com/ethereum/execution-specs) directly on Ethereum mainnet.
 
-In this post you can find details about which tests were executed and the corresponding transaction hashes. The corresponding semi-manual testing effort for Prague can be found [in this report](https://notes.ethereum.org/@marioevz/pectra-mainnet-testing).
+Below you can find details about which tests were executed and the corresponding transaction hashes. The corresponding semi-manual testing effort for Prague can be found [in this report](https://notes.ethereum.org/@marioevz/pectra-mainnet-testing).
 
 ![Lighthouse Fulu Ascii Art](../assets/images/blog/2025-11-27_osaka_mainnet_tests/lighthouse_fulu.png)
 
@@ -60,6 +60,8 @@ The following EIPs were not testable via EL transactions:
 
 ### Command
 
+Tests: [test_eip_mainnet.py@2b7dc12](https://github.com/ethereum/execution-specs/blob/2b7dc12d89bc9daa45a0737ab36c14fe55eaad5b/tests/osaka/eip7823_modexp_upper_bounds/test_eip_mainnet.py)
+
 ```bash
 uv run execute remote --fork=Osaka -m mainnet \
 tests/osaka/eip7823_modexp_upper_bounds/test_eip_mainnet.py \
@@ -86,6 +88,8 @@ tests/osaka/eip7823_modexp_upper_bounds/test_eip_mainnet.py \
 - Sent a transaction with the gas limit cap and above.
 
 ### Command
+
+Tests: [test_eip_mainnet.py@2b7dc12](https://github.com/ethereum/execution-specs/blob/2b7dc12d89bc9daa45a0737ab36c14fe55eaad5b/tests/osaka/eip7825_transaction_gas_limit_cap/test_eip_mainnet.py)
 
 ```bash
 uv run execute remote --fork=Osaka -m mainnet \
@@ -116,6 +120,8 @@ Note: `test_tx_gas_limit_cap_exceeded` had no direct test transaction as expecte
 - Triggered the gas cost changes in the ModExp precompile with five test cases.
 
 ### Command
+
+Tests: [test_eip_mainnet.py@2b7dc12](https://github.com/ethereum/execution-specs/blob/2b7dc12d89bc9daa45a0737ab36c14fe55eaad5b/tests/osaka/eip7883_modexp_gas_increase/test_eip_mainnet.py)
 
 ```bash
 uv run execute remote --fork=Osaka -m mainnet \
@@ -169,6 +175,8 @@ This was a regular call to a node's JSON RPC to request information; it did not 
 
 ### Command
 
+Tests: [test_eip_mainnet.py@2b7dc12](https://github.com/ethereum/execution-specs/blob/2b7dc12d89bc9daa45a0737ab36c14fe55eaad5b/tests/osaka/eip7939_count_leading_zeros/test_eip_mainnet.py)
+
 ```bash
 uv run execute remote --fork=Osaka -m mainnet \
 tests/osaka/eip7939_count_leading_zeros/test_eip_mainnet.py \
@@ -195,6 +203,8 @@ tests/osaka/eip7939_count_leading_zeros/test_eip_mainnet.py \
 - Executed the precompile with different inputs, including a negative test that used a signature valid only on secp256k1.
 
 ### Command
+
+Tests: [test_eip_mainnet.py@2b7dc12](https://github.com/ethereum/execution-specs/blob/2b7dc12d89bc9daa45a0737ab36c14fe55eaad5b/tests/osaka/eip7951_p256verify_precompiles/test_eip_mainnet.py)
 
 ```bash
 uv run execute remote --fork=Osaka -m mainnet \
