@@ -3,6 +3,12 @@ revision = 3
 requires-python = ">=3.12"
 
 [[package]]
+name = "actionlint-py"
+version = "1.7.10.24"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/9c/01/790379bf4cab91a272421a39b3d80f4a0d1a1ed753c00176be28b7d6adc6/actionlint_py-1.7.10.24.tar.gz", hash = "sha256:bac4e74e944c692fc7c65661009caebf14621bb33d937127ee5df8ac0693736a", size = 12057, upload-time = "2026-01-01T17:06:36.282Z" }
+
+[[package]]
 name = "click"
 version = "8.3.1"
 source = { registry = "https://pypi.org/simple" }
@@ -48,6 +54,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/7d/ab/7dd27d9d863b3376fcf23a5a13cb5d024aed1db46f963f1b5735ae43b3be/markdown-3.10.tar.gz", hash = "sha256:37062d4f2aa4b2b6b32aefb80faa300f82cc790cb949a35b8caede34f2b68c0e", size = 364931, upload-time = "2025-11-03T19:51:15.007Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/70/81/54e3ce63502cd085a0c556652a4e1b919c45a446bd1e5300e10c44c8c521/markdown-3.10-py3-none-any.whl", hash = "sha256:b5b99d6951e2e4948d939255596523444c0e677c669700b1d17aa4a8a464cb7c", size = 107678, upload-time = "2025-11-03T19:51:13.887Z" },
+]
+
+[[package]]
+name = "pyflakes"
+version = "3.4.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/45/dc/fd034dc20b4b264b3d015808458391acbf9df40b1e54750ef175d39180b1/pyflakes-3.4.0.tar.gz", hash = "sha256:b24f96fafb7d2ab0ec5075b7350b3d2d2218eab42003821c06344973d3ea2f58", size = 64669, upload-time = "2025-06-20T18:45:27.834Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c2/2f/81d580a0fb83baeb066698975cb14a618bdbed7720678566f1b046a95fe8/pyflakes-3.4.0-py2.py3-none-any.whl", hash = "sha256:f742a7dbd0d9cb9ea41e9a24a918996e8170c799fa528688d40dd582c8265f4f", size = 63551, upload-time = "2025-06-20T18:45:26.937Z" },
 ]
 
 [[package]]
@@ -119,16 +134,36 @@ wheels = [
 ]
 
 [[package]]
+name = "shellcheck-py"
+version = "0.11.0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/df/55/455b097417b3df3d330eff029c72c32f08b25739e3010acb30ad06d268ef/shellcheck_py-0.11.0.1.tar.gz", hash = "sha256:5c620c88901e8f1d3be5934b31ea99e3310065e1245253741eafd0a275c8c9cc", size = 3139, upload-time = "2025-08-09T17:53:42.492Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/54/27/d75b03e5458cefdb6d3b674566cd20476c3e4d3fe6cc9d68b7e3b854b296/shellcheck_py-0.11.0.1-py2.py3-none-macosx_10_9_x86_64.whl", hash = "sha256:b6a3fee28efda2e16e38d6e6d59faf7224300256456639727370d404730849e8", size = 6774472, upload-time = "2025-08-09T17:53:34.573Z" },
+    { url = "https://files.pythonhosted.org/packages/61/ac/2a84c37171c0cf5a10ea4b0a27d43eb0a1d29bd98b49c2c5ffe17ad24bbe/shellcheck_py-0.11.0.1-py2.py3-none-macosx_11_0_arm64.whl", hash = "sha256:6b88d0a244c82ed07e06a53e444da841f69330ca59ae15d4a66c391655dae7a0", size = 11381835, upload-time = "2025-08-09T17:53:36.852Z" },
+    { url = "https://files.pythonhosted.org/packages/96/55/250e0e3367613a5c22bd82e33b16b889287d81ab0f7dda67e6514a4cccf4/shellcheck_py-0.11.0.1-py2.py3-none-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl", hash = "sha256:1b274df81de5b000ff78db433e7328b87e52e3c38481c60f8e488c3095beef05", size = 3800600, upload-time = "2025-08-09T17:53:38.643Z" },
+    { url = "https://files.pythonhosted.org/packages/15/5b/bb14c0a7474463b1aa3c09e866cb172dffc66ed2993b7ea8f1db581e86ee/shellcheck_py-0.11.0.1-py2.py3-none-win_amd64.whl", hash = "sha256:784156289ecb17e91c692cd783ab5152333309588cabb10032a047331c63e759", size = 8027541, upload-time = "2025-08-09T17:53:40.889Z" },
+]
+
+[[package]]
 name = "steel-website"
 version = "0.1.0"
 source = { virtual = "." }
 
 [package.dev-dependencies]
+actionlint = [
+    { name = "actionlint-py" },
+    { name = "pyflakes" },
+    { name = "shellcheck-py" },
+]
 build = [
     { name = "zensical" },
 ]
 dev = [
+    { name = "actionlint-py" },
     { name = "codespell" },
+    { name = "pyflakes" },
+    { name = "shellcheck-py" },
     { name = "zensical" },
 ]
 spellcheck = [
@@ -138,9 +173,17 @@ spellcheck = [
 [package.metadata]
 
 [package.metadata.requires-dev]
+actionlint = [
+    { name = "actionlint-py", specifier = ">=1.7" },
+    { name = "pyflakes", specifier = ">=3.2" },
+    { name = "shellcheck-py", specifier = ">=0.10" },
+]
 build = [{ name = "zensical", specifier = ">=0.0.17" }]
 dev = [
+    { name = "actionlint-py", specifier = ">=1.7" },
     { name = "codespell", specifier = ">=2.4.1,<3" },
+    { name = "pyflakes", specifier = ">=3.2" },
+    { name = "shellcheck-py", specifier = ">=0.10" },
     { name = "zensical", specifier = ">=0.0.17" },
 ]
 spellcheck = [{ name = "codespell", specifier = ">=2.4.1,<3" }]

@@ -7,11 +7,14 @@ requires-python = ">=3.12"
 dependencies = []
 
 [dependency-groups]
-build = [
-    "zensical>=0.0.17",
-]
+build = ["zensical>=0.0.17"]
 spellcheck = ["codespell>=2.4.1,<3"]
-dev = [{ include-group = "build" }, { include-group = "spellcheck" }]
+actionlint = ["actionlint-py>=1.7", "shellcheck-py>=0.10", "pyflakes>=3.2"]
+dev = [
+    { include-group = "build" },
+    { include-group = "spellcheck" },
+    { include-group = "actionlint" },
+]
 
 [tool.codespell]
 builtin = "clear,code,usage"   # Built-in dictionaries to use
