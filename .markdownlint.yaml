@@ -1,8 +1,33 @@
-# All rules: https://github.com/DavidAnson/markdownlint#rules--aliases
-default: true # Default state for all rules
-MD013: false # line-length: We don't fill paragraphs/limit line length
-MD034: false # no-bare-urls - We use pymdownx.magiclink which allows bare urls
-MD033: false # no-inline-html - Too strict.
+# -----------------------------------------------------------------------------
+# Linter configuration for high-quality technical documentation.
+# Rules: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+# -----------------------------------------------------------------------------
+
+# Default: Enable all rules as the baseline
+default: true
+
+# MD013: Line Length - Disabled
+# Prevents unwanted line breaks in long technical explanations or code snippets.
+MD013: false
+
+# MD034: Bare URLs - Disabled
+# Allowed because of 'pymdownx.magiclink' which handles raw URLs securely and elegantly.
+MD034: false
+
+# MD033: Inline HTML - Disabled
+# Necessary for custom styling, center-aligned images, or technical diagrams using HTML tags.
+MD033: false
+
+# MD041: First line should be a top-level heading - Enabled (Standard)
+MD041: true
+
+# Unordered List Indentation
+# Ensures nested lists align with 4 spaces for better readability in MkDocs/GitHub.
 ul-indent:
-  indent: 4
-  start_indent: 4
+    indent: 4
+    start_indent: 4
+
+# MD024: Multiple headers with the same content - Enabled
+# Prevents SEO issues and broken anchor links by enforcing unique heading names.
+MD024:
+    siblings_only: true
