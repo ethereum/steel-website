@@ -299,6 +299,40 @@ jobs:
           echo "Generated versions.json:"
           cat site/docs/versions.json
 
+      - name: Copy versions.json to intermediate directories
+        if: github.event.inputs.skip_docs != 'true'
+        run: |
+          # MkDocs Material's version selector looks for ../versions.json relative
+          # to the current version directory. For multi-depth branch paths like
+          # forks/amsterdam or devnets/amsterdam/2, we need to copy versions.json
+          # to intermediate directories so the selector can find it.
+          #
+          # e.g., /docs/forks/amsterdam/ looks for /docs/forks/versions.json
+          #       /docs/devnets/amsterdam/2/ looks for /docs/devnets/amsterdam/versions.json
+
+          while IFS='|' read -r path _; do
+            if [ -z "$path" ] || [ ! -d "site/docs/$path" ]; then
+              continue
+            fi
+
+            # Get parent directory of the branch path
+            PARENT_DIR=$(dirname "$path")
+            if [ "$PARENT_DIR" != "." ]; then
+              # Copy versions.json to parent directory
+              mkdir -p "site/docs/$PARENT_DIR"
+              cp site/docs/versions.json "site/docs/$PARENT_DIR/versions.json"
+              echo "Copied versions.json to site/docs/$PARENT_DIR/"
+
+              # For deeper paths (e.g., devnets/amsterdam/2), also copy to grandparent
+              GRANDPARENT_DIR=$(dirname "$PARENT_DIR")
+              if [ "$GRANDPARENT_DIR" != "." ]; then
+                mkdir -p "site/docs/$GRANDPARENT_DIR"
+                cp site/docs/versions.json "site/docs/$GRANDPARENT_DIR/versions.json"
+                echo "Copied versions.json to site/docs/$GRANDPARENT_DIR/"
+              fi
+            fi
+          done <<< "$BRANCH_CONFIG"
+
       # --- End Docs Aggregation ---
 
       - name: Add .nojekyll
