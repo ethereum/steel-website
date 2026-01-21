@@ -260,11 +260,7 @@ jobs:
       - name: Generate versions.json
         if: github.event.inputs.skip_docs != 'true'
         run: |
-          cat > site/docs/versions.json <<EOF
-          {
-            "default": "${DEFAULT_BRANCH}",
-            "versions": [
-          EOF
+          echo "[" > site/docs/versions.json
 
           FIRST=true
           while IFS='|' read -r path label; do
@@ -283,19 +279,10 @@ jobs:
               echo "," >> site/docs/versions.json
             fi
 
-            cat >> site/docs/versions.json <<ENTRY
-              {
-                "version": "$path",
-                "title": "$label",
-                "aliases": $ALIASES
-              }
-          ENTRY
+            echo "{\"version\": \"$path\", \"title\": \"$label\", \"aliases\": $ALIASES}" >> site/docs/versions.json
           done <<< "$BRANCH_CONFIG"
 
-          cat >> site/docs/versions.json <<'EOF'
-            ]
-          }
-          EOF
+          echo "]" >> site/docs/versions.json
 
           echo "Generated versions.json:"
           cat site/docs/versions.json
