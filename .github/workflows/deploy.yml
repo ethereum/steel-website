@@ -64,6 +64,7 @@ env:
     mainnet|Mainnet
     forks/amsterdam|Amsterdam
     devnets/amsterdam/2|Amsterdam Devnet 2
+    forks/amsterdocs|Test Branch
 
   # Default branch to mirror to root of /docs/
   DEFAULT_BRANCH: forks/amsterdam
