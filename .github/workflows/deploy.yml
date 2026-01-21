@@ -32,18 +32,18 @@ on:
   workflow_dispatch:
     inputs:
       skip_branches:
-        description: 'Comma-separated branches to skip (for debugging)'
+        description: "Comma-separated branches to skip (for debugging)"
         required: false
         type: string
       skip_docs:
-        description: 'Skip docs aggregation (deploy Zensical only)'
+        description: "Skip docs aggregation (deploy Zensical only)"
         required: false
         type: boolean
         default: false
 
   # Scheduled fallback for recovery from transient failures
   schedule:
-    - cron: '0 4 * * *' # Daily at 4 AM UTC
+    - cron: "0 4 * * *" # Daily at 4 AM UTC
 
 concurrency:
   group: deploy
@@ -155,7 +155,7 @@ jobs:
             # Find the latest successful workflow run for this branch
             RUN_ID=$(gh run list \
               --repo "$SOURCE_REPO" \
-              --workflow "gh-pages.yaml" \
+              --workflow "docs-build.yaml" \
               --branch "$BRANCH" \
               --status success \
               --limit 1 \
