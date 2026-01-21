@@ -1,31 +1,350 @@
+# Build and Deploy
+#
+# Builds the Zensical site and aggregates documentation from execution-specs,
+# then deploys as a combined site to GitHub Pages.
+#
+# Triggers:
+#   - Push to main: Rebuilds when site content changes
+#   - repository_dispatch: Triggered by execution-specs when docs are updated
+#   - schedule: Daily rebuild to catch any missed updates
+#   - workflow_dispatch: Manual trigger for testing/recovery
+#
+# Site structure at steel.ethereum.foundation:
+#   /                   - Zensical site
+#   /docs/              - Default branch docs (mirrored)
+#   /docs/spec/         - Default branch spec (mirrored)
+#   /docs/<branch>/     - Branch-specific docs
+#   /docs/<branch>/spec - Branch-specific spec
+#   /docs/versions.json - Version manifest
+
 name: Build and Deploy
+
 on:
   push:
     branches:
       - main
+
+  # Triggered by execution-specs docs-producer workflow
+  repository_dispatch:
+    types: [docs-artifact-ready]
+
+  # Manual trigger for testing or recovery
   workflow_dispatch:
+    inputs:
+      skip_branches:
+        description: 'Comma-separated branches to skip (for debugging)'
+        required: false
+        type: string
+      skip_docs:
+        description: 'Skip docs aggregation (deploy Zensical only)'
+        required: false
+        type: boolean
+        default: false
+
+  # Scheduled fallback for recovery from transient failures
+  schedule:
+    - cron: '0 4 * * *' # Daily at 4 AM UTC
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false # Don't cancel in-progress deploys
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
+env:
+  # Source repository for docs artifacts
+  SOURCE_REPO: ethereum/execution-specs
+
+  # Branch configuration - must match execution-specs allowlist
+  # Format: branch_path|label
+  BRANCH_CONFIG: |
+    mainnet|Mainnet
+    forks/amsterdam|Amsterdam
+    devnets/amsterdam/2|Amsterdam Devnet 2
+
+  # Default branch to mirror to root of /docs/
+  DEFAULT_BRANCH: forks/amsterdam
+
 jobs:
   deploy:
+    name: "Build and Deploy"
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+      - name: Log trigger information
+        run: |
+          echo "=== Trigger Information ==="
+          echo "Event: ${{ github.event_name }}"
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            echo "Dispatch payload:"
+            echo '  branch: ${{ github.event.client_payload.branch }}'
+            echo '  sha: ${{ github.event.client_payload.sha }}'
+            echo '  run_id: ${{ github.event.client_payload.run_id }}'
+          fi
+          echo ""
+
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Setup Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
+
       - name: Install uv
-        uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867
+        uses: astral-sh/setup-uv@f0ec1fc3b38f5e7cd731bb6ce540c5af426746bb # v6.1.0
         with:
           enable-cache: false
           version: ${{ vars.UV_VERSION }}
           python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
-      - run: uv run zensical build --clean
-      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
+
+      # Build the main Zensical site
+      - name: Build Zensical site
+        run: |
+          uv run zensical build --clean
+          echo "Zensical site built to site/"
+
+      # --- Docs Aggregation ---
+
+      - name: Initialize docs staging
+        if: github.event.inputs.skip_docs != 'true'
+        run: |
+          mkdir -p site/docs
+          mkdir -p artifacts
+
+      - name: Parse branch configuration
+        if: github.event.inputs.skip_docs != 'true'
+        id: config
+        run: |
+          BRANCHES=""
+          while IFS='|' read -r path _; do
+            if [ -n "$path" ]; then
+              BRANCHES="$BRANCHES $path"
+            fi
+          done <<< "$BRANCH_CONFIG"
+
+          BRANCHES=$(echo "$BRANCHES" | xargs)
+          echo "branches=$BRANCHES" >> $GITHUB_OUTPUT
+          echo "Configured branches: $BRANCHES"
+
+      - name: Download artifacts from execution-specs
+        if: github.event.inputs.skip_docs != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.EXECUTION_SPECS_READ_TOKEN }}
+        run: |
+          SKIP_BRANCHES="${{ github.event.inputs.skip_branches }}"
+          SUCCESSFUL_BRANCHES=""
+          FAILED_BRANCHES=""
+
+          for BRANCH in ${{ steps.config.outputs.branches }}; do
+            if echo "$SKIP_BRANCHES" | grep -qF "$BRANCH"; then
+              echo "Skipping branch (user requested): $BRANCH"
+              continue
+            fi
+
+            BRANCH_SAFE=$(echo "$BRANCH" | tr '/' '-')
+            ARTIFACT_NAME="docs-${BRANCH_SAFE}"
+
+            echo ""
+            echo "=== Processing branch: $BRANCH ==="
+
+            # Find the latest successful workflow run for this branch
+            RUN_ID=$(gh run list \
+              --repo "$SOURCE_REPO" \
+              --workflow "gh-pages.yaml" \
+              --branch "$BRANCH" \
+              --status success \
+              --limit 1 \
+              --json databaseId \
+              --jq '.[0].databaseId' 2>/dev/null || echo "")
+
+            if [ -z "$RUN_ID" ] || [ "$RUN_ID" = "null" ]; then
+              echo "WARNING: No successful run found for branch $BRANCH"
+              FAILED_BRANCHES="$FAILED_BRANCHES $BRANCH"
+              continue
+            fi
+
+            echo "Found run ID: $RUN_ID"
+
+            if gh run download "$RUN_ID" \
+              --repo "$SOURCE_REPO" \
+              --name "$ARTIFACT_NAME" \
+              --dir "artifacts/$BRANCH_SAFE" 2>/dev/null; then
+              echo "Downloaded artifact for $BRANCH"
+              SUCCESSFUL_BRANCHES="$SUCCESSFUL_BRANCHES $BRANCH"
+            else
+              echo "WARNING: Failed to download artifact for branch $BRANCH"
+              FAILED_BRANCHES="$FAILED_BRANCHES $BRANCH"
+            fi
+          done
+
+          echo "successful_branches=$SUCCESSFUL_BRANCHES" >> $GITHUB_ENV
+          echo "failed_branches=$FAILED_BRANCHES" >> $GITHUB_ENV
+
+          echo ""
+          echo "=== Download Summary ==="
+          echo "Successful: $SUCCESSFUL_BRANCHES"
+          echo "Failed: $FAILED_BRANCHES"
+
+      - name: Stage branch artifacts
+        if: github.event.inputs.skip_docs != 'true'
+        run: |
+          for BRANCH in $successful_branches; do
+            BRANCH_SAFE=$(echo "$BRANCH" | tr '/' '-')
+            ARTIFACT_DIR="artifacts/${BRANCH_SAFE}"
+
+            if [ ! -d "$ARTIFACT_DIR" ]; then
+              continue
+            fi
+
+            echo "=== Staging branch: $BRANCH ==="
+
+            # Find the branch directory inside the artifact
+            if [ -d "$ARTIFACT_DIR/$BRANCH" ]; then
+              SOURCE_DIR="$ARTIFACT_DIR/$BRANCH"
+            else
+              SOURCE_DIR=$(find "$ARTIFACT_DIR" -mindepth 1 -maxdepth 1 -type d | head -1)
+            fi
+
+            if [ -z "$SOURCE_DIR" ] || [ ! -d "$SOURCE_DIR" ]; then
+              echo "WARNING: Could not find content for branch $BRANCH"
+              continue
+            fi
+
+            mkdir -p "site/docs/$(dirname "$BRANCH")"
+            rsync -av "$SOURCE_DIR/" "site/docs/$BRANCH/"
+            echo "Staged branch $BRANCH"
+          done
+
+      - name: Validate staged content
+        if: github.event.inputs.skip_docs != 'true'
+        id: validate
+        run: |
+          HAS_DEFAULT="false"
+
+          for BRANCH in $successful_branches; do
+            if [ -d "site/docs/$BRANCH" ]; then
+              if [ "$BRANCH" = "$DEFAULT_BRANCH" ]; then
+                HAS_DEFAULT="true"
+              fi
+            fi
+          done
+
+          echo "has_default=$HAS_DEFAULT" >> $GITHUB_OUTPUT
+
+          if [ "$HAS_DEFAULT" = "false" ]; then
+            echo "WARNING: Default branch $DEFAULT_BRANCH is not available"
+          fi
+
+      - name: Mirror default branch to root of /docs/
+        if: github.event.inputs.skip_docs != 'true' && steps.validate.outputs.has_default == 'true'
+        run: |
+          echo "Mirroring $DEFAULT_BRANCH to root of /docs/"
+
+          rsync -av \
+            --exclude='spec/' \
+            --exclude='mainnet/' \
+            --exclude='forks/' \
+            --exclude='devnets/' \
+            --exclude='eips/' \
+            "site/docs/$DEFAULT_BRANCH/" site/docs/
+
+          mkdir -p site/docs/spec
+          rsync -av "site/docs/$DEFAULT_BRANCH/spec/" site/docs/spec/
+
+      - name: Generate versions.json
+        if: github.event.inputs.skip_docs != 'true'
+        run: |
+          cat > site/docs/versions.json <<EOF
+          {
+            "default": "${DEFAULT_BRANCH}",
+            "versions": [
+          EOF
+
+          FIRST=true
+          while IFS='|' read -r path label; do
+            if [ -z "$path" ] || [ ! -d "site/docs/$path" ]; then
+              continue
+            fi
+
+            ALIASES="[]"
+            if [ "$path" = "$DEFAULT_BRANCH" ]; then
+              ALIASES='["latest"]'
+            fi
+
+            if [ "$FIRST" = "true" ]; then
+              FIRST=false
+            else
+              echo "," >> site/docs/versions.json
+            fi
+
+            cat >> site/docs/versions.json <<ENTRY
+              {
+                "version": "$path",
+                "title": "$label",
+                "aliases": $ALIASES
+              }
+          ENTRY
+          done <<< "$BRANCH_CONFIG"
+
+          cat >> site/docs/versions.json <<'EOF'
+            ]
+          }
+          EOF
+
+          echo "Generated versions.json:"
+          cat site/docs/versions.json
+
+      # --- End Docs Aggregation ---
+
+      - name: Add .nojekyll
+        run: |
+          touch site/.nojekyll
+
+      - name: Deployment summary
+        run: |
+          echo "## Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -d "site/docs" ] && [ "$(ls -A site/docs 2>/dev/null)" ]; then
+            echo "### Documentation Branches" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "| Branch | Label | Status | Size |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|-------|--------|------|" >> $GITHUB_STEP_SUMMARY
+
+            while IFS='|' read -r path label; do
+              if [ -z "$path" ]; then continue; fi
+              if [ -d "site/docs/$path" ]; then
+                SIZE=$(du -sh "site/docs/$path" | cut -f1)
+                DEFAULT_MARKER=""
+                if [ "$path" = "$DEFAULT_BRANCH" ]; then
+                  DEFAULT_MARKER=" (default)"
+                fi
+                echo "| $path | $label | :white_check_mark:$DEFAULT_MARKER | $SIZE |" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "| $path | $label | :x: | - |" >> $GITHUB_STEP_SUMMARY
+              fi
+            done <<< "$BRANCH_CONFIG"
+            echo "" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### Documentation" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "No documentation artifacts available." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          TOTAL=$(du -sh site | cut -f1)
+          echo "**Total site size:** $TOTAL" >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
-          path: site
-      - id: deployment
+          path: site/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
