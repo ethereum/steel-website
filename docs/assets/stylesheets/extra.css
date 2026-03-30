@@ -18,6 +18,24 @@
   color: #ff9800;
 }
 
+/* ===== Orange accent heading permalink ===== */
+
+.md-typeset .headerlink {
+  color: rgba(255, 152, 0, 0.45);
+}
+
+.md-typeset .headerlink:hover {
+  color: #ff9800;
+}
+
+[data-md-color-scheme="default"] .md-typeset .headerlink {
+  color: rgba(230, 81, 0, 0.35);
+}
+
+[data-md-color-scheme="default"] .md-typeset .headerlink:hover {
+  color: #e65100;
+}
+
 /* ===== Orange accent ToC active link ===== */
 
 .md-nav__link--active {
