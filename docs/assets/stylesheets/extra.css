@@ -256,3 +256,16 @@
 [data-md-color-scheme="default"] .blog-metadata .twemoji {
   color: rgba(230, 81, 0, 0.5);
 }
+
+.md-typeset .blog-metadata a {
+  color: var(--md-default-fg-color--light);
+  text-decoration: none;
+}
+
+.md-typeset .blog-metadata a:hover {
+  color: #ff9800;
+}
+
+[data-md-color-scheme="default"] .md-typeset .blog-metadata a:hover {
+  color: #e65100;
+}
