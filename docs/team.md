@@ -63,8 +63,6 @@ title: Team
 
     ### **Leo Lara**
 
-    Protocol tester for the [Consensus Layer](https://github.com/ethereum/consensus-specs){ target="_blank" }.
-
     [:fontawesome-brands-github:](https://github.com/leolara){ .md-button target="_blank" }
     [:fontawesome-brands-x-twitter:](https://x.com/leolarav){ .md-button target="_blank" }
 
