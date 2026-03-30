@@ -18,6 +18,16 @@
   color: #ff9800;
 }
 
+/* ===== Orange accent blockquote border ===== */
+
+.md-typeset blockquote {
+  border-left: 3px solid rgba(255, 152, 0, 0.45);
+}
+
+[data-md-color-scheme="default"] .md-typeset blockquote {
+  border-left-color: rgba(230, 81, 0, 0.4);
+}
+
 /* ===== Orange accent back-to-top button ===== */
 
 .md-top {
