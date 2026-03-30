@@ -1,3 +1,23 @@
+/* ===== Orange accent links ===== */
+
+.md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source) {
+  color: #ff9800;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source):hover {
+  color: #ffb74d;
+}
+
+[data-md-color-scheme="default"] .md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source) {
+  color: #e65100;
+}
+
+[data-md-color-scheme="default"] .md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source):hover {
+  color: #ff9800;
+}
+
 /* ===== Team Page: Option B — Three-Column Portrait Cards ===== */
 
 /* Three columns, responsive */
