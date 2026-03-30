@@ -61,8 +61,7 @@ Our work is very collaborative in nature, we work closely with:
 
 ## Current Focus
 
-- **[Fusaka hard fork](https://forkcast.org/upgrade/fusaka)** - finalizing tests and specs in preparation for the Fusaka hard fork, scheduled for Nov 2025.
-- **[Glamsterdam hard fork](https://forkcast.org/upgrade/glamsterdam)** - contributing to [Block-Level Access List](https://eips.ethereum.org/EIPS/eip-7928) (BAL) specs and tests.
+- **[Glamsterdam hard fork](https://forkcast.org/upgrade/glamsterdam)** - implementing and hardening specs and adding test coverage for the Glamsterdam upgrade.
 - **Scale the L1** - generating computational- and state-intensive test cases to safely raise the block gas limit and test zkEVMs.
 - **Test Corpus Unification** - enabling test vector generation from the corpus of tests from `ethereum/tests` (the predecessor to EEST) using EEST's test framework. The aim is to provide clients with a single source of consensus tests and deprecate the previous test framework [ethereum/retesteth](https://github.com/ethereum/retesteth).
 
