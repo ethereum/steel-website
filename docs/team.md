@@ -26,7 +26,7 @@ title: Team
 
     ### **danceratopz**
 
-    Protocol Tester with a focus on test developer experience and client test environments (hive/consume).
+    Protocol Tester who cares deeply about consensus and client test developer experience.
 
     [:fontawesome-brands-github:](https://github.com/danceratopz){ .md-button target="_blank" }
     [:fontawesome-brands-x-twitter:](https://x.com/danceratopz){ .md-button target="_blank" }
