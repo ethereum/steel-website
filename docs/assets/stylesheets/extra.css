@@ -18,6 +18,16 @@
   color: #ff9800;
 }
 
+/* ===== Orange text selection highlight ===== */
+
+::selection {
+  background: rgba(255, 152, 0, 0.25);
+}
+
+[data-md-color-scheme="default"] ::selection {
+  background: rgba(230, 81, 0, 0.2);
+}
+
 /* ===== Orange accent table header border ===== */
 
 .md-typeset th {
