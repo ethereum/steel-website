@@ -18,6 +18,16 @@
   color: #ff9800;
 }
 
+/* ===== Orange accent table header border ===== */
+
+.md-typeset th {
+  border-bottom: 2px solid rgba(255, 152, 0, 0.4);
+}
+
+[data-md-color-scheme="default"] .md-typeset th {
+  border-bottom-color: rgba(230, 81, 0, 0.35);
+}
+
 /* ===== Orange accent blockquote border ===== */
 
 .md-typeset blockquote {
