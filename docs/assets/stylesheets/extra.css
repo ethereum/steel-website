@@ -18,6 +18,16 @@
   color: #ff9800;
 }
 
+/* ===== Orange accent ToC active link ===== */
+
+.md-nav__link--active {
+  color: #ff9800 !important;
+}
+
+[data-md-color-scheme="default"] .md-nav__link--active {
+  color: #e65100 !important;
+}
+
 /* ===== Orange text selection highlight ===== */
 
 ::selection {
