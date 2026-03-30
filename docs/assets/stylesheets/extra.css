@@ -147,6 +147,7 @@
 [data-md-color-scheme="default"] .md-tabs__link--active {
   border-bottom-color: #e65100;
 }
+
 /* ===== Team Page: Option B — Three-Column Portrait Cards ===== */
 
 /* Three columns, responsive */
@@ -183,7 +184,7 @@
   align-items: center;
   text-align: center;
   padding: 1.2rem 0.8rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, border-color 0.2s;
 }
 
 .md-typeset .grid.cards > ul > li:hover {
@@ -252,20 +253,12 @@
 }
 
 /* Theme-aware logo switching for home page */
-[data-md-color-scheme="default"] .logo-dark {
+.logo-light, .logo-dark {
   display: none !important;
 }
 
-[data-md-color-scheme="slate"] .logo-light {
-  display: none !important;
-}
-
+[data-md-color-scheme="default"] .logo-light,
 [data-md-color-scheme="slate"] .logo-dark {
-  display: block !important;
-  margin: 0 auto;
-}
-
-[data-md-color-scheme="default"] .logo-light {
   display: block !important;
   margin: 0 auto;
 }
