@@ -18,6 +18,15 @@
   color: #ff9800;
 }
 
+/* ===== Orange accent active navigation tab ===== */
+
+.md-tabs__link--active {
+  border-bottom: 2px solid #ff9800;
+}
+
+[data-md-color-scheme="default"] .md-tabs__link--active {
+  border-bottom-color: #e65100;
+}
 /* ===== Team Page: Option B — Three-Column Portrait Cards ===== */
 
 /* Three columns, responsive */
