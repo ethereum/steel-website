@@ -18,6 +18,25 @@
   color: #ff9800;
 }
 
+/* ===== Orange accent back-to-top button ===== */
+
+.md-top {
+  background-color: #ff9800;
+  color: #ffffff;
+}
+
+.md-top:hover {
+  background-color: #ffb74d;
+}
+
+[data-md-color-scheme="default"] .md-top {
+  background-color: #e65100;
+}
+
+[data-md-color-scheme="default"] .md-top:hover {
+  background-color: #ff9800;
+}
+
 /* ===== Orange accent active navigation tab ===== */
 
 .md-tabs__link--active {
