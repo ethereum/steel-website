@@ -250,9 +250,9 @@
 .blog-metadata .twemoji {
   height: 1.1em;
   vertical-align: text-bottom;
-  color: #ff9800;
+  color: rgba(255, 152, 0, 0.5);
 }
 
 [data-md-color-scheme="default"] .blog-metadata .twemoji {
-  color: #e65100;
+  color: rgba(230, 81, 0, 0.5);
 }
