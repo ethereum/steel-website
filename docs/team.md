@@ -2,7 +2,7 @@
 title: Team
 ---
 
-<div class="grid cards" data-columns="1" markdown>
+<div class="grid cards" markdown>
 
 - ![Mario Vega](assets/images/team/marioevz.png){ .team-avatar }
 

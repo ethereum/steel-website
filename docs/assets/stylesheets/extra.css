@@ -1,73 +1,105 @@
-/* Team page - force single column */
-.grid.cards[data-columns="1"] {
-  grid-template-columns: 1fr !important;
+/* ===== Team Page: Option B — Three-Column Portrait Cards ===== */
+
+/* Three columns, responsive */
+.md-typeset .grid.cards {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 960px) {
+  .md-typeset .grid.cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .md-typeset .grid.cards {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* Team avatar styling */
+/* Team avatar — orange accent ring with gap for visibility on any background */
 .team-avatar {
-  border-radius: 50% !important;
-  width: 100px !important;
-  height: 100px !important;
-  object-fit: cover !important;
-  flex-shrink: 0 !important;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: none;
+  box-shadow:
+    0 0 0 3px var(--md-default-bg-color),
+    0 0 0 5px rgba(255, 152, 0, 0.45);
 }
 
-/* Team card layout - use grid for left-right layout */
-.grid.cards[data-columns="1"] > ul > li > article {
-  text-align: left !important;
-  display: grid !important;
-  grid-template-columns: 100px 1fr !important;
-  grid-template-rows: auto auto 1fr !important;
-  gap: 0 1.5rem !important;
-  align-items: start !important;
+/* Card layout: centered vertical stack */
+.md-typeset .grid.cards > ul > li {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.2rem 0.8rem;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Avatar spans all rows */
-.grid.cards[data-columns="1"] > ul > li > article > p:first-child {
-  grid-row: 1 / -1 !important;
-  grid-column: 1 !important;
-  margin: 0 !important;
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 152, 0, 0.45);
+}
+
+/* Avatar paragraph */
+.md-typeset .grid.cards > ul > li > p:first-child {
+  margin: 0 0 0.6rem 0;
 }
 
 /* Name heading */
-.grid.cards[data-columns="1"] > ul > li > article > h3 {
-  grid-row: 1 !important;
-  grid-column: 2 !important;
-  margin-top: 0 !important;
+.md-typeset .grid.cards > ul > li > h3 {
+  margin: 0 0 0.3rem 0;
+  font-size: 0.95rem;
+  scroll-margin-top: 14rem;
 }
 
-/* Description */
-.grid.cards[data-columns="1"] > ul > li > article > p:not(:first-child):not(:last-child) {
-  grid-row: 2 !important;
-  grid-column: 2 !important;
+/* Hide the permanent link so it doesn't offset the centered name */
+.md-typeset .grid.cards > ul > li > h3 .headerlink {
+  position: absolute;
 }
 
-/* Social icons at bottom */
-.grid.cards[data-columns="1"] > ul > li > article > p:last-of-type {
-  grid-row: 3 !important;
-  grid-column: 2 !important;
-  align-self: end !important;
-  margin-top: auto !important;
+/* Description — left-aligned for readability */
+.md-typeset .grid.cards > ul > li > p:not(:first-child):not(:last-child) {
+  margin: 0 0 0.4rem 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--md-default-fg-color--light);
+  text-align: left;
+  align-self: stretch;
 }
 
-/* Style social link buttons to be icon-only circles */
+/* Social icons: push to bottom, left-aligned */
+.md-typeset .grid.cards > ul > li > p:last-child {
+  margin: auto 0 0 0;
+  padding-top: 0.4rem;
+  align-self: stretch;
+  text-align: left;
+}
+
+/* Social link buttons: icon-only circles */
 .grid.cards .md-button {
-  min-width: 2.5rem !important;
-  width: 2.5rem !important;
-  height: 2.5rem !important;
-  padding: 0 !important;
-  border-radius: 50% !important;
-  margin: 0.25rem !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  line-height: 1 !important;
+  min-width: 1.9rem;
+  width: 1.9rem;
+  height: 1.9rem;
+  padding: 0;
+  border-radius: 50%;
+  margin: 0.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: border-color 0.15s, color 0.15s;
 }
 
-/* Center the icon inside the button */
+.grid.cards .md-button:hover {
+  border-color: rgba(255, 152, 0, 0.6);
+  color: #ff9800;
+}
+
 .grid.cards .md-button svg {
-  display: block !important;
-  margin: 0 auto !important;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Theme-aware logo switching for home page */
