@@ -6,7 +6,7 @@ description: "execution-spec-tests has successfully merged into execution-specs.
 ---
 
 <div class="blog-metadata" markdown>
-:material-account: **Guruprasad Kamath** · :material-calendar: November 4, 2025 · :material-clock-outline: 6 min read
+:material-account: **[Guru](../team.md#guru)** · :material-calendar: November 4, 2025 · :material-clock-outline: 6 min read
 </div>
 
 ![The WELD](../assets/images/blog/2025-11-04_weld_final/weld_meme.jpg){ style="display: block; margin: 0 auto; width: 70%;" }

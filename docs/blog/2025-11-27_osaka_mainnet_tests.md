@@ -6,7 +6,7 @@ description: "How execution-specs tested Osaka on mainnet"
 ---
 
 <div class="blog-metadata" markdown>
-:material-account: **Felix, Mario** · :material-calendar: November 27, 2025 · :material-clock-outline: 5 min read
+:material-account: **[Felix](../team.md#felix), [Mario](../team.md#mario-vega)** · :material-calendar: November 27, 2025 · :material-clock-outline: 5 min read
 </div>
 
 All tests selected for the Osaka hard fork passed! As part of our verification process, the STEEL Team ran a subset of consensus tests from [ethereum/execution-specs](https://github.com/ethereum/execution-specs) directly on Ethereum mainnet.
