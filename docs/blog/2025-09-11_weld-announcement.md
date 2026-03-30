@@ -6,7 +6,7 @@ description: "In Q4 2025, execution-spec-tests is moving to execution-specs."
 ---
 
 <div class="blog-metadata" markdown>
-:material-account: **danceratopz** · :material-calendar: September 8, 2025 · :material-clock-outline: 4 min read
+:material-account: [danceratopz](../team.md#danceratopz) · :material-calendar: September 8, 2025 · :material-clock-outline: 4 min read
 </div>
 
 In Q4 2025, the STEEL Team plans to move the Python tests, test vector generation framework and all other tooling from [ethereum/execution-spec-tests](https://github.com/ethereum/execution-spec-tests) to

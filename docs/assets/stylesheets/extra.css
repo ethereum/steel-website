@@ -1,3 +1,153 @@
+/* ===== Orange accent links ===== */
+
+.md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source) {
+  color: #ff9800;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source):hover {
+  color: #ffb74d;
+}
+
+[data-md-color-scheme="default"] .md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source) {
+  color: #e65100;
+}
+
+[data-md-color-scheme="default"] .md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source):hover {
+  color: #ff9800;
+}
+
+/* ===== Orange accent heading permalink ===== */
+
+.md-typeset .headerlink {
+  color: rgba(255, 152, 0, 0.45);
+}
+
+.md-typeset .headerlink:hover {
+  color: #ff9800;
+}
+
+[data-md-color-scheme="default"] .md-typeset .headerlink {
+  color: rgba(230, 81, 0, 0.35);
+}
+
+[data-md-color-scheme="default"] .md-typeset .headerlink:hover {
+  color: #e65100;
+}
+
+/* ===== Orange accent ToC links ===== */
+
+.md-nav__item .md-nav__link--active {
+  color: #ff9800;
+}
+
+[data-md-color-scheme="default"] .md-nav__item .md-nav__link--active {
+  color: #e65100;
+}
+
+.md-nav--secondary .md-nav__link[href]:hover {
+  color: #ffb74d;
+}
+
+[data-md-color-scheme="default"] .md-nav--secondary .md-nav__link[href]:hover {
+  color: #ff9800;
+}
+
+/* ===== Orange accent sidebar scrollbar ===== */
+
+.md-sidebar__scrollwrap {
+  scrollbar-color: rgba(255, 152, 0, 0.3) transparent;
+}
+
+[data-md-color-scheme="default"] .md-sidebar__scrollwrap {
+  scrollbar-color: rgba(230, 81, 0, 0.25) transparent;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar {
+  width: 6px;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 152, 0, 0.3);
+  border-radius: 3px;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 152, 0, 0.5);
+}
+
+[data-md-color-scheme="default"] .md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
+  background-color: rgba(230, 81, 0, 0.25);
+}
+
+[data-md-color-scheme="default"] .md-sidebar__scrollwrap::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(230, 81, 0, 0.4);
+}
+
+/* ===== Orange text selection highlight ===== */
+
+::selection {
+  background: rgba(255, 152, 0, 0.25);
+}
+
+[data-md-color-scheme="default"] ::selection {
+  background: rgba(230, 81, 0, 0.2);
+}
+
+/* ===== Orange accent table header border ===== */
+
+.md-typeset th {
+  border-bottom: 2px solid rgba(255, 152, 0, 0.4);
+}
+
+[data-md-color-scheme="default"] .md-typeset th {
+  border-bottom-color: rgba(230, 81, 0, 0.35);
+}
+
+/* ===== Orange accent blockquote border ===== */
+
+.md-typeset blockquote {
+  border-left: 3px solid rgba(255, 152, 0, 0.45);
+}
+
+[data-md-color-scheme="default"] .md-typeset blockquote {
+  border-left-color: rgba(230, 81, 0, 0.4);
+}
+
+/* ===== Orange accent back-to-top button ===== */
+
+.md-top {
+  background-color: #ff9800;
+  color: #ffffff;
+}
+
+.md-top:hover {
+  background-color: #ffb74d;
+}
+
+[data-md-color-scheme="default"] .md-top {
+  background-color: #e65100;
+}
+
+[data-md-color-scheme="default"] .md-top:hover {
+  background-color: #ff9800;
+}
+
+/* ===== Orange accent active navigation tab ===== */
+
+.md-tabs__link--active {
+  border-bottom: 2px solid #ff9800;
+}
+
+[data-md-color-scheme="default"] .md-tabs__link--active {
+  border-bottom-color: #e65100;
+}
+
 /* ===== Team Page: Option B — Three-Column Portrait Cards ===== */
 
 /* Three columns, responsive */
@@ -34,7 +184,7 @@
   align-items: center;
   text-align: center;
   padding: 1.2rem 0.8rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, border-color 0.2s;
 }
 
 .md-typeset .grid.cards > ul > li:hover {
@@ -103,20 +253,12 @@
 }
 
 /* Theme-aware logo switching for home page */
-[data-md-color-scheme="default"] .logo-dark {
+.logo-light, .logo-dark {
   display: none !important;
 }
 
-[data-md-color-scheme="slate"] .logo-light {
-  display: none !important;
-}
-
+[data-md-color-scheme="default"] .logo-light,
 [data-md-color-scheme="slate"] .logo-dark {
-  display: block !important;
-  margin: 0 auto;
-}
-
-[data-md-color-scheme="default"] .logo-light {
   display: block !important;
   margin: 0 auto;
 }
@@ -134,14 +276,32 @@
 
 /* Blog metadata styling */
 .blog-metadata {
-  color: var(--md-default-fg-color--light);
+  color: rgba(255, 152, 0, 0.5);
   font-size: 0.9rem;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  border-bottom: 1px solid rgba(255, 152, 0, 0.35);
 }
 
 .blog-metadata .twemoji {
   height: 1.1em;
   vertical-align: text-bottom;
+  color: inherit;
+}
+
+[data-md-color-scheme="default"] .blog-metadata {
+  color: rgba(230, 81, 0, 0.5);
+}
+
+.md-typeset .blog-metadata a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.md-typeset .blog-metadata a:any-link:hover {
+  color: #ff9800;
+}
+
+[data-md-color-scheme="default"] .md-typeset .blog-metadata a:any-link:hover {
+  color: #e65100;
 }

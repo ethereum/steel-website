@@ -6,7 +6,7 @@ description: "A brief summary of how we ensure that clients use the same configu
 ---
 
 <div class="blog-metadata" markdown>
-:material-account: **felix314159** · :material-calendar: September 15, 2025 · :material-clock-outline: 3 min read
+:material-account: [Felix](../team.md#felix) · :material-calendar: September 15, 2025 · :material-clock-outline: 3 min read
 </div>
 
 ## What is `eth_config`?
