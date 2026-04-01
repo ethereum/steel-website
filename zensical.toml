@@ -34,7 +34,7 @@ site_url = "https://steel.ethereum.foundation/"
 #
 # Read more: https://zensical.org/docs/setup/basics/#copyright
 copyright = """
-Copyright &copy; 2025 The Ethereum Foundation STEEL Team
+Copyright &copy; 2026 The Ethereum Foundation STEEL Team
 """
 
 # Zensical supports both implicit navigation and explicitly defined navigation.
@@ -270,11 +270,13 @@ features = [
 # ----------------------------------------------------------------------------
 [[project.theme.palette]]
 scheme = "default"
+accent = "orange"
 toggle.icon = "lucide/sun"
 toggle.name = "Switch to dark mode"
 
 [[project.theme.palette]]
 scheme = "slate"
+accent = "orange"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
 
@@ -312,3 +314,6 @@ code = "Jetbrains Mono"
 #[[project.extra.social]]
 #icon = "fontawesome/brands/github"
 #link = "https://github.com/user/repo"
+
+[project.extra]
+generator = false
