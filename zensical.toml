@@ -314,3 +314,6 @@ code = "Jetbrains Mono"
 #[[project.extra.social]]
 #icon = "fontawesome/brands/github"
 #link = "https://github.com/user/repo"
+
+[project.extra]
+generator = false
