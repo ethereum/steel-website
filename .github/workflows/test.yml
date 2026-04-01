@@ -14,7 +14,7 @@ jobs:
       - name: Checkout ethereum/steel-website
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
       - name: Install uv ${{ vars.UV_VERSION }} and python ${{ vars.DEFAULT_PYTHON_VERSION }}
-        uses: astral-sh/setup-uv@803947b9bd8e9f986429fa0c5a41c367cd732b41
+        uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57
         with:
           version: ${{ vars.UV_VERSION }}
           python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
@@ -28,7 +28,7 @@ jobs:
       - name: Checkout ethereum/steel-website
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
       - name: Install uv ${{ vars.UV_VERSION }} and python ${{ vars.DEFAULT_PYTHON_VERSION }}
-        uses: astral-sh/setup-uv@803947b9bd8e9f986429fa0c5a41c367cd732b41
+        uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57
         with:
           version: ${{ vars.UV_VERSION }}
           python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
@@ -42,7 +42,7 @@ jobs:
       - name: Checkout ethereum/steel-website
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
       - name: Install uv ${{ vars.UV_VERSION }} and python ${{ vars.DEFAULT_PYTHON_VERSION }}
-        uses: astral-sh/setup-uv@803947b9bd8e9f986429fa0c5a41c367cd732b41
+        uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57
         with:
           version: ${{ vars.UV_VERSION }}
           python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
@@ -75,7 +75,7 @@ jobs:
       - name: Checkout ethereum/steel-website
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
       - name: Install uv ${{ vars.UV_VERSION }} and python ${{ vars.DEFAULT_PYTHON_VERSION }}
-        uses: astral-sh/setup-uv@803947b9bd8e9f986429fa0c5a41c367cd732b41
+        uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57
         with:
           version: ${{ vars.UV_VERSION }}
           python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
