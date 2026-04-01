@@ -1,3 +1,15 @@
+/* ===== Orange accent variable override ===== */
+
+[data-md-color-accent="orange"] {
+  --md-accent-fg-color: #ff9800;
+  --md-accent-fg-color--transparent: #ff98001a;
+}
+
+[data-md-color-scheme="default"][data-md-color-accent="orange"] {
+  --md-accent-fg-color: #e65100;
+  --md-accent-fg-color--transparent: #e651001a;
+}
+
 /* ===== Orange accent links ===== */
 
 .md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source) {
