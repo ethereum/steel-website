@@ -30,25 +30,17 @@
   color: #ff9800;
 }
 
-/* ===== Orange accent heading permalink ===== */
+/* ===== Orange accent heading permalink (idle opacity only; hover via accent var) ===== */
 
 .md-typeset .headerlink {
   color: rgba(255, 152, 0, 0.45);
-}
-
-.md-typeset .headerlink:hover {
-  color: #ff9800;
 }
 
 [data-md-color-scheme="default"] .md-typeset .headerlink {
   color: rgba(230, 81, 0, 0.35);
 }
 
-[data-md-color-scheme="default"] .md-typeset .headerlink:hover {
-  color: #e65100;
-}
-
-/* ===== Orange accent ToC links ===== */
+/* ===== Orange accent ToC active link ===== */
 
 .md-nav__item .md-nav__link--active {
   color: #ff9800;
@@ -58,15 +50,7 @@
   color: #e65100;
 }
 
-.md-nav--secondary .md-nav__link[href]:hover {
-  color: #ffb74d;
-}
-
-[data-md-color-scheme="default"] .md-nav--secondary .md-nav__link[href]:hover {
-  color: #ff9800;
-}
-
-/* ===== Orange accent sidebar scrollbar ===== */
+/* ===== Orange accent sidebar scrollbar (idle state; hover/focus via accent var) ===== */
 
 .md-sidebar__scrollwrap {
   scrollbar-color: rgba(255, 152, 0, 0.3) transparent;
@@ -74,31 +58,6 @@
 
 [data-md-color-scheme="default"] .md-sidebar__scrollwrap {
   scrollbar-color: rgba(230, 81, 0, 0.25) transparent;
-}
-
-.md-sidebar__scrollwrap::-webkit-scrollbar {
-  width: 6px;
-}
-
-.md-sidebar__scrollwrap::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 152, 0, 0.3);
-  border-radius: 3px;
-}
-
-.md-sidebar__scrollwrap::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 152, 0, 0.5);
-}
-
-[data-md-color-scheme="default"] .md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
-  background-color: rgba(230, 81, 0, 0.25);
-}
-
-[data-md-color-scheme="default"] .md-sidebar__scrollwrap::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(230, 81, 0, 0.4);
 }
 
 /* ===== Orange text selection highlight ===== */
@@ -129,25 +88,6 @@
 
 [data-md-color-scheme="default"] .md-typeset blockquote {
   border-left-color: rgba(230, 81, 0, 0.4);
-}
-
-/* ===== Orange accent back-to-top button ===== */
-
-.md-top {
-  background-color: #ff9800;
-  color: #ffffff;
-}
-
-.md-top:hover {
-  background-color: #ffb74d;
-}
-
-[data-md-color-scheme="default"] .md-top {
-  background-color: #e65100;
-}
-
-[data-md-color-scheme="default"] .md-top:hover {
-  background-color: #ff9800;
 }
 
 /* ===== Orange accent active navigation tab ===== */
