@@ -62,6 +62,7 @@ env:
   # Format: branch_path|label
   BRANCH_CONFIG: |
     experiments/publish-docs|Amsterdam
+    experiments/publish-docs-test|Amsterdam (Test)
 
   # Default branch to mirror to root of /docs/
   DEFAULT_BRANCH: experiments/publish-docs
