@@ -61,13 +61,10 @@ env:
   # Branch configuration - must match execution-specs allowlist
   # Format: branch_path|label
   BRANCH_CONFIG: |
-    mainnet|Mainnet
-    forks/amsterdam|Amsterdam
-    devnets/amsterdam/2|Amsterdam Devnet 2
-    forks/amsterdocs|Test Branch
+    experiments/publish-docs|Amsterdam
 
   # Default branch to mirror to root of /docs/
-  DEFAULT_BRANCH: forks/amsterdam
+  DEFAULT_BRANCH: experiments/publish-docs
 
 jobs:
   deploy:
