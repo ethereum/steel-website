@@ -151,23 +151,31 @@ jobs:
             echo ""
             echo "=== Processing branch: $BRANCH ==="
 
-            # Find the latest successful workflow run for this branch
-            RUN_ID=$(gh run list \
-              --repo "$SOURCE_REPO" \
-              --workflow "docs-build.yaml" \
-              --branch "$BRANCH" \
-              --status success \
-              --limit 1 \
-              --json databaseId \
-              --jq '.[0].databaseId' 2>/dev/null || echo "")
+            # Find the latest successful workflow run for this branch.
+            # Filter by event type: only push and workflow_dispatch produce
+            # artifacts (PR runs succeed but upload nothing).
+            RUN_ID=""
+            for EVENT_TYPE in push workflow_dispatch; do
+              RUN_ID=$(gh run list \
+                --repo "$SOURCE_REPO" \
+                --workflow "docs-build.yaml" \
+                --branch "$BRANCH" \
+                --status success \
+                --event "$EVENT_TYPE" \
+                --limit 1 \
+                --json databaseId \
+                --jq '.[0].databaseId' 2>/dev/null || echo "")
+              if [ -n "$RUN_ID" ] && [ "$RUN_ID" != "null" ]; then
+                echo "Found run ID: $RUN_ID (event: $EVENT_TYPE)"
+                break
+              fi
+            done
 
             if [ -z "$RUN_ID" ] || [ "$RUN_ID" = "null" ]; then
               echo "WARNING: No successful run found for branch $BRANCH"
               FAILED_BRANCHES="$FAILED_BRANCHES $BRANCH"
               continue
             fi
-
-            echo "Found run ID: $RUN_ID"
 
             if gh run download "$RUN_ID" \
               --repo "$SOURCE_REPO" \
