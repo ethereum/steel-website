@@ -29,9 +29,11 @@ mainnet|Mainnet
 forks/amsterdam|Amsterdam
 devnets/amsterdam/2|Amsterdam Devnet 2
 forks/amsterdocs|Test Branch
+experiments/publish-docs|Publish Docs
+experiments/publish-docs-test|Publish Docs (Test)
 """
 
-DEFAULT_BRANCH = "forks/amsterdam"
+DEFAULT_BRANCH = "experiments/publish-docs"
 
 
 def build_zensical(site_dir: Path) -> None:
