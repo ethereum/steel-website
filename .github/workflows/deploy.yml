@@ -6,7 +6,6 @@
 # Triggers:
 #   - Push to main: Rebuilds when site content changes
 #   - repository_dispatch: Triggered by execution-specs when docs are updated
-#   - schedule: Daily rebuild to catch any missed updates
 #   - workflow_dispatch: Manual trigger for testing/recovery
 #
 # Site structure at steel.ethereum.foundation:
@@ -40,10 +39,6 @@ on:
         required: false
         type: boolean
         default: false
-
-  # Scheduled fallback for recovery from transient failures
-  schedule:
-    - cron: "0 4 * * *" # Daily at 4 AM UTC
 
 concurrency:
   group: deploy
