@@ -27,15 +27,11 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 PRODUCT = "execution-specs"
 
 BRANCH_CONFIG = """\
-mainnet|Mainnet
 forks/amsterdam|Amsterdam
-devnets/amsterdam/2|Amsterdam Devnet 2
-forks/amsterdocs|Test Branch
-experiments/publish-docs|Publish Docs
-experiments/publish-docs-test|Publish Docs (Test)
+devnets/bal/4|bal-devnet-4
 """
 
-DEFAULT_BRANCH = "experiments/publish-docs"
+DEFAULT_BRANCH = "forks/amsterdam"
 
 
 def build_zensical(site_dir: Path) -> None:

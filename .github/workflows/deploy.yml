@@ -59,11 +59,11 @@ env:
   # Branch configuration - must match execution-specs allowlist
   # Format: branch_path|label
   BRANCH_CONFIG: |
-    experiments/publish-docs|Amsterdam
-    experiments/publish-docs-test|Amsterdam (Test)
+    forks/amsterdam|Amsterdam
+    devnets/bal/4|bal-devnet-4
 
   # Default branch within the product — /docs/<PRODUCT>/ redirects here
-  DEFAULT_BRANCH: experiments/publish-docs
+  DEFAULT_BRANCH: forks/amsterdam
 
 jobs:
   deploy:
