@@ -1,8 +1,9 @@
 # Documentation
 
-## execution-specs
+## ethereum/execution-specs
 
-The [Ethereum execution-layer specification](https://github.com/ethereum/execution-specs).
+HTML documentation is available for the following [ethereum/execution-specs](https://github.com/ethereum/execution-specs) branches.
 
-- [Amsterdam](/docs/execution-specs/forks/amsterdam/).
-- [`bal-devnet-4`](/docs/execution-specs/devnets/bal/4/).
+| execution-specs branch | HTML docs |
+| --- | --- |
+| [experiments/publish-docs](https://github.com/ethereum/execution-specs/tree/experiments/publish-docs) | [Amsterdam](/docs/execution-specs/experiments/publish-docs/) |
