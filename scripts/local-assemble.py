@@ -133,7 +133,7 @@ def serve(site_dir: Path, port: int) -> None:
     print("URLs to test:")
     print(f"  http://localhost:{port}/docs/                        (landing page)")
     print(f"  http://localhost:{port}/docs/versions.json           (versions)")
-    print(f"  http://localhost:{port}/docs/{PRODUCT}/default/      (permalink)")
+    print(f"  http://localhost:{port}/docs/{PRODUCT}/              (permalink)")
     print(f"  http://localhost:{port}/docs/{PRODUCT}/{DEFAULT_BRANCH}/  (docs + selector)")
     print()
 

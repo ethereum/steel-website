@@ -6,8 +6,8 @@ Runs after branch artifacts have been staged into a docs directory under
 
 1. Injects the custom version selector <script> tag into all HTML files.
 2. Generates versions.json (flat array with url fields).
-3. Generates /docs/<product>/default/ — a stable permalink that tracks the
-   current default branch, so external links survive the rollover from e.g.
+3. Generates /docs/<product>/ — a stable permalink that tracks the current
+   default branch, so external links survive the rollover from e.g.
    forks/amsterdam to forks/bogota.
    /docs/ itself is the Zensical-built landing page and is not overwritten.
 
@@ -117,15 +117,16 @@ def generate_versions_json(
 
 
 def generate_redirects(docs_dir: Path, product: str, default_branch: str) -> None:
-    """Generate the /docs/<product>/default/ permalink redirect.
+    """Generate the /docs/<product>/ permalink redirect.
 
-    Tracks the product's current default branch so external links survive the
-    rollover from e.g. forks/amsterdam to forks/bogota.
+    /docs/<product>/ itself tracks the product's current default branch so
+    external links survive the rollover from e.g. forks/amsterdam to
+    forks/bogota.
 
     /docs/ itself is the Zensical-built landing page (docs/docs/index.md) and
     is intentionally not written here so we don't overwrite it.
     """
-    dest = docs_dir / product / "default" / "index.html"
+    dest = docs_dir / product / "index.html"
     url = f"/docs/{product}/{default_branch}/"
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(REDIRECT_TEMPLATE.format(url=url, label=f"{product}/{default_branch}"))

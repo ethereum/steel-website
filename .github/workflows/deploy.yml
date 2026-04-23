@@ -11,7 +11,7 @@
 # Site structure at steel.ethereum.foundation:
 #   /                                         - Zensical site
 #   /docs/                                    - Zensical landing page (docs/docs/index.md)
-#   /docs/<product>/default/                  - Permalink; redirects to current default branch
+#   /docs/<product>/                          - Permalink; redirects to current default branch
 #   /docs/<product>/<branch>/                 - Branch-specific docs
 #   /docs/<product>/<branch>/specs/reference  - Branch-specific spec
 #   /docs/versions.json                       - Version manifest
@@ -62,7 +62,7 @@ env:
     experiments/publish-docs|Amsterdam
     experiments/publish-docs-test|Amsterdam (Test)
 
-  # Default branch within the product — /docs/<PRODUCT>/default/ redirects here
+  # Default branch within the product — /docs/<PRODUCT>/ redirects here
   DEFAULT_BRANCH: experiments/publish-docs
 
 jobs:
