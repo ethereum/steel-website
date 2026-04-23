@@ -9,14 +9,12 @@
 #   - workflow_dispatch: Manual trigger for testing/recovery
 #
 # Site structure at steel.ethereum.foundation:
-#   /                             - Zensical site
-#   /docs/                        - Forwards to /docs/default/
-#   /docs/spec/                   - Forwards to /docs/default/spec/
-#   /docs/default/                - Permalink; redirects to current default branch
-#   /docs/default/spec/           - Permalink; redirects to current default branch spec
-#   /docs/<branch>/               - Branch-specific docs
+#   /                              - Zensical site
+#   /docs/                         - Zensical landing page (docs/docs/index.md)
+#   /docs/default/                 - Permalink; redirects to current default branch
+#   /docs/<branch>/                - Branch-specific docs
 #   /docs/<branch>/specs/reference - Branch-specific spec
-#   /docs/versions.json           - Version manifest
+#   /docs/versions.json            - Version manifest
 
 name: Build and Deploy
 

@@ -6,11 +6,10 @@ three operations in order:
 
 1. Injects the custom version selector <script> tag into all HTML files.
 2. Generates versions.json (flat array with url fields).
-3. Generates redirect index.html files:
-   - /docs/default/ and /docs/default/spec/ are stable permalinks that track
-     the current default branch, so external links survive the rollover from
-     e.g. forks/amsterdam to forks/bogota.
-   - /docs/ and /docs/spec/ forward to those permalinks for backward compat.
+3. Generates /docs/default/ — a stable permalink that tracks the current
+   default branch, so external links survive the rollover from e.g.
+   forks/amsterdam to forks/bogota.
+   /docs/ itself is the Zensical-built landing page and is not overwritten.
 
 Usage (from repo root):
     uv run scripts/assemble-docs.py site/docs \\
@@ -110,30 +109,19 @@ def generate_versions_json(
 
 
 def generate_redirects(docs_dir: Path, default_branch: str) -> None:
-    """Generate permalink redirects under docs/default/ and forwarders at docs root.
+    """Generate the /docs/default/ permalink redirect.
 
-    /docs/default/ and /docs/default/spec/ are the stable permalinks — they
-    track the current default branch and survive its rollover. /docs/ and
-    /docs/spec/ forward through the permalinks so the old URLs keep working.
+    /docs/default/ tracks the current default branch so external links survive
+    the rollover from e.g. forks/amsterdam to forks/bogota.
+
+    /docs/ itself is the Zensical-built landing page (docs/docs/index.md) and
+    is intentionally not written here so we don't overwrite it.
     """
-    branch_url = f"/docs/{default_branch}/"
-    branch_spec_url = f"/docs/{default_branch}/specs/reference/"
-    targets = [
-        # Permalinks: /docs/default/... -> current default branch.
-        (docs_dir / "default" / "index.html", branch_url, default_branch),
-        (
-            docs_dir / "default" / "spec" / "index.html",
-            branch_spec_url,
-            f"{default_branch}/specs/reference",
-        ),
-        # Forwarders: /docs/ and /docs/spec/ -> /docs/default/...
-        (docs_dir / "index.html", "/docs/default/", "default"),
-        (docs_dir / "spec" / "index.html", "/docs/default/spec/", "default/spec"),
-    ]
-    for dest, url, label in targets:
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_text(REDIRECT_TEMPLATE.format(url=url, label=label))
-        print(f"Generated redirect: {dest.relative_to(docs_dir)} -> {url}")
+    dest = docs_dir / "default" / "index.html"
+    url = f"/docs/{default_branch}/"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(REDIRECT_TEMPLATE.format(url=url, label=default_branch))
+    print(f"Generated redirect: {dest.relative_to(docs_dir)} -> {url}")
 
 
 def main() -> None:
