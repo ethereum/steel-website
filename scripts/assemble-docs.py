@@ -6,7 +6,11 @@ three operations in order:
 
 1. Injects the custom version selector <script> tag into all HTML files.
 2. Generates versions.json (flat array with url fields).
-3. Generates redirect index.html files at the docs root and spec/.
+3. Generates redirect index.html files:
+   - /docs/default/ and /docs/default/spec/ are stable permalinks that track
+     the current default branch, so external links survive the rollover from
+     e.g. forks/amsterdam to forks/bogota.
+   - /docs/ and /docs/spec/ forward to those permalinks for backward compat.
 
 Usage (from repo root):
     uv run scripts/assemble-docs.py site/docs \\
@@ -106,14 +110,25 @@ def generate_versions_json(
 
 
 def generate_redirects(docs_dir: Path, default_branch: str) -> None:
-    """Generate redirect index.html at docs root and docs/spec/."""
+    """Generate permalink redirects under docs/default/ and forwarders at docs root.
+
+    /docs/default/ and /docs/default/spec/ are the stable permalinks — they
+    track the current default branch and survive its rollover. /docs/ and
+    /docs/spec/ forward through the permalinks so the old URLs keep working.
+    """
+    branch_url = f"/docs/{default_branch}/"
+    branch_spec_url = f"/docs/{default_branch}/specs/reference/"
     targets = [
-        (docs_dir / "index.html", f"/docs/{default_branch}/", default_branch),
+        # Permalinks: /docs/default/... -> current default branch.
+        (docs_dir / "default" / "index.html", branch_url, default_branch),
         (
-            docs_dir / "spec" / "index.html",
-            f"/docs/{default_branch}/spec/",
-            f"{default_branch}/spec",
+            docs_dir / "default" / "spec" / "index.html",
+            branch_spec_url,
+            f"{default_branch}/specs/reference",
         ),
+        # Forwarders: /docs/ and /docs/spec/ -> /docs/default/...
+        (docs_dir / "index.html", "/docs/default/", "default"),
+        (docs_dir / "spec" / "index.html", "/docs/default/spec/", "default/spec"),
     ]
     for dest, url, label in targets:
         dest.parent.mkdir(parents=True, exist_ok=True)
