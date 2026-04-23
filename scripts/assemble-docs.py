@@ -1,18 +1,19 @@
 #!/usr/bin/env -S uv run --script
 """Post-staging assembly for aggregated docs.
 
-Runs after branch artifacts have been staged into a docs directory. Performs
-three operations in order:
+Runs after branch artifacts have been staged into a docs directory under
+<product>/<branch>/. Performs three operations in order:
 
 1. Injects the custom version selector <script> tag into all HTML files.
 2. Generates versions.json (flat array with url fields).
-3. Generates /docs/default/ — a stable permalink that tracks the current
-   default branch, so external links survive the rollover from e.g.
+3. Generates /docs/<product>/default/ — a stable permalink that tracks the
+   current default branch, so external links survive the rollover from e.g.
    forks/amsterdam to forks/bogota.
    /docs/ itself is the Zensical-built landing page and is not overwritten.
 
 Usage (from repo root):
     uv run scripts/assemble-docs.py site/docs \\
+        --product execution-specs \\
         --branch-config "forks/amsterdam|Amsterdam" \\
         --default-branch forks/amsterdam
 """
@@ -80,55 +81,63 @@ def inject_version_selector(docs_dir: Path) -> int:
 
 def generate_versions_json(
     docs_dir: Path,
+    product: str,
     branches: list[tuple[str, str]],
     default_branch: str,
 ) -> Path:
-    """Generate versions.json as a flat array with url fields."""
+    """Generate versions.json as a flat array with url fields.
+
+    Each entry's `version` field is the URL-path segment after /docs/
+    (i.e. "<product>/<branch>"), so version-selector.js can match it with a
+    simple startsWith against location.pathname.
+    """
     versions = []
     for path, label in branches:
-        if not (docs_dir / path).is_dir():
-            print(f"  Skipping {path} (directory not found).")
+        if not (docs_dir / product / path).is_dir():
+            print(f"  Skipping {product}/{path} (directory not found).")
             continue
         aliases = ["latest"] if path == default_branch else []
         versions.append(
             {
-                "version": path,
+                "version": f"{product}/{path}",
                 "title": label,
                 "aliases": aliases,
-                "url": f"/docs/{path}/",
+                "url": f"/docs/{product}/{path}/",
             }
         )
 
     out = docs_dir / "versions.json"
     out.write_text(json.dumps(versions, indent=2) + "\n")
     print(f"Generated {out.name} with {len(versions)} version(s):")
+    default_version = f"{product}/{default_branch}"
     for v in versions:
-        tag = " (default)" if v["version"] == default_branch else ""
+        tag = " (default)" if v["version"] == default_version else ""
         print(f"  {v['version']}: {v['title']}{tag}")
     return out
 
 
-def generate_redirects(docs_dir: Path, default_branch: str) -> None:
-    """Generate the /docs/default/ permalink redirect.
+def generate_redirects(docs_dir: Path, product: str, default_branch: str) -> None:
+    """Generate the /docs/<product>/default/ permalink redirect.
 
-    /docs/default/ tracks the current default branch so external links survive
-    the rollover from e.g. forks/amsterdam to forks/bogota.
+    Tracks the product's current default branch so external links survive the
+    rollover from e.g. forks/amsterdam to forks/bogota.
 
     /docs/ itself is the Zensical-built landing page (docs/docs/index.md) and
     is intentionally not written here so we don't overwrite it.
     """
-    dest = docs_dir / "default" / "index.html"
-    url = f"/docs/{default_branch}/"
+    dest = docs_dir / product / "default" / "index.html"
+    url = f"/docs/{product}/{default_branch}/"
     dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text(REDIRECT_TEMPLATE.format(url=url, label=default_branch))
+    dest.write_text(REDIRECT_TEMPLATE.format(url=url, label=f"{product}/{default_branch}"))
     print(f"Generated redirect: {dest.relative_to(docs_dir)} -> {url}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("docs_dir", type=Path, help="Path to the staged docs directory (e.g. site/docs).")
+    parser.add_argument("--product", required=True, help="Product namespace (e.g. execution-specs).")
     parser.add_argument("--branch-config", required=True, help="Branch config lines (path|label), newline-separated.")
-    parser.add_argument("--default-branch", required=True, help="Default branch path (e.g. forks/amsterdam).")
+    parser.add_argument("--default-branch", required=True, help="Default branch path within the product (e.g. forks/amsterdam).")
     args = parser.parse_args()
 
     docs_dir = args.docs_dir.resolve()
@@ -141,18 +150,18 @@ def main() -> None:
         print("ERROR: No branches parsed from --branch-config.", file=sys.stderr)
         sys.exit(1)
 
-    print(f"=== Assembling docs in {docs_dir} ===\n")
+    print(f"=== Assembling docs in {docs_dir} (product: {args.product}) ===\n")
 
     # 1. Inject version selector (must run before redirects are written).
     inject_version_selector(docs_dir)
     print()
 
     # 2. Generate versions.json.
-    generate_versions_json(docs_dir, branches, args.default_branch)
+    generate_versions_json(docs_dir, args.product, branches, args.default_branch)
     print()
 
     # 3. Generate redirects (written last so they don't get the script tag).
-    generate_redirects(docs_dir, args.default_branch)
+    generate_redirects(docs_dir, args.product, args.default_branch)
     print()
 
     print("Assembly complete.")

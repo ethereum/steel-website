@@ -22,8 +22,10 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
-# Mirrors the BRANCH_CONFIG in deploy.yml. Only branches with local artifacts
-# will be included in versions.json (the rest are skipped gracefully).
+# Mirrors the BRANCH_CONFIG and PRODUCT in deploy.yml. Only branches with local
+# artifacts will be included in versions.json (the rest are skipped gracefully).
+PRODUCT = "execution-specs"
+
 BRANCH_CONFIG = """\
 mainnet|Mainnet
 forks/amsterdam|Amsterdam
@@ -47,8 +49,8 @@ def build_zensical(site_dir: Path) -> None:
     print(f"Built to {site_dir}/\n")
 
 
-def stage_local_artifacts(docs_dir: Path) -> list[str]:
-    """Copy local artifacts into the docs staging directory.
+def stage_local_artifacts(docs_dir: Path, product: str) -> list[str]:
+    """Copy local artifacts into the docs staging directory under <product>/.
 
     Returns the list of branch paths that were staged.
     """
@@ -76,9 +78,9 @@ def stage_local_artifacts(docs_dir: Path) -> list[str]:
 
         # Derive the branch path from the directory structure.
         branch_path = str(branch_dir.relative_to(artifact))
-        dest = docs_dir / branch_path
+        dest = docs_dir / product / branch_path
 
-        print(f"  {artifact.name} -> docs/{branch_path}/")
+        print(f"  {artifact.name} -> docs/{product}/{branch_path}/")
         if dest.exists():
             shutil.rmtree(dest)
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -112,6 +114,8 @@ def run_assemble(docs_dir: Path) -> None:
             "run",
             str(script),
             str(docs_dir),
+            "--product",
+            PRODUCT,
             "--branch-config",
             BRANCH_CONFIG,
             "--default-branch",
@@ -127,9 +131,10 @@ def serve(site_dir: Path, port: int) -> None:
     """Start a local HTTP server."""
     print(f"Serving {site_dir}/ at http://localhost:{port}")
     print("URLs to test:")
-    print(f"  http://localhost:{port}/docs/              (redirect)")
-    print(f"  http://localhost:{port}/docs/versions.json (versions)")
-    print(f"  http://localhost:{port}/docs/{DEFAULT_BRANCH}/  (docs + selector)")
+    print(f"  http://localhost:{port}/docs/                        (landing page)")
+    print(f"  http://localhost:{port}/docs/versions.json           (versions)")
+    print(f"  http://localhost:{port}/docs/{PRODUCT}/default/      (permalink)")
+    print(f"  http://localhost:{port}/docs/{PRODUCT}/{DEFAULT_BRANCH}/  (docs + selector)")
     print()
 
     handler = http.server.SimpleHTTPRequestHandler
@@ -162,7 +167,7 @@ def main() -> None:
 
     # 2. Stage local artifacts.
     docs_dir.mkdir(parents=True, exist_ok=True)
-    staged = stage_local_artifacts(docs_dir)
+    staged = stage_local_artifacts(docs_dir, PRODUCT)
     if not staged:
         print("WARNING: No artifacts staged. The docs section will be empty.")
 

@@ -9,12 +9,12 @@
 #   - workflow_dispatch: Manual trigger for testing/recovery
 #
 # Site structure at steel.ethereum.foundation:
-#   /                              - Zensical site
-#   /docs/                         - Zensical landing page (docs/docs/index.md)
-#   /docs/default/                 - Permalink; redirects to current default branch
-#   /docs/<branch>/                - Branch-specific docs
-#   /docs/<branch>/specs/reference - Branch-specific spec
-#   /docs/versions.json            - Version manifest
+#   /                                         - Zensical site
+#   /docs/                                    - Zensical landing page (docs/docs/index.md)
+#   /docs/<product>/default/                  - Permalink; redirects to current default branch
+#   /docs/<product>/<branch>/                 - Branch-specific docs
+#   /docs/<product>/<branch>/specs/reference  - Branch-specific spec
+#   /docs/versions.json                       - Version manifest
 
 name: Build and Deploy
 
@@ -53,13 +53,16 @@ env:
   # Source repository for docs artifacts
   SOURCE_REPO: ethereum/execution-specs
 
+  # Product namespace — artifacts stage under site/docs/<PRODUCT>/<branch>/
+  PRODUCT: execution-specs
+
   # Branch configuration - must match execution-specs allowlist
   # Format: branch_path|label
   BRANCH_CONFIG: |
     experiments/publish-docs|Amsterdam
     experiments/publish-docs-test|Amsterdam (Test)
 
-  # Default branch — /docs/ redirects here
+  # Default branch within the product — /docs/<PRODUCT>/default/ redirects here
   DEFAULT_BRANCH: experiments/publish-docs
 
 jobs:
@@ -217,8 +220,8 @@ jobs:
               continue
             fi
 
-            mkdir -p "site/docs/$(dirname "$BRANCH")"
-            rsync -av "$SOURCE_DIR/" "site/docs/$BRANCH/"
+            mkdir -p "site/docs/$PRODUCT/$(dirname "$BRANCH")"
+            rsync -av "$SOURCE_DIR/" "site/docs/$PRODUCT/$BRANCH/"
             echo "Staged branch $BRANCH"
           done
 
@@ -229,7 +232,7 @@ jobs:
           HAS_DEFAULT="false"
 
           for BRANCH in $successful_branches; do
-            if [ -d "site/docs/$BRANCH" ]; then
+            if [ -d "site/docs/$PRODUCT/$BRANCH" ]; then
               if [ "$BRANCH" = "$DEFAULT_BRANCH" ]; then
                 HAS_DEFAULT="true"
               fi
@@ -246,6 +249,7 @@ jobs:
         if: github.event.inputs.skip_docs != 'true'
         run: |
           uv run scripts/assemble-docs.py site/docs \
+            --product "$PRODUCT" \
             --branch-config "$BRANCH_CONFIG" \
             --default-branch "$DEFAULT_BRANCH"
 
