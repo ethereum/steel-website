@@ -52,18 +52,8 @@ permissions:
 env:
   # Source repository for docs artifacts
   SOURCE_REPO: ethereum/execution-specs
-
-  # Product namespace — artifacts stage under site/docs/<PRODUCT>/<branch>/
-  PRODUCT: execution-specs
-
-  # Branch configuration - must match execution-specs allowlist
-  # Format: branch_path|label
-  BRANCH_CONFIG: |
-    forks/amsterdam|Amsterdam
-    devnets/bal/4|bal-devnet-4
-
-  # Default branch within the product — /docs/<PRODUCT>/ redirects here
-  DEFAULT_BRANCH: forks/amsterdam
+  # PRODUCT, BRANCH_CONFIG and DEFAULT_BRANCH are loaded from docs-config.yml
+  # by the "Load docs config" step below.
 
 jobs:
   deploy:
@@ -88,6 +78,22 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Load docs config
+        run: |
+          PRODUCT=$(yq '.product' docs-config.yml)
+          DEFAULT_BRANCH=$(yq '.default_branch' docs-config.yml)
+          BRANCH_CONFIG=$(yq '.branches[] | .path + "|" + .label' docs-config.yml)
+          echo "PRODUCT=$PRODUCT" >> "$GITHUB_ENV"
+          echo "DEFAULT_BRANCH=$DEFAULT_BRANCH" >> "$GITHUB_ENV"
+          {
+            echo "BRANCH_CONFIG<<EOF"
+            echo "$BRANCH_CONFIG"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
+          echo "Loaded config: product=$PRODUCT, default_branch=$DEFAULT_BRANCH"
+          echo "Branches:"
+          echo "$BRANCH_CONFIG"
 
       - name: Setup Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0

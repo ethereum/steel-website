@@ -1,4 +1,10 @@
 #!/usr/bin/env -S uv run --script
+#
+# /// script
+# dependencies = [
+#     "pyyaml==6.0.3",
+# ]
+# ///
 """Assemble the site locally for testing.
 
 Builds the Zensical landing page, stages local doc artifacts, and runs the
@@ -20,18 +26,18 @@ import subprocess
 import sys
 from pathlib import Path
 
+import yaml
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
+CONFIG_PATH = REPO_ROOT / "docs-config.yml"
 
-# Mirrors the BRANCH_CONFIG and PRODUCT in deploy.yml. Only branches with local
-# artifacts will be included in versions.json (the rest are skipped gracefully).
-PRODUCT = "execution-specs"
-
-BRANCH_CONFIG = """\
-forks/amsterdam|Amsterdam
-devnets/bal/4|bal-devnet-4
-"""
-
-DEFAULT_BRANCH = "forks/amsterdam"
+# Loaded from docs-config.yml — the single source of truth shared with
+# .github/workflows/deploy.yml. Only branches with local artifacts will be
+# included in versions.json (the rest are skipped gracefully).
+_config = yaml.safe_load(CONFIG_PATH.read_text())
+PRODUCT = _config["product"]
+DEFAULT_BRANCH = _config["default_branch"]
+BRANCH_CONFIG = "".join(f"{b['path']}|{b['label']}\n" for b in _config["branches"])
 
 
 def build_zensical(site_dir: Path) -> None:

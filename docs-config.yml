@@ -1,0 +1,13 @@
+# Single source of truth for docs aggregation.
+# Consumed by .github/workflows/deploy.yml (via yq) and
+# scripts/local-assemble.py (via pyyaml).
+# BRANCH paths must also appear in the execution-specs docs-producer allowlist.
+
+product: execution-specs
+default_branch: forks/amsterdam
+
+branches:
+  - path: forks/amsterdam
+    label: Amsterdam
+  - path: devnets/bal/4
+    label: bal-devnet-4
