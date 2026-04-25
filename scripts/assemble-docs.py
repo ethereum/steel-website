@@ -55,8 +55,8 @@ def parse_branch_config(raw: str) -> list[tuple[str, str]]:
     return entries
 
 
-def inject_version_selector(docs_dir: Path) -> int:
-    """Copy version-selector.js and inject a <script> tag into all HTML files."""
+def inject_version_selector(docs_dir: Path, product: str) -> int:
+    """Copy version-selector.js and inject a <script> tag into product HTML files"""
     scripts_dir = Path(__file__).resolve().parent
     src = scripts_dir / "version-selector.js"
     if not src.exists():
@@ -69,7 +69,7 @@ def inject_version_selector(docs_dir: Path) -> int:
     print(f"Copied {src.name} to {dest.relative_to(docs_dir)}")
 
     count = 0
-    for html_file in docs_dir.rglob("*.html"):
+    for html_file in (docs_dir / product).rglob("*.html"):
         content = html_file.read_text()
         if "</body>" in content and SCRIPT_TAG not in content:
             html_file.write_text(content.replace("</body>", f"{SCRIPT_TAG}</body>"))
@@ -154,7 +154,7 @@ def main() -> None:
     print(f"=== Assembling docs in {docs_dir} (product: {args.product}) ===\n")
 
     # 1. Inject version selector (must run before redirects are written).
-    inject_version_selector(docs_dir)
+    inject_version_selector(docs_dir, args.product)
     print()
 
     # 2. Generate versions.json.

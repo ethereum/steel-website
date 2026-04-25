@@ -91,7 +91,9 @@
         return r.json();
       })
       .then(function (versions) {
-        inject(versions, findCurrentVersion(versions));
+        var current = findCurrentVersion(versions);
+        if (!current) return;
+        inject(versions, current);
       })
       .catch(function () {
         // Silent -- same behaviour as Material's built-in.
