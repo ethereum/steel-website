@@ -6,4 +6,4 @@ HTML documentation is available for the following [ethereum/execution-specs](htt
 
 | execution-specs branch | HTML docs |
 | --- | --- |
-| [experiments/publish-docs](https://github.com/ethereum/execution-specs/tree/experiments/publish-docs) | [Amsterdam](/docs/execution-specs/experiments/publish-docs/) |
+| [forks/amsterdam](https://github.com/ethereum/execution-specs/tree/forks/amsterdam) | [Amsterdam](/docs/execution-specs/forks/amsterdam/) |
