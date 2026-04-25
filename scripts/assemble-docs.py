@@ -126,6 +126,16 @@ def generate_redirects(docs_dir: Path, product: str, default_branch: str) -> Non
     /docs/ itself is the Zensical-built landing page (docs/docs/index.md) and
     is intentionally not written here so we don't overwrite it.
     """
+    target_dir = docs_dir / product / default_branch
+    if not target_dir.is_dir():
+        # Skip the redirect when the default branch failed to stage; pointing
+        # /docs/<product>/ at a non-existent path is worse than no permalink.
+        print(
+            f"Skipping redirect: default branch {product}/{default_branch} not staged.",
+            file=sys.stderr,
+        )
+        return
+
     dest = docs_dir / product / "index.html"
     url = f"/docs/{product}/{default_branch}/"
     dest.parent.mkdir(parents=True, exist_ok=True)
