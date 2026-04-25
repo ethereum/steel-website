@@ -6,16 +6,15 @@
 # Triggers:
 #   - Push to main: Rebuilds when site content changes
 #   - repository_dispatch: Triggered by execution-specs when docs are updated
-#   - schedule: Daily rebuild to catch any missed updates
 #   - workflow_dispatch: Manual trigger for testing/recovery
 #
 # Site structure at steel.ethereum.foundation:
-#   /                   - Zensical site
-#   /docs/              - Default branch docs (mirrored)
-#   /docs/spec/         - Default branch spec (mirrored)
-#   /docs/<branch>/     - Branch-specific docs
-#   /docs/<branch>/spec - Branch-specific spec
-#   /docs/versions.json - Version manifest
+#   /                                         - Zensical site
+#   /docs/                                    - Zensical landing page (docs/docs/index.md)
+#   /docs/<product>/                          - Permalink; redirects to current default branch
+#   /docs/<product>/<branch>/                 - Branch-specific docs
+#   /docs/<product>/<branch>/specs/reference  - Branch-specific spec
+#   /docs/versions.json                       - Version manifest
 
 name: Build and Deploy
 
@@ -41,10 +40,6 @@ on:
         type: boolean
         default: false
 
-  # Scheduled fallback for recovery from transient failures
-  schedule:
-    - cron: "0 4 * * *" # Daily at 4 AM UTC
-
 concurrency:
   group: deploy
   cancel-in-progress: false # Don't cancel in-progress deploys
@@ -57,15 +52,8 @@ permissions:
 env:
   # Source repository for docs artifacts
   SOURCE_REPO: ethereum/execution-specs
-
-  # Branch configuration - must match execution-specs allowlist
-  # Format: branch_path|label
-  BRANCH_CONFIG: |
-    experiments/publish-docs|Amsterdam
-    experiments/publish-docs-test|Amsterdam (Test)
-
-  # Default branch to mirror to root of /docs/
-  DEFAULT_BRANCH: experiments/publish-docs
+  # PRODUCT, BRANCH_CONFIG and DEFAULT_BRANCH are loaded from docs-config.yml
+  # by the "Load docs config" step below.
 
 jobs:
   deploy:
@@ -90,6 +78,22 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Load docs config
+        run: |
+          PRODUCT=$(yq '.product' docs-config.yml)
+          DEFAULT_BRANCH=$(yq '.default_branch' docs-config.yml)
+          BRANCH_CONFIG=$(yq '.branches[] | .path + "|" + .label' docs-config.yml)
+          echo "PRODUCT=$PRODUCT" >> "$GITHUB_ENV"
+          echo "DEFAULT_BRANCH=$DEFAULT_BRANCH" >> "$GITHUB_ENV"
+          {
+            echo "BRANCH_CONFIG<<EOF"
+            echo "$BRANCH_CONFIG"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
+          echo "Loaded config: product=$PRODUCT, default_branch=$DEFAULT_BRANCH"
+          echo "Branches:"
+          echo "$BRANCH_CONFIG"
 
       - name: Setup Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
@@ -151,23 +155,31 @@ jobs:
             echo ""
             echo "=== Processing branch: $BRANCH ==="
 
-            # Find the latest successful workflow run for this branch
-            RUN_ID=$(gh run list \
-              --repo "$SOURCE_REPO" \
-              --workflow "docs-build.yaml" \
-              --branch "$BRANCH" \
-              --status success \
-              --limit 1 \
-              --json databaseId \
-              --jq '.[0].databaseId' 2>/dev/null || echo "")
+            # Find the latest successful workflow run for this branch.
+            # Filter by event type: only push and workflow_dispatch produce
+            # artifacts (PR runs succeed but upload nothing).
+            RUN_ID=""
+            for EVENT_TYPE in push workflow_dispatch; do
+              RUN_ID=$(gh run list \
+                --repo "$SOURCE_REPO" \
+                --workflow "docs-build.yaml" \
+                --branch "$BRANCH" \
+                --status success \
+                --event "$EVENT_TYPE" \
+                --limit 1 \
+                --json databaseId \
+                --jq '.[0].databaseId' 2>/dev/null || echo "")
+              if [ -n "$RUN_ID" ] && [ "$RUN_ID" != "null" ]; then
+                echo "Found run ID: $RUN_ID (event: $EVENT_TYPE)"
+                break
+              fi
+            done
 
             if [ -z "$RUN_ID" ] || [ "$RUN_ID" = "null" ]; then
               echo "WARNING: No successful run found for branch $BRANCH"
               FAILED_BRANCHES="$FAILED_BRANCHES $BRANCH"
               continue
             fi
-
-            echo "Found run ID: $RUN_ID"
 
             if gh run download "$RUN_ID" \
               --repo "$SOURCE_REPO" \
@@ -214,8 +226,8 @@ jobs:
               continue
             fi
 
-            mkdir -p "site/docs/$(dirname "$BRANCH")"
-            rsync -av "$SOURCE_DIR/" "site/docs/$BRANCH/"
+            mkdir -p "site/docs/$PRODUCT/$(dirname "$BRANCH")"
+            rsync -av "$SOURCE_DIR/" "site/docs/$PRODUCT/$BRANCH/"
             echo "Staged branch $BRANCH"
           done
 
@@ -226,7 +238,7 @@ jobs:
           HAS_DEFAULT="false"
 
           for BRANCH in $successful_branches; do
-            if [ -d "site/docs/$BRANCH" ]; then
+            if [ -d "site/docs/$PRODUCT/$BRANCH" ]; then
               if [ "$BRANCH" = "$DEFAULT_BRANCH" ]; then
                 HAS_DEFAULT="true"
               fi
@@ -239,98 +251,13 @@ jobs:
             echo "WARNING: Default branch $DEFAULT_BRANCH is not available"
           fi
 
-      - name: Mirror default branch to root of /docs/
-        if: github.event.inputs.skip_docs != 'true' && steps.validate.outputs.has_default == 'true'
-        run: |
-          echo "Mirroring $DEFAULT_BRANCH to root of /docs/"
-
-          rsync -av \
-            --exclude='spec/' \
-            --exclude='mainnet/' \
-            --exclude='forks/' \
-            --exclude='devnets/' \
-            --exclude='eips/' \
-            "site/docs/$DEFAULT_BRANCH/" site/docs/
-
-          mkdir -p site/docs/spec
-          rsync -av "site/docs/$DEFAULT_BRANCH/spec/" site/docs/spec/
-
-      - name: Generate versions.json
+      - name: Assemble docs (version selector, versions.json, redirects)
         if: github.event.inputs.skip_docs != 'true'
         run: |
-          cat > site/docs/versions.json <<EOF
-          {
-            "default": "${DEFAULT_BRANCH}",
-            "versions": [
-          EOF
-
-          FIRST=true
-          while IFS='|' read -r path label; do
-            if [ -z "$path" ] || [ ! -d "site/docs/$path" ]; then
-              continue
-            fi
-
-            ALIASES="[]"
-            if [ "$path" = "$DEFAULT_BRANCH" ]; then
-              ALIASES='["latest"]'
-            fi
-
-            if [ "$FIRST" = "true" ]; then
-              FIRST=false
-            else
-              echo "," >> site/docs/versions.json
-            fi
-
-            cat >> site/docs/versions.json <<ENTRY
-              {
-                "version": "$path",
-                "title": "$label",
-                "aliases": $ALIASES
-              }
-          ENTRY
-          done <<< "$BRANCH_CONFIG"
-
-          cat >> site/docs/versions.json <<'EOF'
-            ]
-          }
-          EOF
-
-          echo "Generated versions.json:"
-          cat site/docs/versions.json
-
-      - name: Copy versions.json to intermediate directories
-        if: github.event.inputs.skip_docs != 'true'
-        run: |
-          # MkDocs Material's version selector looks for ../versions.json relative
-          # to the current version directory. For multi-depth branch paths like
-          # forks/amsterdam or devnets/amsterdam/2, we need to copy versions.json
-          # to intermediate directories so the selector can find it.
-          #
-          # e.g., /docs/forks/amsterdam/ looks for /docs/forks/versions.json
-          #       /docs/devnets/amsterdam/2/ looks for /docs/devnets/amsterdam/versions.json
-
-          while IFS='|' read -r path _; do
-            if [ -z "$path" ] || [ ! -d "site/docs/$path" ]; then
-              continue
-            fi
-
-            # Get parent directory of the branch path
-            PARENT_DIR=$(dirname "$path")
-            if [ "$PARENT_DIR" != "." ]; then
-              # Copy versions.json to parent directory
-              mkdir -p "site/docs/$PARENT_DIR"
-              cp site/docs/versions.json "site/docs/$PARENT_DIR/versions.json"
-              echo "Copied versions.json to site/docs/$PARENT_DIR/"
-
-              # For deeper paths (e.g., devnets/amsterdam/2), also copy to grandparent
-              GRANDPARENT_DIR=$(dirname "$PARENT_DIR")
-              if [ "$GRANDPARENT_DIR" != "." ]; then
-                mkdir -p "site/docs/$GRANDPARENT_DIR"
-                cp site/docs/versions.json "site/docs/$GRANDPARENT_DIR/versions.json"
-                echo "Copied versions.json to site/docs/$GRANDPARENT_DIR/"
-              fi
-            fi
-          done <<< "$BRANCH_CONFIG"
+          uv run scripts/assemble-docs.py site/docs \
+            --product "$PRODUCT" \
+            --branch-config "$BRANCH_CONFIG" \
+            --default-branch "$DEFAULT_BRANCH"
 
       # --- End Docs Aggregation ---
 
@@ -351,8 +278,8 @@ jobs:
 
             while IFS='|' read -r path label; do
               if [ -z "$path" ]; then continue; fi
-              if [ -d "site/docs/$path" ]; then
-                SIZE=$(du -sh "site/docs/$path" | cut -f1)
+              if [ -d "site/docs/$PRODUCT/$path" ]; then
+                SIZE=$(du -sh "site/docs/$PRODUCT/$path" | cut -f1)
                 DEFAULT_MARKER=""
                 if [ "$path" = "$DEFAULT_BRANCH" ]; then
                   DEFAULT_MARKER=" (default)"
