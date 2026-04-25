@@ -60,6 +60,7 @@ jobs:
   #       with:
   #         args: >
   #           --root-dir "$(pwd)"
+  #           --base-url https://steel.ethereum.foundation
   #           --no-progress
   #           README.md
   #           ./docs/**/*.md

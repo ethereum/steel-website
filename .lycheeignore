@@ -2,3 +2,10 @@
 # Ignore file:// URLs within docs and assets - these are relative links that work in the built site
 file:///.*/docs/.*
 file:///.*/assets/.*
+
+# mkdocs/zensical resolves relative .md links to slugified URLs (e.g.
+# responsibilities.md -> /responsibilities/, ../team.md#guru -> /team/#guru),
+# but lychee with --base-url resolves them as literal paths and 404s. We keep
+# the .md form because mkdocs validates it at build time: moved or renamed
+# pages produce a build error instead of a silent runtime 404.
+^https://steel\.ethereum\.foundation/.*\.md(#.*)?$
