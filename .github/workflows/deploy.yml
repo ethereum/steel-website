@@ -278,8 +278,8 @@ jobs:
 
             while IFS='|' read -r path label; do
               if [ -z "$path" ]; then continue; fi
-              if [ -d "site/docs/$path" ]; then
-                SIZE=$(du -sh "site/docs/$path" | cut -f1)
+              if [ -d "site/docs/$PRODUCT/$path" ]; then
+                SIZE=$(du -sh "site/docs/$PRODUCT/$path" | cut -f1)
                 DEFAULT_MARKER=""
                 if [ "$path" = "$DEFAULT_BRANCH" ]; then
                   DEFAULT_MARKER=" (default)"
