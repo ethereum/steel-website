@@ -37,10 +37,10 @@ These are used to generated test vectors (aka fixtures) that can be executed aga
 
 We maintain several system-test frameworks to help test Execution Layer Clients:
 
-- [Consume](https://eest.ethereum.org/main/running_tests/consume/) - a family of [Hive](https://github.com/ethereum/hive) simulators that execute EEST vectors against clients by feeding blocks via RLP (upon startup) or the Engine API.
-- [Execute](https://eest.ethereum.org/main/running_tests/execute/) - a framework for running EEST test vectors on live networks or as a Hive simulator, ensuring fixture compatibility across both simulated and real environments.
+- [Consume](/docs/execution-specs/forks/amsterdam/running_tests/consume/) - a family of [Hive](https://github.com/ethereum/hive) simulators that execute EEST vectors against clients by feeding blocks via RLP (upon startup) or the Engine API.
+- [Execute](/docs/execution-specs/forks/amsterdam/running_tests/execute/) - a framework for running EEST test vectors on live networks or as a Hive simulator, ensuring fixture compatibility across both simulated and real environments.
 
-See the EEST docs [on running tests for an overview and comparison](https://eest.ethereum.org/main/running_tests/running/) of all Hive simulators and frameworks.
+See the EEST docs [on running tests for an overview and comparison](/docs/execution-specs/forks/amsterdam/running_tests/running/) of all Hive simulators and frameworks.
 
 <br/>
 
@@ -68,7 +68,7 @@ Our work is very collaborative in nature, we work closely with:
 ## Resources
 
 - EELS and EEST Repository: [ethereum/execution-specs](https://github.com/ethereum/execution-specs).
-- [EELS Documentation](https://ethereum.github.io/execution-specs/).
-- [EEST Tooling Documentation](https://eest.ethereum.org/main/).
-- [EEST Test Case Documentation](https://eest.ethereum.org/main/tests).
+- [EELS Documentation](/docs/execution-specs/forks/amsterdam/specs/reference/src/ethereum/index.html).
+- [EEST Tooling Documentation](/docs/execution-specs/forks/amsterdam/consensus_tests/).
+- [EEST Test Case Documentation](/docs/execution-specs/forks/amsterdam/tests/).
 - [Previous Presentations](https://github.com/ethsteel/presentations/blob/main/README.md).
