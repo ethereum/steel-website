@@ -7,11 +7,13 @@ product: execution-specs
 default_branch: forks/amsterdam
 
 branches:
-  - path: forks/amsterdam
-    label: Amsterdam
-  - path: devnets/bal/4
-    label: bal-devnet-4
-  - path: devnets/snobal/5
-    label: bal-devnet-5
   - path: mainnet
     label: Mainnet (BPO2)
+  - path: forks/amsterdam
+    label: Amsterdam
+  - path: devnets/snobal/6
+    label: bal-devnet-6
+  - path: devnets/snobal/5
+    label: bal-devnet-5
+  - path: devnets/bal/4
+    label: bal-devnet-4
