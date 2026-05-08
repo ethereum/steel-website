@@ -4,7 +4,7 @@
 # BRANCH paths must also appear in the execution-specs docs-producer allowlist.
 
 product: execution-specs
-default_branch: forks/amsterdam
+default_branch: mainnet
 
 branches:
   - path: mainnet
