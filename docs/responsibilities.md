@@ -31,7 +31,6 @@ These are used to generated test vectors (aka fixtures) that can be executed aga
 
 - [ethereum/ethereum-types](https://github.com/ethereum/ethereum-types) - types used by Ethereum.
 - [ethereum/ethereum-rlp](https://github.com/ethereum/ethereum-rlp) - Recursive-length prefix (RLP) serialization as used by the Ethereum Specification.
-- [ethereum/web3.py](https://github.com/ethereum/web3.py) - A python interface for interacting with the Ethereum blockchain and ecosystem.
 
 #### Client Test Frameworks
 
@@ -47,7 +46,6 @@ See the EEST docs [on running tests for an overview and comparison](/docs/execut
 #### Other Tooling
 
 - [docc](https://github.com/SamWilsn/docc) - A documentation creation tool for Python with a specific focus on markdown and extensibility.
-- [eth-tester](https://github.com/ethereum/eth-tester) - A tool suite for testing ethereum applications.
 - [Blobber](https://github.com/marioevz/blobber) - A live-network tool for testing blob transaction propagation across clients.
 - `gentest` - A utility that generates Python test cases directly from a Mainnet or devnet transaction hash, useful for reproducing real-world scenarios in the EEST framework.
 
