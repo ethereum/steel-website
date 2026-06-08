@@ -80,13 +80,22 @@ def stage_local_artifacts(docs_dir: Path, product: str) -> list[str]:
 
         # Derive the branch path from the directory structure.
         branch_path = str(branch_dir.relative_to(artifact))
-        dest = docs_dir / product / branch_path
 
-        print(f"  {artifact.name} -> docs/{product}/{branch_path}/")
-        if dest.exists():
-            shutil.rmtree(dest)
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copytree(branch_dir, dest)
+        if branch_path == DEFAULT_BRANCH:
+            # Default branch is deployed at /docs/<product>/ directly. Use
+            # dirs_exist_ok so other staged branches at <product>/<branch>/
+            # aren't blown away when the default is staged on top of them.
+            dest = docs_dir / product
+            print(f"  {artifact.name} -> docs/{product}/  (default, root)")
+            dest.mkdir(parents=True, exist_ok=True)
+            shutil.copytree(branch_dir, dest, dirs_exist_ok=True)
+        else:
+            dest = docs_dir / product / branch_path
+            print(f"  {artifact.name} -> docs/{product}/{branch_path}/")
+            if dest.exists():
+                shutil.rmtree(dest)
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copytree(branch_dir, dest)
         staged.append(branch_path)
 
     print(f"Staged {len(staged)} branch(es).\n")
@@ -133,10 +142,10 @@ def serve(site_dir: Path, port: int) -> None:
     """Start a local HTTP server."""
     print(f"Serving {site_dir}/ at http://localhost:{port}")
     print("URLs to test:")
-    print(f"  http://localhost:{port}/docs/                        (landing page)")
-    print(f"  http://localhost:{port}/docs/versions.json           (versions)")
-    print(f"  http://localhost:{port}/docs/{PRODUCT}/              (permalink)")
-    print(f"  http://localhost:{port}/docs/{PRODUCT}/{DEFAULT_BRANCH}/  (docs + selector)")
+    print(f"  http://localhost:{port}/docs/                      (landing page)")
+    print(f"  http://localhost:{port}/docs/versions.json         (versions)")
+    print(f"  http://localhost:{port}/docs/{PRODUCT}/            (default branch: {DEFAULT_BRANCH})")
+    print(f"  http://localhost:{port}/docs/{PRODUCT}/<branch>/   (non-default branches)")
     print()
 
     handler = http.server.SimpleHTTPRequestHandler
@@ -173,7 +182,7 @@ def main() -> None:
     if not staged:
         print("WARNING: No artifacts staged. The docs section will be empty.")
 
-    # 3. Run assembly (inject selector, gen versions.json, gen redirects).
+    # 3. Run assembly (inject selector, gen versions.json).
     run_assemble(docs_dir)
 
     # 4. Add .nojekyll.

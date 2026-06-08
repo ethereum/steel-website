@@ -2,9 +2,14 @@
 # Consumed by .github/workflows/deploy.yml (via yq) and
 # scripts/local-assemble.py (via pyyaml).
 # BRANCH paths must also appear in the execution-specs docs-producer allowlist.
+#
+# default_branch names the branch whose docs are deployed at the product
+# root (/docs/<product>/) instead of /docs/<product>/<branch>/. It must
+# also appear in branches[] and must match execution-specs'
+# .github/configs/docs-branches.yaml `default_branch` field.
 
 product: execution-specs
-default_branch: mainnet
+default_branch: forks/amsterdam
 
 branches:
   - path: mainnet
@@ -15,5 +20,3 @@ branches:
     label: bal-devnet-6
   - path: devnets/snobal/5
     label: bal-devnet-5
-  - path: devnets/bal/4
-    label: bal-devnet-4
