@@ -227,37 +227,27 @@ jobs:
             fi
 
             if [ "$BRANCH" = "$DEFAULT_BRANCH" ]; then
-              # Default branch is deployed at /docs/$PRODUCT/ (no <branch>/ segment).
-              mkdir -p "site/docs/$PRODUCT"
-              rsync -av "$SOURCE_DIR/" "site/docs/$PRODUCT/"
-              echo "Staged default branch $BRANCH at site/docs/$PRODUCT/"
+              DEST="site/docs/$PRODUCT"
             else
-              mkdir -p "site/docs/$PRODUCT/$(dirname "$BRANCH")"
-              rsync -av "$SOURCE_DIR/" "site/docs/$PRODUCT/$BRANCH/"
-              echo "Staged branch $BRANCH"
+              DEST="site/docs/$PRODUCT/$BRANCH"
             fi
+            mkdir -p "$(dirname "$DEST")"
+            rsync -av "$SOURCE_DIR/" "$DEST/"
+            echo "Staged $BRANCH at $DEST/"
           done
 
       - name: Validate staged content
         if: github.event.inputs.skip_docs != 'true'
         id: validate
         run: |
-          HAS_DEFAULT="false"
-
-          for BRANCH in $successful_branches; do
-            if [ "$BRANCH" = "$DEFAULT_BRANCH" ]; then
-              # Default branch is deployed at root, not under <branch>/.
-              if [ -f "site/docs/$PRODUCT/index.html" ]; then
-                HAS_DEFAULT="true"
-              fi
-            fi
-          done
-
-          echo "has_default=$HAS_DEFAULT" >> $GITHUB_OUTPUT
-
-          if [ "$HAS_DEFAULT" = "false" ]; then
+          # Default branch is staged at site/docs/$PRODUCT/ (no <branch>/ segment).
+          if [ -f "site/docs/$PRODUCT/index.html" ]; then
+            HAS_DEFAULT="true"
+          else
+            HAS_DEFAULT="false"
             echo "WARNING: Default branch $DEFAULT_BRANCH is not available"
           fi
+          echo "has_default=$HAS_DEFAULT" >> $GITHUB_OUTPUT
 
       - name: Assemble docs (version selector, versions.json)
         if: github.event.inputs.skip_docs != 'true'
@@ -286,19 +276,18 @@ jobs:
 
             while IFS='|' read -r path label; do
               if [ -z "$path" ]; then continue; fi
+              STATUS=":x:"
+              SIZE="-"
+              # Default branch lives at site/docs/$PRODUCT/; non-default at /$path/.
               if [ "$path" = "$DEFAULT_BRANCH" ]; then
-                # Default branch lives at site/docs/$PRODUCT/ (no subdir).
                 if [ -f "site/docs/$PRODUCT/index.html" ]; then
-                  echo "| $path | $label | :white_check_mark: (default, root) | - |" >> $GITHUB_STEP_SUMMARY
-                else
-                  echo "| $path | $label | :x: | - |" >> $GITHUB_STEP_SUMMARY
+                  STATUS=":white_check_mark: (default, root)"
                 fi
               elif [ -d "site/docs/$PRODUCT/$path" ]; then
+                STATUS=":white_check_mark:"
                 SIZE=$(du -sh "site/docs/$PRODUCT/$path" | cut -f1)
-                echo "| $path | $label | :white_check_mark: | $SIZE |" >> $GITHUB_STEP_SUMMARY
-              else
-                echo "| $path | $label | :x: | - |" >> $GITHUB_STEP_SUMMARY
               fi
+              echo "| $path | $label | $STATUS | $SIZE |" >> $GITHUB_STEP_SUMMARY
             done <<< "$BRANCH_CONFIG"
             echo "" >> $GITHUB_STEP_SUMMARY
           else

@@ -80,26 +80,19 @@ def generate_versions_json(
     """
     versions = []
     for path, label in branches:
-        if path == default_branch:
-            if not (docs_dir / product / "index.html").is_file():
-                print(f"  Skipping default branch {path} ({product}/index.html not found).")
-                continue
-            version_path = product
-            url = f"/docs/{product}/"
-            aliases = ["latest"]
-        else:
-            if not (docs_dir / product / path).is_dir():
-                print(f"  Skipping {product}/{path} (directory not found).")
-                continue
-            version_path = f"{product}/{path}"
-            url = f"/docs/{product}/{path}/"
-            aliases = []
+        is_default = path == default_branch
+        version_path = product if is_default else f"{product}/{path}"
+        target = docs_dir / product / "index.html" if is_default else docs_dir / product / path
+        present = target.is_file() if is_default else target.is_dir()
+        if not present:
+            print(f"  Skipping {version_path} (not staged).")
+            continue
         versions.append(
             {
                 "version": version_path,
                 "title": label,
-                "aliases": aliases,
-                "url": url,
+                "aliases": ["latest"] if is_default else [],
+                "url": f"/docs/{version_path}/",
             }
         )
 
@@ -107,7 +100,7 @@ def generate_versions_json(
     out.write_text(json.dumps(versions, indent=2) + "\n")
     print(f"Generated {out.name} with {len(versions)} version(s):")
     for v in versions:
-        tag = " (default)" if "latest" in v["aliases"] else ""
+        tag = " (default)" if v["version"] == product else ""
         print(f"  {v['version']}: {v['title']}{tag}")
     return out
 

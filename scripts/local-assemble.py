@@ -80,22 +80,16 @@ def stage_local_artifacts(docs_dir: Path, product: str) -> list[str]:
 
         # Derive the branch path from the directory structure.
         branch_path = str(branch_dir.relative_to(artifact))
-
-        if branch_path == DEFAULT_BRANCH:
-            # Default branch is deployed at /docs/<product>/ directly. Use
-            # dirs_exist_ok so other staged branches at <product>/<branch>/
-            # aren't blown away when the default is staged on top of them.
-            dest = docs_dir / product
-            print(f"  {artifact.name} -> docs/{product}/  (default, root)")
-            dest.mkdir(parents=True, exist_ok=True)
-            shutil.copytree(branch_dir, dest, dirs_exist_ok=True)
-        else:
-            dest = docs_dir / product / branch_path
-            print(f"  {artifact.name} -> docs/{product}/{branch_path}/")
-            if dest.exists():
-                shutil.rmtree(dest)
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copytree(branch_dir, dest)
+        is_default = branch_path == DEFAULT_BRANCH
+        dest = docs_dir / product if is_default else docs_dir / product / branch_path
+        rel = f"docs/{product}/  (default, root)" if is_default else f"docs/{product}/{branch_path}/"
+        print(f"  {artifact.name} -> {rel}")
+        # For non-default, clear stale files. For default, dirs_exist_ok merges
+        # alongside non-default branches already staged under <product>/.
+        if not is_default and dest.exists():
+            shutil.rmtree(dest)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(branch_dir, dest, dirs_exist_ok=True)
         staged.append(branch_path)
 
     print(f"Staged {len(staged)} branch(es).\n")
