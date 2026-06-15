@@ -11,9 +11,9 @@
 # Site structure at steel.ethereum.foundation:
 #   /                                         - Zensical site
 #   /docs/                                    - Zensical landing page (docs/docs/index.md)
-#   /docs/<product>/                          - Permalink; redirects to current default branch
-#   /docs/<product>/<branch>/                 - Branch-specific docs
-#   /docs/<product>/<branch>/specs/reference  - Branch-specific spec
+#   /docs/<product>/                          - Default branch docs (deployed at root)
+#   /docs/<product>/<branch>/                 - Non-default branch docs
+#   /docs/<product>/<branch>/specs/reference  - Non-default branch spec reference
 #   /docs/versions.json                       - Version manifest
 
 name: Build and Deploy
@@ -226,32 +226,30 @@ jobs:
               continue
             fi
 
-            mkdir -p "site/docs/$PRODUCT/$(dirname "$BRANCH")"
-            rsync -av "$SOURCE_DIR/" "site/docs/$PRODUCT/$BRANCH/"
-            echo "Staged branch $BRANCH"
+            if [ "$BRANCH" = "$DEFAULT_BRANCH" ]; then
+              DEST="site/docs/$PRODUCT"
+            else
+              DEST="site/docs/$PRODUCT/$BRANCH"
+            fi
+            mkdir -p "$(dirname "$DEST")"
+            rsync -av "$SOURCE_DIR/" "$DEST/"
+            echo "Staged $BRANCH at $DEST/"
           done
 
       - name: Validate staged content
         if: github.event.inputs.skip_docs != 'true'
         id: validate
         run: |
-          HAS_DEFAULT="false"
-
-          for BRANCH in $successful_branches; do
-            if [ -d "site/docs/$PRODUCT/$BRANCH" ]; then
-              if [ "$BRANCH" = "$DEFAULT_BRANCH" ]; then
-                HAS_DEFAULT="true"
-              fi
-            fi
-          done
-
-          echo "has_default=$HAS_DEFAULT" >> $GITHUB_OUTPUT
-
-          if [ "$HAS_DEFAULT" = "false" ]; then
+          # Default branch is staged at site/docs/$PRODUCT/ (no <branch>/ segment).
+          if [ -f "site/docs/$PRODUCT/index.html" ]; then
+            HAS_DEFAULT="true"
+          else
+            HAS_DEFAULT="false"
             echo "WARNING: Default branch $DEFAULT_BRANCH is not available"
           fi
+          echo "has_default=$HAS_DEFAULT" >> $GITHUB_OUTPUT
 
-      - name: Assemble docs (version selector, versions.json, redirects)
+      - name: Assemble docs (version selector, versions.json)
         if: github.event.inputs.skip_docs != 'true'
         run: |
           uv run scripts/assemble-docs.py site/docs \
@@ -278,16 +276,18 @@ jobs:
 
             while IFS='|' read -r path label; do
               if [ -z "$path" ]; then continue; fi
-              if [ -d "site/docs/$PRODUCT/$path" ]; then
-                SIZE=$(du -sh "site/docs/$PRODUCT/$path" | cut -f1)
-                DEFAULT_MARKER=""
-                if [ "$path" = "$DEFAULT_BRANCH" ]; then
-                  DEFAULT_MARKER=" (default)"
+              STATUS=":x:"
+              SIZE="-"
+              # Default branch lives at site/docs/$PRODUCT/; non-default at /$path/.
+              if [ "$path" = "$DEFAULT_BRANCH" ]; then
+                if [ -f "site/docs/$PRODUCT/index.html" ]; then
+                  STATUS=":white_check_mark: (default, root)"
                 fi
-                echo "| $path | $label | :white_check_mark:$DEFAULT_MARKER | $SIZE |" >> $GITHUB_STEP_SUMMARY
-              else
-                echo "| $path | $label | :x: | - |" >> $GITHUB_STEP_SUMMARY
+              elif [ -d "site/docs/$PRODUCT/$path" ]; then
+                STATUS=":white_check_mark:"
+                SIZE=$(du -sh "site/docs/$PRODUCT/$path" | cut -f1)
               fi
+              echo "| $path | $label | $STATUS | $SIZE |" >> $GITHUB_STEP_SUMMARY
             done <<< "$BRANCH_CONFIG"
             echo "" >> $GITHUB_STEP_SUMMARY
           else

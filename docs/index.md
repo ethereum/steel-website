@@ -25,10 +25,10 @@ STEEL <span class="highlight">bridges</span> EVM research, prototyping, and prod
   <a href="about/" class="btn-secondary">
     More about STEEL
   </a>
-  <a href="/docs/execution-specs/forks/amsterdam/specs/reference/src/ethereum/index.html" class="btn-primary" target="_blank">
+  <a href="/docs/execution-specs/specs/reference/src/ethereum/index.html" class="btn-primary" target="_blank">
     Read the Specs
   </a>
-  <a href="/docs/execution-specs/forks/amsterdam/tests/" class="btn-primary" target="_blank">
+  <a href="/docs/execution-specs/tests/" class="btn-primary" target="_blank">
     Browse the Tests
   </a>
 </div>
