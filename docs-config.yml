@@ -16,7 +16,3 @@ branches:
     label: Mainnet (BPO2)
   - path: forks/amsterdam
     label: Amsterdam
-  - path: devnets/snobal/6
-    label: bal-devnet-6
-  - path: devnets/snobal/5
-    label: bal-devnet-5
