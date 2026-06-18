@@ -1,0 +1,50 @@
+{#-
+  Custom 404 for steel.ethereum.foundation.
+
+  GitHub Pages serves this for any unmatched path, including the aggregated
+  execution-specs docs under /docs/execution-specs/. The base Zensical site
+  has no index of that child mkdocs-material site, so for docs paths we point
+  users at the docs home (which has its own search) rather than a site-wide
+  search. Redirects from the archived eest.ethereum.org tag their URLs with
+  `?ref=eest.ethereum.org`, which lets us add archive-specific context.
+-#}
+{% extends "main.html" %}
+{% block content %}
+  <h1>Page not found</h1>
+  <p id="nf-message">The page you are looking for does not exist.</p>
+  <script>
+    (function () {
+      // Scope strictly to the execution-specs docs. Any other /docs/<product>/
+      // 404 falls through to the generic message above, so adding a new docs
+      // site here never wrongly points at the execution-specs docs.
+      if (window.location.pathname.indexOf("/docs/execution-specs/") !== 0) {
+        return;
+      }
+      var el = document.getElementById("nf-message");
+      if (!el) {
+        return;
+      }
+      el.innerHTML =
+        "This documentation page may have moved or been renamed. Please " +
+        'browse the <a href="/docs/execution-specs/">execution-specs ' +
+        "documentation</a>.";
+      var fromEest = /[?&]ref=eest\.ethereum\.org(?:&|$)/.test(
+        window.location.search
+      );
+      if (fromEest) {
+        el.insertAdjacentHTML(
+          "afterend",
+          "<p>You followed a link from the archived " +
+            "<code>eest.ethereum.org</code>, which served documentation from " +
+            '<a href="https://github.com/ethereum/execution-spec-tests">' +
+            "ethereum/execution-spec-tests</a>. That repository has been " +
+            "archived as part of " +
+            '<a href="/blog/2025-11-04_weld_final/">The Weld</a>; the tests ' +
+            "and test framework are now maintained at " +
+            '<a href="https://github.com/ethereum/execution-specs">' +
+            "ethereum/execution-specs</a>.</p>"
+        );
+      }
+    })();
+  </script>
+{% endblock %}
