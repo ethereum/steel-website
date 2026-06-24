@@ -9,6 +9,8 @@ description: "Reading the executable consensus specs as a formal model to system
 :material-account: [Leo](../team.md#leo-lara) · :material-calendar: June 11, 2026 · :material-clock-outline: 35 min read
 </div>
 
+*Thanks to [@brechy](https://github.com/brechy) and [@danceratopz](https://github.com/danceratopz) for their review and help.*
+
 ## 1. Summary
 
 We started by researching how tests are generated from specifications in safety-critical industries: avionics, rail signaling, and nuclear control. In these fields, teams write a formal mathematical model of the system and derive tests from its structure, so every meaningful input class is covered by construction rather than by intuition. The core techniques are equivalence partitioning and boundary value analysis: Dick and Faivre (1993) showed how to decompose a specification into Disjunctive Normal Form, where each branch defines one equivalence class; Ostrand and Balcer (1988) gave the practical category-partition framework; and Gaudel (1995) provided the hypotheses that make finite test suites sound.
