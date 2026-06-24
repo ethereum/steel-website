@@ -6,7 +6,7 @@ description: "Reading the executable consensus specs as a formal model to system
 ---
 
 <div class="blog-metadata" markdown>
-:material-account: [Leo](../team.md#leo-lara) · :material-calendar: June 11, 2026 · :material-clock-outline: 35 min read
+:material-account: [Leo Lara](../team.md#leo-lara) · :material-calendar: June 11, 2026 · :material-clock-outline: 35 min read
 </div>
 
 *Thanks to [@brechy](https://github.com/brechy) and [@danceratopz](https://github.com/danceratopz) for their review and help.*
