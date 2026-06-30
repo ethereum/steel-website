@@ -2,6 +2,8 @@
 title: Team
 ---
 
+## Team { .toc-only }
+
 <div class="grid cards" markdown>
 
 - ![Mario Vega](assets/images/team/marioevz.png){ .team-avatar }
@@ -13,15 +15,6 @@ title: Team
     [:fontawesome-brands-github:](https://github.com/marioevz){ .md-button target="_blank" }
     [:fontawesome-brands-x-twitter:](https://x.com/elbuenmayini){ .md-button target="_blank" }
 
-- ![Carson](assets/images/team/Carsons-Eels.jpg){ .team-avatar }
-
-    ### **Carson**
-
-    Protocol Specification Developer focusing on documentation, EIPs, process, accessibility, and making our repo as useful to client teams as possible.
-
-    [:fontawesome-brands-github:](https://github.com/Carsons-Eels){ .md-button target="_blank" }
-    [:fontawesome-brands-discord:](https://discord.com/users/carsonseels){ .md-button target="_blank" }
-
 - ![danceratopz](assets/images/team/danceratopz.jpg){ .team-avatar }
 
     ### **danceratopz**
@@ -32,13 +25,6 @@ title: Team
     [:fontawesome-brands-x-twitter:](https://x.com/danceratopz){ .md-button target="_blank" }
     [:fontawesome-brands-discord:](https://discord.com/users/danceratopz){ .md-button target="_blank" }
     [:fontawesome-brands-telegram:](https://t.me/danceratopz){ .md-button target="_blank" }
-
-- ![Felix](assets/images/team/felix314159.png){ .team-avatar }
-
-    ### **Felix**
-
-    [:fontawesome-brands-github:](https://github.com/felix314159){ .md-button target="_blank" }
-    [:fontawesome-brands-x-twitter:](https://x.com/felix314159_){ .md-button target="_blank" }
 
 - ![Felipe](assets/images/team/fselmo.jpg){ .team-avatar }
 
@@ -62,6 +48,50 @@ title: Team
     [:fontawesome-brands-discord:](https://discord.com/users/jochembrouwer){ .md-button target="_blank" }
     [:fontawesome-brands-telegram:](https://t.me/jochembrouwer){ .md-button target="_blank" }
 
+- ![Louis](assets/images/team/LouisTsai-Csie.jpg){ .team-avatar }
+
+    ### **Louis**
+
+    [:fontawesome-brands-github:](https://github.com/LouisTsai-Csie){ .md-button target="_blank" }
+    [:fontawesome-brands-x-twitter:](https://x.com/0xlouistsai){ .md-button target="_blank" }
+
+- ![Spencer Taylor-Brown](assets/images/team/spencer-tb.jpg){ .team-avatar }
+
+    ### **Spencer Taylor-Brown**
+
+    Protocol Tester making it all red and then making it all green. Focusing on the next fork.
+
+    [:fontawesome-brands-github:](https://github.com/spencer-tb){ .md-button target="_blank" }
+    [:fontawesome-brands-x-twitter:](https://x.com/techbro_ccoli){ .md-button target="_blank" }
+    [:fontawesome-brands-discord:](https://discord.com/users/spencer_tb){ .md-button target="_blank" }
+    [:fontawesome-brands-telegram:](https://t.me/spencer_tb){ .md-button target="_blank" }
+
+</div>
+
+## Alumni
+
+<div class="grid cards" markdown>
+
+- ![Carson](assets/images/team/Carsons-Eels.jpg){ .team-avatar }
+
+    ### **Carson**
+
+    [:fontawesome-brands-github:](https://github.com/Carsons-Eels){ .md-button target="_blank" }
+    [:fontawesome-brands-discord:](https://discord.com/users/carsonseels){ .md-button target="_blank" }
+
+- ![Dimitry](assets/images/team/winsvega.jpg){ .team-avatar }
+
+    ### **Dimitry**
+
+    [:fontawesome-brands-github:](https://github.com/winsvega){ .md-button target="_blank" }
+
+- ![Felix](assets/images/team/felix314159.png){ .team-avatar }
+
+    ### **Felix**
+
+    [:fontawesome-brands-github:](https://github.com/felix314159){ .md-button target="_blank" }
+    [:fontawesome-brands-x-twitter:](https://x.com/felix314159_){ .md-button target="_blank" }
+
 - ![kclowes](assets/images/team/kclowes.jpg){ .team-avatar }
 
     ### **kclowes**
@@ -75,13 +105,6 @@ title: Team
     [:fontawesome-brands-github:](https://github.com/leolara){ .md-button target="_blank" }
     [:fontawesome-brands-x-twitter:](https://x.com/leolarav){ .md-button target="_blank" }
 
-- ![Louis](assets/images/team/LouisTsai-Csie.jpg){ .team-avatar }
-
-    ### **Louis**
-
-    [:fontawesome-brands-github:](https://github.com/LouisTsai-Csie){ .md-button target="_blank" }
-    [:fontawesome-brands-x-twitter:](https://x.com/0xlouistsai){ .md-button target="_blank" }
-
 - ![Peter Miller](assets/images/team/petertdavies.jpg){ .team-avatar }
 
     ### **Peter Miller**
@@ -93,16 +116,5 @@ title: Team
     ### **Sam Wilson**
 
     [:fontawesome-brands-github:](https://github.com/SamWilsn){ .md-button target="_blank" }
-
-- ![Spencer Taylor-Brown](assets/images/team/spencer-tb.jpg){ .team-avatar }
-
-    ### **Spencer Taylor-Brown**
-
-    Protocol Tester making it all red and then making it all green. Focusing on the next fork.
-
-    [:fontawesome-brands-github:](https://github.com/spencer-tb){ .md-button target="_blank" }
-    [:fontawesome-brands-x-twitter:](https://x.com/techbro_ccoli){ .md-button target="_blank" }
-    [:fontawesome-brands-discord:](https://discord.com/users/spencer_tb){ .md-button target="_blank" }
-    [:fontawesome-brands-telegram:](https://t.me/spencer_tb){ .md-button target="_blank" }
 
 </div>
