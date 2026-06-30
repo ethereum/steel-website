@@ -53,6 +53,15 @@ title: Team
 
     [:fontawesome-brands-github:](https://github.com/gurukamath){ .md-button target="_blank" }
 
+- ![Jochem](assets/images/team/jochem-brouwer.jpg){ .team-avatar }
+
+    ### **Jochem**
+
+    [:fontawesome-brands-github:](https://github.com/jochem-brouwer){ .md-button target="_blank" }
+    [:fontawesome-brands-x-twitter:](https://x.com/JochemBrouwer96){ .md-button target="_blank" }
+    [:fontawesome-brands-discord:](https://discord.com/users/jochembrouwer){ .md-button target="_blank" }
+    [:fontawesome-brands-telegram:](https://t.me/jochembrouwer){ .md-button target="_blank" }
+
 - ![kclowes](assets/images/team/kclowes.jpg){ .team-avatar }
 
     ### **kclowes**
