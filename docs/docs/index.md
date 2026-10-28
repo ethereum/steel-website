@@ -10,5 +10,5 @@ HTML documentation is available for multiple [ethereum/execution-specs](https://
 
 | execution-specs branch | HTML docs |
 | --- | --- |
-| [forks/amsterdam](https://github.com/ethereum/execution-specs/tree/forks/amsterdam) | [Latest (Amsterdam)](/docs/execution-specs/) |
+| [forks/bogota](https://github.com/ethereum/execution-specs/tree/forks/bogota) | [Latest (Bogota)](/docs/execution-specs/) |
 | [mainnet](https://github.com/ethereum/execution-specs/tree/mainnet) | [Mainnet (BPO2)](/docs/execution-specs/mainnet/) |

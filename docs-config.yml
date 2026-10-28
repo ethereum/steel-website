@@ -9,10 +9,10 @@
 # .github/configs/docs-branches.yaml `default_branch` field.
 
 product: execution-specs
-default_branch: forks/amsterdam
+default_branch: forks/bogota
 
 branches:
   - path: mainnet
     label: Mainnet (BPO2)
-  - path: forks/amsterdam
-    label: Amsterdam
+  - path: forks/bogota
+    label: Bogota
