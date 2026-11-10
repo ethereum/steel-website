@@ -4,13 +4,22 @@ This repository contains a simple [zensical](https://zensical.org)-based website
 
 ## Prerequisites
 
-1. [uv](https://docs.astral.sh/uv/):
+1. [uv](https://docs.astral.sh/uv/) manages Python and the dependencies:
 
     ```bash
     curl -LsSf https://astral.sh/uv/install.sh | sh
     ```
 
-2. (Optional) [lychee](https://lychee.cli.rs/):
+2. [just](https://just.systems/) runs the common tasks, locally and in CI:
+
+    ```bash
+    uv tool install --exclude-newer "10 days" rust-just
+    just shell-completions
+    ```
+
+    For other ways to install `just`, see its [installation docs](https://just.systems/man/en/packages.html). CI uses `just` 1.46.
+
+3. (Optional) [lychee](https://lychee.cli.rs/), for `just check-links`:
 
     ```bash
     cargo install lychee
@@ -18,33 +27,34 @@ This repository contains a simple [zensical](https://zensical.org)-based website
 
 ## Usage
 
-Serve the page locally:
+Serve the site locally with live reload:
 
 ```bash
-uv run zensical serve
+just serve
+```
+
+List all recipes:
+
+```bash
+just
 ```
 
 ## Verifying local changes
 
-Run the same checks as CI via:
+Run the same checks as CI:
 
 ```bash
-uvx tox
+just static
+just build
 ```
 
-**Note:** for the `check-links` environment, install `lychee`, see Prerequisites.
-
-The available environments can be listed via:
-
-```bash
-uvx tox -la
-```
-
-Outputs:
-
-```bash
-uv           # check uv.lock file is up-to-date
-spellcheck   # spellcheck markdown
-build        # build with zensical
-check-links  # check links; requires lychee
-```
+| Recipe | What it does |
+| --- | --- |
+| `just static` | All static checks in parallel: `lock-check`, `spellcheck` and `lint-actions` |
+| `just lock-check` | Check that `uv.lock` is up to date |
+| `just spellcheck` | Spellcheck `docs/` with codespell; add false positives with `just whitelist <word>` |
+| `just lint-actions` | Lint the GitHub Actions workflows with actionlint and shellcheck |
+| `just build` | Build the site into `site/` with `zensical build --strict` |
+| `just check-links` | Check links in `README.md` and `docs/` (needs lychee; not run in CI) |
+| `just assemble` | Build the site and stage local execution-specs docs artifacts from `artifacts/`, as the deploy does (`--serve` to serve it) |
+| `just clean` | Remove `site/` and `.cache/` |
