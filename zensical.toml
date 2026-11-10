@@ -67,7 +67,7 @@ nav = [
 #
 # Read more: https://zensical.org/docs/customization/#additional-css
 #
-extra_css = ["assets/stylesheets/extra.css"]
+extra_css = ["assets/stylesheets/fonts.css", "assets/stylesheets/extra.css"]
 
 # With the `extra_javascript` option you can add your own JavaScript to your
 # project to customize the behavior according to your needs.
@@ -122,6 +122,14 @@ favicon = "assets/images/favicon.ico"
 # - https://zensical.org/docs/setup/language/
 #
 language = "en"
+
+# Don't load fonts from Google Fonts. IBM Plex Sans (text) and JetBrains Mono
+# (code) are self-hosted in docs/assets/fonts/ and set up in
+# docs/assets/stylesheets/fonts.css, so pages make no third-party requests and
+# the build needs no network.
+#
+# Read more: https://zensical.org/docs/setup/fonts/
+font = false
 
 # Zensical provides a number of feature toggles that change the behavior
 # of the documentation site.
@@ -283,16 +291,6 @@ toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
 
 # ----------------------------------------------------------------------------
-# In the "font" subsection you can configure the fonts used. By default, fonts
-# are loaded from Google Fonts, giving you a wide range of choices from a set
-# of suitably licensed fonts. There are options for a normal text font and for
-# a monospaced font used in code blocks.
-# ----------------------------------------------------------------------------
-[project.theme.font]
-text = "IBM Plex Sans"
-code = "JetBrains Mono"
-
-# ----------------------------------------------------------------------------
 # You can configure your own logo to be shown in the header using the "logo"
 # option in the "icons" subsection. The logo can be a path to a file in your
 # "docs_dir" or it can be a path to an icon.
@@ -347,19 +345,10 @@ full_output = "llms-full.txt"
 ]
 "Blog" = ["blog/*.md"]
 
-# Download external assets (Google Fonts, emoji SVGs) at build time and serve
-# them from this site, so visitors make no requests to third parties.
-[project.plugins.privacy]
-# The theme bundle lazily loads Mermaid, Ace, Pyodide and GLightbox from
-# unpkg.com. This site uses none of them, and following GLightbox pulls in a
-# video player and an ad SDK (about 7 MB in total). The theme only loads them
-# on pages that need them, so skip them.
-assets_exclude = ["unpkg.com/*"]
-
 # Minify HTML (including inline scripts and styles) and the custom CSS.
 [project.plugins.minify]
 minify_html = true
 minify_inline_js = true
 minify_inline_css = true
 minify_css = true
-css_files = ["assets/stylesheets/extra.css"]
+css_files = ["assets/stylesheets/fonts.css", "assets/stylesheets/extra.css"]
