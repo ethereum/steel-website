@@ -128,6 +128,15 @@ full_output = "llms-full.txt"
 ]
 "Blog" = ["blog/posts/*.md"]
 
+# Social cards: a 1200 x 630 preview image per page, plus the og: and twitter:
+# meta tags that X, Telegram, Discord and LinkedIn read when a link is shared.
+# layouts/steel.yml draws them in the site's colours. The plugin downloads its
+# font (IBM Plex Sans) from Google Fonts on every build, so building needs
+# internet access; if Google Fonts can't be reached, the build fails.
+[project.plugins.social]
+cards_layout_dir = "layouts"
+cards_layout = "steel"
+
 # Minify HTML (including inline scripts and styles) and the custom CSS.
 # cache_safe adds a content hash to the minified CSS file names (for example
 # extra.<hash>.min.css), so browsers fetch the new file after every change
