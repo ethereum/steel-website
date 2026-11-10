@@ -14,7 +14,7 @@
       <p>{{ post.meta.description }}</p>
     {% endif %}
     <nav class="md-post__action">
-      <a href="{{ post.url | url }}">{{ lang.t("blog.continue") }}</a>
+      <a class="blog-link" href="{{ post.url | url }}">{{ lang.t("blog.continue") }}</a>
     </nav>
   </div>
 </article>

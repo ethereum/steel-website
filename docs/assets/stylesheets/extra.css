@@ -255,9 +255,10 @@
   color: inherit;
 }
 
-/* Blog post titles on the index and author names in bylines: plain text
-   colour, orange on hover, no underline. Excluded from the orange accent
-   link rule at the top of this file by :not(.blog-link). */
+/* Blog links: post titles and "Continue reading" on the index, and author
+   names in bylines. Plain text colour, orange on hover, no underline.
+   Excluded from the orange accent link rule at the top of this file by
+   :not(.blog-link). */
 .md-typeset a.blog-link {
   color: inherit;
   text-decoration: none;
