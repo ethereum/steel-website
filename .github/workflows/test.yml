@@ -7,47 +7,15 @@ permissions:
   contents: read
 
 jobs:
-  uv_lock:
-    name: Validate uv.lock
+  static:
+    name: Static checks (uv.lock, spellcheck, actionlint)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout ethereum/steel-website
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - name: Install uv ${{ vars.UV_VERSION }} and python ${{ vars.DEFAULT_PYTHON_VERSION }}
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2
-        with:
-          version: ${{ vars.UV_VERSION }}
-          python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
-      - name: Check uv.lock file
-        run: uv lock --check
-
-  spellcheck:
-    name: Spellcheck sources with codespell
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout ethereum/steel-website
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - name: Install uv ${{ vars.UV_VERSION }} and python ${{ vars.DEFAULT_PYTHON_VERSION }}
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2
-        with:
-          version: ${{ vars.UV_VERSION }}
-          python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
-      - name: Run spellcheck with codespell
-        run: uvx tox -e spellcheck
-
-  actionlint:
-    name: Lint GitHub Actions workflows
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout ethereum/steel-website
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - name: Install uv ${{ vars.UV_VERSION }} and python ${{ vars.DEFAULT_PYTHON_VERSION }}
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2
-        with:
-          version: ${{ vars.UV_VERSION }}
-          python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
-      - name: Lint workflows with actionlint
-        run: uvx tox -e actionlint
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup-uv
+      - name: Run static checks
+        run: just static
 
   # check_links:
   #   name: Check links with lychee
@@ -74,11 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout ethereum/steel-website
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - name: Install uv ${{ vars.UV_VERSION }} and python ${{ vars.DEFAULT_PYTHON_VERSION }}
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2
-        with:
-          version: ${{ vars.UV_VERSION }}
-          python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup-uv
       - name: Build site
-        run: uvx tox -e build
+        run: just build

@@ -98,17 +98,15 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      - name: Install uv and just
+        uses: ./.github/actions/setup-uv
         with:
           enable-cache: false
-          version: ${{ vars.UV_VERSION }}
-          python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
 
       # Build the main Zensical site
       - name: Build Zensical site
         run: |
-          uv run zensical build --clean --strict
+          just build
           echo "Zensical site built to site/"
 
       # --- Docs Aggregation ---
