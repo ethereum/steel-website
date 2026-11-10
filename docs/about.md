@@ -2,8 +2,8 @@
 title: About
 ---
 
-<img src="../assets/images/home/steel.png" alt="STEEL Logo" class="logo-light" style="margin: 0 auto; width: 15%;">
-<img src="../assets/images/home/steel-dark.png" alt="STEEL Logo" class="logo-dark" style="margin: 0 auto; width: 15%;">
+<img src="assets/images/home/steel.png" alt="STEEL Logo" class="logo-light" style="margin: 0 auto; width: 15%;">
+<img src="assets/images/home/steel-dark.png" alt="STEEL Logo" class="logo-dark" style="margin: 0 auto; width: 15%;">
 
 The STEEL Team (Specifications and Testing for the Ethereum Execution Layer) is an Ethereum Foundation team in [Protocol](https://protocol.ethereum.foundation/) that is responsible for maintaining Ethereum's Execution Layer [specifications](/docs/execution-specs/specs/reference/src/ethereum/index.html), [consensus tests](/docs/execution-specs/tests/) and EVM [benchmark tests](/docs/execution-specs/tests/benchmark/).
 
