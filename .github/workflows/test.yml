@@ -17,32 +17,26 @@ jobs:
       - name: Run static checks
         run: just static
 
-  # check_links:
-  #   name: Check links with lychee
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout ethereum/steel-website
-  #       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-  #     - name: Run lychee
-  #       uses: lycheeverse/lychee-action@a8c4c7cb88f0c7386610c35eb25108e448569cb0 # 2.7.0
-  #       with:
-  #         args: >
-  #           --root-dir "$(pwd)"
-  #           --base-url https://steel.ethereum.foundation
-  #           --no-progress
-  #           README.md
-  #           ./docs/**/*.md
-  #         fail: true
-  #         format: markdown
-  #         jobSummary: true
-  #         output: lychee/out.md
-
   build:
-    name: Build the site with zensical
+    name: Build the site and check its links
     runs-on: ubuntu-latest
     steps:
       - name: Checkout ethereum/steel-website
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: ./.github/actions/setup-uv
-      - name: Build site
-        run: just build
+      # A pinned lychee release, verified against its SHA-256. To update, take
+      # the version and the x86_64-unknown-linux-gnu checksum from
+      # https://github.com/lycheeverse/lychee/releases.
+      - name: Install lychee
+        env:
+          LYCHEE_VERSION: "0.24.2"
+          LYCHEE_SHA256: 1f4e0ef7f6554a6ed33dd7ac144fb2e1bbed98598e7af973042fc5cd43951c9a
+        run: |
+          archive="lychee-x86_64-unknown-linux-gnu.tar.gz"
+          curl -sSfL -o "$RUNNER_TEMP/$archive" \
+            "https://github.com/lycheeverse/lychee/releases/download/lychee-v${LYCHEE_VERSION}/$archive"
+          echo "${LYCHEE_SHA256}  $RUNNER_TEMP/$archive" | sha256sum --check -
+          tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/lychee-x86_64-unknown-linux-gnu" >> "$GITHUB_PATH"
+      - name: Build the site and check links and images
+        run: just check-links

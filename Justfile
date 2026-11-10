@@ -58,15 +58,18 @@ lock-check:
 lint-actions:
     uv run actionlint -pyflakes pyflakes -shellcheck "shellcheck -S warning"
 
-# Check links in README.md and docs/ (requires lychee)
+# Check that links and images in the built site point at files that exist
+# (requires lychee). `zensical build --strict` checks links to pages and
+# anchors, but not images. External links are not checked.
 [group('static analysis')]
-check-links:
+check-links: build
     #!/usr/bin/env bash
+    set -euo pipefail
     if ! command -v lychee >/dev/null; then
-        echo "Install lychee to check links: cargo install lychee"
+        echo "Install lychee to check links: https://lychee.cli.rs/installation/"
         exit 1
     fi
-    lychee --base-url https://steel.ethereum.foundation README.md docs/
+    lychee --offline --no-progress --root-dir "{{ justfile_directory() }}/site" site/
 
 # --- Site ---
 
