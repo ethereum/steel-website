@@ -346,3 +346,12 @@ full_output = "llms-full.txt"
     { "docs/index.md" = "Entry point to the execution-specs documentation" },
 ]
 "Blog" = ["blog/*.md"]
+
+# Download external assets (Google Fonts, emoji SVGs) at build time and serve
+# them from this site, so visitors make no requests to third parties.
+[project.plugins.privacy]
+# The theme bundle lazily loads Mermaid, Ace, Pyodide and GLightbox from
+# unpkg.com. This site uses none of them, and following GLightbox pulls in a
+# video player and an ad SDK (about 7 MB in total). The theme only loads them
+# on pages that need them, so skip them.
+assets_exclude = ["unpkg.com/*"]
