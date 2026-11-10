@@ -14,9 +14,6 @@ jobs:
       - name: Checkout ethereum/steel-website
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: ./.github/actions/setup-uv
-        with:
-          uv-version: ${{ vars.UV_VERSION }}
-          python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
       - name: Run static checks
         run: just static
 
@@ -47,8 +44,5 @@ jobs:
       - name: Checkout ethereum/steel-website
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: ./.github/actions/setup-uv
-        with:
-          uv-version: ${{ vars.UV_VERSION }}
-          python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
       - name: Build site
         run: just build

@@ -102,8 +102,6 @@ jobs:
         uses: ./.github/actions/setup-uv
         with:
           enable-cache: false
-          uv-version: ${{ vars.UV_VERSION }}
-          python-version: ${{ vars.DEFAULT_PYTHON_VERSION }}
 
       # Build the main Zensical site
       - name: Build Zensical site

@@ -17,7 +17,7 @@ This repository contains a simple [zensical](https://zensical.org)-based website
     just shell-completions
     ```
 
-    For other ways to install `just`, see its [installation docs](https://just.systems/man/en/packages.html). CI uses `just` 1.46.
+    For other ways to install `just`, see its [installation docs](https://just.systems/man/en/packages.html). CI uses `just` 1.46 and uv 0.13.4 (set in `.github/actions/setup-uv/action.yaml`) and the Python version in `.python-version`.
 
 3. (Optional) [lychee](https://lychee.cli.rs/), for `just check-links`:
 
