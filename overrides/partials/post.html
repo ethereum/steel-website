@@ -1,0 +1,20 @@
+{#-
+  One entry on the blog index: title, byline and the post's description,
+  instead of the theme's default, which shows the whole post when it has no
+  <!-- more --> excerpt marker. Based on zensical_ui partials/post.html.
+-#}
+<article class="md-post md-post--excerpt">
+  <div class="md-post__content md-typeset">
+    <h2><a href="{{ post.url | url }}">{{ post.title }}</a></h2>
+    {% set byline_authors = post.authors %}
+    {% set byline_date = post.config.date.created %}
+    {% set byline_readtime = post.config.readtime %}
+    {% include "partials/byline.html" %}
+    {% if post.meta.description %}
+      <p>{{ post.meta.description }}</p>
+    {% endif %}
+    <nav class="md-post__action">
+      <a href="{{ post.url | url }}">{{ lang.t("blog.continue") }}</a>
+    </nav>
+  </div>
+</article>

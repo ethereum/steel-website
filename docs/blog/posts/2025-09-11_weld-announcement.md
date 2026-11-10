@@ -1,18 +1,14 @@
 ---
 title: 'The Weld: EELS + EEST Will Become a Single Repository'
 date: 2025-09-08
-author: danceratopz
+authors: [danceratopz]
 description: "In Q4 2025, execution-spec-tests is moving to execution-specs."
 ---
-
-<div class="blog-metadata" markdown>
-:material-account: [danceratopz](../team.md#danceratopz) · :material-calendar: September 8, 2025 · :material-clock-outline: 4 min read
-</div>
 
 In Q4 2025, the STEEL Team plans to move the Python tests, test vector generation framework and all other tooling from [ethereum/execution-spec-tests](https://github.com/ethereum/execution-spec-tests) to
 [ethereum/execution-specs](https://github.com/ethereum/execution-specs).
 
-![Lord of the Rings Meme for The Weld](../assets/images/blog/2025-09-11_weld-announcement/weld_lord_of_the_rings_meme.jpg){ style="display: block; margin: 0 auto; width: 70%;" }
+![Lord of the Rings Meme for The Weld](../../assets/images/blog/2025-09-11_weld-announcement/weld_lord_of_the_rings_meme.jpg){ style="display: block; margin: 0 auto; width: 70%;" }
 
 ## TLDR
 
@@ -78,4 +74,4 @@ This is an unnecessarily complicated approach with several disadvantages:
 
 Post-Weld, with both sources in one repository, a spec implementer can trivially add simple tests to verify their implementation and get easy test coverage reports and easily debug their code.
 
-![Ethereum Merge Panda Meme](../assets/images/blog/2025-09-11_weld-announcement/weld_panda_meme.jpg){ style="display: block; margin: 0 auto; width: 25%;" }
+![Ethereum Merge Panda Meme](../../assets/images/blog/2025-09-11_weld-announcement/weld_panda_meme.jpg){ style="display: block; margin: 0 auto; width: 25%;" }

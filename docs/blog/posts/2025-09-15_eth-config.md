@@ -1,13 +1,9 @@
 ---
 title: 'Testing `eth_config`'
 date: 2025-09-15
-author: felix314159
+authors: [felix]
 description: "A brief summary of how we ensure that clients use the same configuration."
 ---
-
-<div class="blog-metadata" markdown>
-:material-account: [Felix](../team.md#felix) · :material-calendar: September 15, 2025 · :material-clock-outline: 3 min read
-</div>
 
 ## What is `eth_config`?
 
@@ -147,7 +143,7 @@ One test we wrote requires prior knowledge: It takes the genesis config used for
 <br/>
 Recently, we have added an additional testing mode, the so-called majority mode, which does not require any prior knowledge: this testing mode requests the `eth_config` from each execution client that exists in a given devnet and only compares the hashes of received responses. If any response does not follow the majority response, the test will dump response details, which allows us to notify the affected client teams about their misconfiguration.
 
-![The Office meme for eth_config majority testing](../assets/images/blog/2025-09-15_eth-config/majority_mode.jpg){ style="display: block; margin: 0 auto; width: 50%;" }
+![The Office meme for eth_config majority testing](../../assets/images/blog/2025-09-15_eth-config/majority_mode.jpg){ style="display: block; margin: 0 auto; width: 50%;" }
 
 <p style="text-align: center; font-size: 0.9em; color: gray; margin-top: -0.5em;">
 We want to ensure that each client uses the exact same configuration.

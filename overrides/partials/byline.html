@@ -1,0 +1,30 @@
+{#-
+  Blog byline: author names (linked to the team page), date and read time,
+  with the same icons and .blog-metadata style the hand-written bylines used.
+  Set `byline_authors`, `byline_date` and `byline_readtime` before including.
+-#}
+<div class="blog-metadata">
+  {% if byline_authors %}
+    <span class="twemoji">{% include ".icons/material/account.svg" %}</span>
+    {% for author in byline_authors -%}
+      {%- if author.url -%}
+        <a href="{{ author.url | url }}">{{ author.name }}</a>
+      {%- else -%}
+        {{ author.name }}
+      {%- endif -%}
+      {%- if not loop.last %}, {% endif -%}
+    {%- endfor %}
+    ·
+  {% endif %}
+  <span class="twemoji">{% include ".icons/material/calendar.svg" %}</span>
+  <time datetime="{{ byline_date }}">{{ byline_date | date }}</time>
+  {% if byline_readtime %}
+    ·
+    <span class="twemoji">{% include ".icons/material/clock-outline.svg" %}</span>
+    {% if byline_readtime == 1 %}
+      {{ lang.t("readtime.one") }}
+    {% else %}
+      {{ lang.t("readtime.other") | replace("#", byline_readtime) }}
+    {% endif %}
+  {% endif %}
+</div>

@@ -1,15 +1,11 @@
 ---
 title: 'The Weld is Complete: Welcome to Unified Specs and Tests'
 date: 2025-11-04
-author: Guruprasad Kamath
+authors: [guru]
 description: "execution-spec-tests has successfully merged into execution-specs. We're ready for contributions!"
 ---
 
-<div class="blog-metadata" markdown>
-:material-account: [Guru](../team.md#guru) · :material-calendar: November 4, 2025 · :material-clock-outline: 6 min read
-</div>
-
-![The WELD](../assets/images/blog/2025-11-04_weld_final/weld_meme.jpg){ style="display: block; margin: 0 auto; width: 70%;" }
+![The WELD](../../assets/images/blog/2025-11-04_weld_final/weld_meme.jpg){ style="display: block; margin: 0 auto; width: 70%;" }
 
 We're excited to announce that **The Weld is complete!** The [ethereum/execution-spec-tests](https://github.com/ethereum/execution-spec-tests) repository has been successfully merged into [ethereum/execution-specs](https://github.com/ethereum/execution-specs), and we're now accepting contributions in the unified repository.
 
@@ -67,7 +63,7 @@ uv run fill --fork=Osaka --clean \
 
 The relevant coverage can be browsed from `/tmp/modexp_upper_bounds_cov/index.html`.
 
-![Coverage of modexp upper bounds in EELS](../assets/images/blog/2025-11-04_weld_final/eels_coverage.png){ style="display: block; margin: 0 auto; width: 70%;" }
+![Coverage of modexp upper bounds in EELS](../../assets/images/blog/2025-11-04_weld_final/eels_coverage.png){ style="display: block; margin: 0 auto; width: 70%;" }
 
 #### Test Code
 
