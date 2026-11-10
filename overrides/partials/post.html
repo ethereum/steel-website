@@ -5,7 +5,7 @@
 -#}
 <article class="md-post md-post--excerpt">
   <div class="md-post__content md-typeset">
-    <h2><a href="{{ post.url | url }}">{{ post.title }}</a></h2>
+    <h2><a class="blog-link" href="{{ post.url | url }}">{{ post.title }}</a></h2>
     {% set byline_authors = post.authors %}
     {% set byline_date = post.config.date.created %}
     {% set byline_readtime = post.config.readtime %}

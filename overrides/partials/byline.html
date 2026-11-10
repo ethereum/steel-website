@@ -1,21 +1,21 @@
 {#-
-  Blog byline: author names (linked to the team page), date and read time,
-  with the same icons and .blog-metadata style the hand-written bylines used.
-  Set `byline_authors`, `byline_date` and `byline_readtime` before including.
+  Blog byline: each author's photo and name (linked to the team page), the
+  date and the read time, styled by .blog-metadata in extra.css. Used on the
+  blog index (partials/post.html) and under each post's title
+  (partials/content.html). Set `byline_authors`, `byline_date` and
+  `byline_readtime` before including.
 -#}
 <div class="blog-metadata">
-  {% if byline_authors %}
-    <span class="twemoji">{% include ".icons/material/account.svg" %}</span>
-    {% for author in byline_authors -%}
-      {%- if author.url -%}
-        <a href="{{ author.url | url }}">{{ author.name }}</a>
-      {%- else -%}
-        {{ author.name }}
-      {%- endif -%}
-      {%- if not loop.last %}, {% endif -%}
-    {%- endfor %}
-    ·
-  {% endif %}
+  {% for author in byline_authors -%}
+    <img class="blog-metadata__avatar" src="{{ author.avatar | url }}" alt="">
+    {%- if author.url -%}
+      <a class="blog-link" href="{{ author.url | url }}">{{ author.name }}</a>
+    {%- else -%}
+      {{ author.name }}
+    {%- endif -%}
+    {%- if not loop.last %}, {% endif -%}
+  {%- endfor %}
+  {% if byline_authors %}·{% endif %}
   <span class="twemoji">{% include ".icons/material/calendar.svg" %}</span>
   <time datetime="{{ byline_date }}">{{ byline_date | date }}</time>
   {% if byline_readtime %}
