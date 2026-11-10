@@ -1,8 +1,0 @@
-# All rules: https://github.com/DavidAnson/markdownlint#rules--aliases
-default: true # Default state for all rules
-MD013: false # line-length: We don't fill paragraphs/limit line length
-MD034: false # no-bare-urls - We use pymdownx.magiclink which allows bare urls
-MD033: false # no-inline-html - Too strict.
-ul-indent:
-  indent: 4
-  start_indent: 4
