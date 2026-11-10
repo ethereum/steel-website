@@ -38,5 +38,7 @@ jobs:
           echo "${LYCHEE_SHA256}  $RUNNER_TEMP/$archive" | sha256sum --check -
           tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP"
           echo "$RUNNER_TEMP/lychee-x86_64-unknown-linux-gnu" >> "$GITHUB_PATH"
-      - name: Build the site and check links and images
+      - name: Build the site
+        run: just build
+      - name: Check links and images in the built site
         run: just check-links

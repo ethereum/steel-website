@@ -47,6 +47,7 @@ Run the same checks as CI:
 
 ```bash
 just static
+just build
 just check-links
 ```
 
@@ -57,6 +58,6 @@ just check-links
 | `just spellcheck` | Spellcheck `docs/` with codespell; add false positives with `just whitelist <word>` |
 | `just lint-actions` | Lint the GitHub Actions workflows with actionlint and shellcheck |
 | `just build` | Build the site into `site/` with `zensical build --strict` |
-| `just check-links` | Build the site, then check that every link and image in it points at a file that exists (needs lychee). `zensical build --strict` checks links to pages and anchors but not images. External links are not checked |
+| `just check-links` | Check that every link and image in the built `site/` points at a file that exists; run `just build` first (needs lychee). `zensical build --strict` checks links to pages and anchors but not images. External links are not checked |
 | `just assemble` | Build the site and stage local execution-specs docs artifacts from `artifacts/`, as the deploy does (`--serve` to serve it) |
 | `just clean` | Remove `site/` and `.cache/` |
