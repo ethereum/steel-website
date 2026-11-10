@@ -290,7 +290,7 @@ toggle.name = "Switch to light mode"
 # ----------------------------------------------------------------------------
 [project.theme.font]
 text = "IBM Plex Sans"
-code = "Jetbrains Mono"
+code = "JetBrains Mono"
 
 # ----------------------------------------------------------------------------
 # You can configure your own logo to be shown in the header using the "logo"
