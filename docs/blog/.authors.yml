@@ -1,0 +1,28 @@
+# Blog authors. Photos are the team page photos; links go to each person's
+# card on the team page. Paths are relative to the site root.
+authors:
+  danceratopz:
+    name: danceratopz
+    description: STEEL
+    avatar: assets/images/team/danceratopz.jpg
+    url: team/#danceratopz
+  felix:
+    name: Felix
+    description: STEEL
+    avatar: assets/images/team/felix314159.png
+    url: team/#felix
+  guru:
+    name: Guru
+    description: STEEL
+    avatar: assets/images/team/gurukamath.jpg
+    url: team/#guru
+  leo:
+    name: Leo Lara
+    description: STEEL
+    avatar: assets/images/team/leolara.jpg
+    url: team/#leo-lara
+  mario:
+    name: Mario Vega
+    description: STEEL
+    avatar: assets/images/team/marioevz.png
+    url: team/#mario-vega

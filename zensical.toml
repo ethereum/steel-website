@@ -59,13 +59,7 @@ nav = [
     { "Responsibilities" = "responsibilities.md" },
     { "Team" = "team.md" },
     { "Docs" = "docs/index.md" },
-    { "Blog" = [
-        "blog/2026-06-11_specs-as-models.md",
-        "blog/2025-11-27_osaka_mainnet_tests.md",
-        "blog/2025-11-04_weld_final.md",
-        "blog/2025-09-15_eth-config.md",
-        "blog/2025-09-11_weld-announcement.md"
-    ] },
+    { "Blog" = "blog/index.md" },
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize
@@ -331,12 +325,23 @@ generator = false
 # Plugins
 # ----------------------------------------------------------------------------
 
+# Blog: posts live in docs/blog/posts/, authors in docs/blog/.authors.yml.
+# The index (docs/blog/index.md) lists every post; partials/post.html in
+# overrides/ shapes each entry. post_url_format = "{file}" keeps the URLs the
+# posts had before the plugin, /blog/<file name>/.
+#
+# Read more: https://zensical.org/docs/setup/blog/
+[project.plugins.blog]
+post_url_format = "{file}"
+archive = false
+categories = false
+
 # Redirect old URLs to their new location. Keys are source paths relative to
 # docs_dir; values are the target pages.
 [project.plugins.redirects.redirect_maps]
-"blog_posts/blog/2025-09-11_weld-announcement.md" = "blog/2025-09-11_weld-announcement.md"
-"blog_posts/blog/2025-09-15_eth-config.md" = "blog/2025-09-15_eth-config.md"
-"blog_posts/blog/2025-11-04_weld_final.md" = "blog/2025-11-04_weld_final.md"
+"blog_posts/blog/2025-09-11_weld-announcement.md" = "blog/posts/2025-09-11_weld-announcement.md"
+"blog_posts/blog/2025-09-15_eth-config.md" = "blog/posts/2025-09-15_eth-config.md"
+"blog_posts/blog/2025-11-04_weld_final.md" = "blog/posts/2025-11-04_weld_final.md"
 
 # Generate /llms.txt (an index for LLM tools) and /llms-full.txt (all pages
 # as Markdown in one file).
@@ -352,10 +357,14 @@ full_output = "llms-full.txt"
     { "team.md" = "Team members" },
     { "docs/index.md" = "Entry point to the execution-specs documentation" },
 ]
-"Blog" = ["blog/*.md"]
+"Blog" = ["blog/posts/*.md"]
 
 # Minify HTML (including inline scripts and styles) and the custom CSS.
+# cache_safe adds a content hash to the minified CSS file names (for example
+# extra.<hash>.min.css), so browsers fetch the new file after every change
+# instead of reusing a cached copy.
 [project.plugins.minify]
+cache_safe = true
 minify_html = true
 minify_inline_js = true
 minify_inline_css = true

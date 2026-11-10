@@ -1,13 +1,9 @@
 ---
 title: "Specs as Models: Applying Category-Partition Testing to Ethereum's Consensus Layer"
 date: 2026-06-11
-author: Leo Lara
+authors: [leo]
 description: "Reading the executable consensus specs as a formal model to systematically enumerate test scenarios — and the new tests and spec bug it found."
 ---
-
-<div class="blog-metadata" markdown>
-:material-account: [Leo Lara](../team.md#leo-lara) · :material-calendar: June 11, 2026 · :material-clock-outline: 35 min read
-</div>
 
 *Thanks to [@brechy](https://github.com/brechy) and [@danceratopz](https://github.com/danceratopz) for their review and help.*
 

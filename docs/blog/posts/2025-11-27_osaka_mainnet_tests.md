@@ -1,19 +1,15 @@
 ---
 title: 'Osaka Mainnet Testing'
 date: 2025-11-27
-author: Felix
+authors: [felix, mario]
 description: "How execution-specs tested Osaka on mainnet"
 ---
-
-<div class="blog-metadata" markdown>
-:material-account: [Felix](../team.md#felix), [Mario](../team.md#mario-vega) · :material-calendar: November 27, 2025 · :material-clock-outline: 5 min read
-</div>
 
 All tests selected for the Osaka hard fork passed! As part of our verification process, the STEEL Team ran a subset of consensus tests from [ethereum/execution-specs](https://github.com/ethereum/execution-specs) directly on Ethereum mainnet.
 
 Below you can find details about which tests were executed and the corresponding transaction hashes. The corresponding semi-manual testing effort for Prague can be found [in this report](https://notes.ethereum.org/@marioevz/pectra-mainnet-testing).
 
-![Lighthouse Fulu Ascii Art](../assets/images/blog/2025-11-27_osaka_mainnet_tests/lighthouse_fulu.png)
+![Lighthouse Fulu Ascii Art](../../assets/images/blog/2025-11-27_osaka_mainnet_tests/lighthouse_fulu.png)
 
 ## Summary
 
