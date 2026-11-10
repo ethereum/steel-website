@@ -360,7 +360,11 @@ full_output = "llms-full.txt"
 "Blog" = ["blog/posts/*.md"]
 
 # Minify HTML (including inline scripts and styles) and the custom CSS.
+# cache_safe adds a content hash to the minified CSS file names (for example
+# extra.<hash>.min.css), so browsers fetch the new file after every change
+# instead of reusing a cached copy.
 [project.plugins.minify]
+cache_safe = true
 minify_html = true
 minify_inline_js = true
 minify_inline_css = true

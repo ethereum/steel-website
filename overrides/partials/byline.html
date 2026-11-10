@@ -7,7 +7,7 @@
 -#}
 <div class="blog-metadata">
   {% for author in byline_authors -%}
-    <img class="blog-metadata__avatar" src="{{ author.avatar | url }}" alt="">
+    <img class="blog-metadata__avatar" src="{{ author.avatar | url }}" alt="" width="20" height="20">
     {%- if author.url -%}
       <a class="blog-link" href="{{ author.url | url }}">{{ author.name }}</a>
     {%- else -%}
