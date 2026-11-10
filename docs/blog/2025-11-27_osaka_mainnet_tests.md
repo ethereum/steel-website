@@ -79,7 +79,7 @@ tests/osaka/eip7823_modexp_upper_bounds/test_eip_mainnet.py \
 
 ### Outcome
 
-:white_check_mark: **PASS** - 2/2 tests passed.
+✅ **PASS** - 2/2 tests passed.
 
 ## EIP-7825 (Transaction Gas Limit Cap)
 
@@ -111,7 +111,7 @@ Note: `test_tx_gas_limit_cap_exceeded` had no direct test transaction as expecte
 
 ### Outcome
 
-:white_check_mark: **PASS** - 2/2 tests passed.
+✅ **PASS** - 2/2 tests passed.
 
 ## EIP-7883 (ModEXP Gas Repricing)
 
@@ -143,7 +143,7 @@ tests/osaka/eip7883_modexp_gas_increase/test_eip_mainnet.py \
 
 ### Outcome
 
-:white_check_mark: **PASS** - 5/5 tests passed.
+✅ **PASS** - 5/5 tests passed.
 
 ## EIP-7910 (eth_config JSON-RPC Method)
 
@@ -165,7 +165,7 @@ This was a regular call to a node's JSON RPC to request information; it did not 
 
 ### Outcome
 
-:white_check_mark: **PASS** - 6/6 tests passed against 5 mainnet RPC endpoints (Geth, Reth, Nethermind, Erigon, and Besu). All returned consistent results confirming correct `eth_config` implementation.
+✅ **PASS** - 6/6 tests passed against 5 mainnet RPC endpoints (Geth, Reth, Nethermind, Erigon, and Besu). All returned consistent results confirming correct `eth_config` implementation.
 
 ## EIP-7939 (CLZ)
 
@@ -194,7 +194,7 @@ tests/osaka/eip7939_count_leading_zeros/test_eip_mainnet.py \
 
 ### Outcome
 
-:white_check_mark: **PASS** - 2/2 tests passed.
+✅ **PASS** - 2/2 tests passed.
 
 ## EIP-7951 (P256Verify)
 
@@ -223,4 +223,4 @@ tests/osaka/eip7951_p256verify_precompiles/test_eip_mainnet.py \
 
 ### Outcome
 
-:white_check_mark: **PASS** - 2/2 tests passed.
+✅ **PASS** - 2/2 tests passed.

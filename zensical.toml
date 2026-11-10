@@ -37,6 +37,15 @@ copyright = """
 Copyright &copy; 2026 The Ethereum Foundation STEEL Team
 """
 
+# The repository is linked in the header, and edit_uri gives every page an
+# "Edit this page" and a "View source" button. edit_uri must sit here in
+# [project], not in [project.theme], or the buttons don't appear.
+#
+# Read more: https://zensical.org/docs/setup/repository/
+repo_url = "https://github.com/ethereum/steel-website"
+repo_name = "ethereum/steel-website"
+edit_uri = "edit/main/docs/"
+
 # Zensical supports both implicit navigation and explicitly defined navigation.
 # If you decide not to define a navigation here then Zensical will simply
 # derive the navigation structure from the directory structure of your
@@ -67,7 +76,7 @@ nav = [
 #
 # Read more: https://zensical.org/docs/customization/#additional-css
 #
-extra_css = ["assets/stylesheets/extra.css"]
+extra_css = ["assets/stylesheets/fonts.css", "assets/stylesheets/extra.css"]
 
 # With the `extra_javascript` option you can add your own JavaScript to your
 # project to customize the behavior according to your needs.
@@ -123,6 +132,14 @@ favicon = "assets/images/favicon.ico"
 #
 language = "en"
 
+# Don't load fonts from Google Fonts. IBM Plex Sans (text) and JetBrains Mono
+# (code) are self-hosted in docs/assets/fonts/ and set up in
+# docs/assets/stylesheets/fonts.css, so pages make no third-party requests and
+# the build needs no network.
+#
+# Read more: https://zensical.org/docs/setup/fonts/
+font = false
+
 # Zensical provides a number of feature toggles that change the behavior
 # of the documentation site.
 features = [
@@ -135,13 +152,13 @@ features = [
     # will generate an edit button for the page. This works for common
     # repository hosting services.
     # https://zensical.org/docs/setup/repository/#code-actions
-    #"content.action.edit",
+    "content.action.edit",
 
     # If you have a repository configured and turn feature this on, Zensical
     # will generate a button that allows the user to view the Markdown
     # code for the current page.
     # https://zensical.org/docs/setup/repository/#code-actions
-    #"content.action.view",
+    "content.action.view",
 
     # Code annotations allow you to add an icon with a tooltip to your
     # code blocks to provide explanations at crucial points.
@@ -207,7 +224,7 @@ features = [
     # In order to provide a better user experience on slow connections when
     # using instant navigation, a progress indicator can be enabled.
     # https://zensical.org/docs/setup/navigation/#progress-indicator
-    #"navigation.instant.progress",
+    "navigation.instant.progress",
 
     # When navigation paths are activated, a breadcrumb navigation is rendered
     # above the title of each page
@@ -253,7 +270,7 @@ features = [
     # When anchor following for the table of contents is enabled, the sidebar
     # is automatically scrolled so that the active anchor is always visible.
     # https://zensical.org/docs/setup/navigation/#anchor-following
-    # "toc.follow",
+    "toc.follow",
 
     # When navigation integration for the table of contents is enabled, it is
     # always rendered as part of the navigation sidebar on the left.
@@ -283,16 +300,6 @@ toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
 
 # ----------------------------------------------------------------------------
-# In the "font" subsection you can configure the fonts used. By default, fonts
-# are loaded from Google Fonts, giving you a wide range of choices from a set
-# of suitably licensed fonts. There are options for a normal text font and for
-# a monospaced font used in code blocks.
-# ----------------------------------------------------------------------------
-[project.theme.font]
-text = "IBM Plex Sans"
-code = "Jetbrains Mono"
-
-# ----------------------------------------------------------------------------
 # You can configure your own logo to be shown in the header using the "logo"
 # option in the "icons" subsection. The logo can be a path to a file in your
 # "docs_dir" or it can be a path to an icon.
@@ -319,3 +326,38 @@ code = "Jetbrains Mono"
 
 [project.extra]
 generator = false
+
+# ----------------------------------------------------------------------------
+# Plugins
+# ----------------------------------------------------------------------------
+
+# Redirect old URLs to their new location. Keys are source paths relative to
+# docs_dir; values are the target pages.
+[project.plugins.redirects.redirect_maps]
+"blog_posts/blog/2025-09-11_weld-announcement.md" = "blog/2025-09-11_weld-announcement.md"
+"blog_posts/blog/2025-09-15_eth-config.md" = "blog/2025-09-15_eth-config.md"
+"blog_posts/blog/2025-11-04_weld_final.md" = "blog/2025-11-04_weld_final.md"
+
+# Generate /llms.txt (an index for LLM tools) and /llms-full.txt (all pages
+# as Markdown in one file).
+[project.plugins.llmstxt]
+markdown_description = "STEEL (Specifications and Testing for the Ethereum Execution Layer) is the Ethereum Foundation team that maintains the Ethereum execution layer specifications and test suites in ethereum/execution-specs."
+full_output = "llms-full.txt"
+
+[project.plugins.llmstxt.sections]
+"About STEEL" = [
+    { "index.md" = "What STEEL is and what it works on" },
+    { "about.md" = "Team history and mission" },
+    { "responsibilities.md" = "Projects and areas STEEL owns" },
+    { "team.md" = "Team members" },
+    { "docs/index.md" = "Entry point to the execution-specs documentation" },
+]
+"Blog" = ["blog/*.md"]
+
+# Minify HTML (including inline scripts and styles) and the custom CSS.
+[project.plugins.minify]
+minify_html = true
+minify_inline_js = true
+minify_inline_css = true
+minify_css = true
+css_files = ["assets/stylesheets/fonts.css", "assets/stylesheets/extra.css"]

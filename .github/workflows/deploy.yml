@@ -108,7 +108,7 @@ jobs:
       # Build the main Zensical site
       - name: Build Zensical site
         run: |
-          uv run zensical build --clean
+          uv run zensical build --clean --strict
           echo "Zensical site built to site/"
 
       # --- Docs Aggregation ---
