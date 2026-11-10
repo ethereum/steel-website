@@ -355,3 +355,11 @@ full_output = "llms-full.txt"
 # video player and an ad SDK (about 7 MB in total). The theme only loads them
 # on pages that need them, so skip them.
 assets_exclude = ["unpkg.com/*"]
+
+# Minify HTML (including inline scripts and styles) and the custom CSS.
+[project.plugins.minify]
+minify_html = true
+minify_inline_js = true
+minify_inline_css = true
+minify_css = true
+css_files = ["assets/stylesheets/extra.css"]
