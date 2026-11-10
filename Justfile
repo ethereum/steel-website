@@ -58,13 +58,14 @@ lock-check:
 lint-actions:
     uv run actionlint -pyflakes pyflakes -shellcheck "shellcheck -S warning"
 
-# Check that links and images in the built site point at files that exist
-# (requires lychee). `zensical build --strict` checks links to pages and
-# anchors, but not images. External links are not checked.
+# Build the site and check its internal links and images (requires lychee)
 [group('static analysis')]
 check-links: build
     #!/usr/bin/env bash
     set -euo pipefail
+    # `zensical build --strict` checks links to pages and anchors, but not
+    # images. lychee checks every link and image in the built HTML. External
+    # links are not checked (--offline).
     if ! command -v lychee >/dev/null; then
         echo "Install lychee to check links: https://lychee.cli.rs/installation/"
         exit 1
