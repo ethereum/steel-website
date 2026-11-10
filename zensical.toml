@@ -330,3 +330,19 @@ generator = false
 "blog_posts/blog/2025-09-11_weld-announcement.md" = "blog/2025-09-11_weld-announcement.md"
 "blog_posts/blog/2025-09-15_eth-config.md" = "blog/2025-09-15_eth-config.md"
 "blog_posts/blog/2025-11-04_weld_final.md" = "blog/2025-11-04_weld_final.md"
+
+# Generate /llms.txt (an index for LLM tools) and /llms-full.txt (all pages
+# as Markdown in one file).
+[project.plugins.llmstxt]
+markdown_description = "STEEL (Specifications and Testing for the Ethereum Execution Layer) is the Ethereum Foundation team that maintains the Ethereum execution layer specifications and test suites in ethereum/execution-specs."
+full_output = "llms-full.txt"
+
+[project.plugins.llmstxt.sections]
+"About STEEL" = [
+    { "index.md" = "What STEEL is and what it works on" },
+    { "about.md" = "Team history and mission" },
+    { "responsibilities.md" = "Projects and areas STEEL owns" },
+    { "team.md" = "Team members" },
+    { "docs/index.md" = "Entry point to the execution-specs documentation" },
+]
+"Blog" = ["blog/*.md"]
