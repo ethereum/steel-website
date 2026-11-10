@@ -336,9 +336,13 @@ post_url_format = "{file}"
 archive = false
 categories = false
 
-# Redirect old URLs to their new location. Keys are source paths relative to
-# docs_dir; values are the target pages.
+# Redirect URLs from the old Hugo site (/<page>/main/ and /blog_posts/blog/)
+# to their current pages. Keys are source paths relative to docs_dir; values
+# are the target pages.
 [project.plugins.redirects.redirect_maps]
+"home/main.md" = "index.md"
+"responsibilities/main.md" = "responsibilities.md"
+"team/main.md" = "team.md"
 "blog_posts/blog/2025-09-11_weld-announcement.md" = "blog/posts/2025-09-11_weld-announcement.md"
 "blog_posts/blog/2025-09-15_eth-config.md" = "blog/posts/2025-09-15_eth-config.md"
 "blog_posts/blog/2025-11-04_weld_final.md" = "blog/posts/2025-11-04_weld_final.md"
