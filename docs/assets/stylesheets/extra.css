@@ -1,103 +1,100 @@
-/* ===== Orange accent variable override ===== */
+/* ===== Palette =====
+ *
+ * Colours follow https://protocol.ethereum.foundation/: indigo (#313a88) on
+ * light paper (#f4f4fb), and a lighter indigo plus the EF Protocol lime
+ * (#ceff05) on the dark ink background. Every accent in this file reads these
+ * variables, so changing the palette means changing only this block.
+ */
 
-[data-md-color-accent="orange"] {
-  --md-accent-fg-color: #ff9800;
-  --md-accent-fg-color--transparent: #ff98001a;
+:root,
+[data-md-color-scheme="default"] {
+  --specs-accent: #313a88;
+  --specs-accent-hover: #4d57c4;
+  --specs-accent-2: #5b4fcf;
+  --specs-accent-rgb: 49 58 136;
+  --specs-spark: #313a88;
+  --md-default-bg-color: #f4f4fb;
+  --md-primary-fg-color: #313a88;
 }
 
-[data-md-color-scheme="default"][data-md-color-accent="orange"] {
-  --md-accent-fg-color: #e65100;
-  --md-accent-fg-color--transparent: #e651001a;
+[data-md-color-scheme="slate"] {
+  --specs-accent: #a5adff;
+  --specs-accent-hover: #c9ceff;
+  --specs-accent-2: #ceff05;
+  --specs-accent-rgb: 165 173 255;
+  --specs-spark: #ceff05;
+  --md-default-bg-color: #191525;
+  --md-primary-fg-color: #191525;
 }
 
-/* ===== Orange accent links ===== */
+[data-md-color-accent="indigo"] {
+  --md-accent-fg-color: var(--specs-accent);
+  --md-accent-fg-color--transparent: rgb(var(--specs-accent-rgb) / 0.1);
+}
+
+/* ===== Headings in Funnel Display, the EF Protocol display face ===== */
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-header__topic,
+.md-tabs__link {
+  font-family: var(--specs-display-font);
+  letter-spacing: -0.01em;
+}
+
+/* ===== Accent links ===== */
 
 .md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source):not(.blog-link) {
-  color: #ff9800;
+  color: var(--specs-accent);
   text-decoration: underline;
   text-underline-offset: 0.15em;
 }
 
 .md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source):not(.blog-link):hover {
-  color: #ffb74d;
+  color: var(--specs-accent-hover);
 }
 
-[data-md-color-scheme="default"] .md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source):not(.blog-link) {
-  color: #e65100;
-}
-
-[data-md-color-scheme="default"] .md-typeset a:not(.md-button):not(.btn-primary):not(.btn-secondary):not(.md-nav__link):not(.md-logo):not(.md-header__button):not(.headerlink):not(.md-footer__link):not(.md-tabs__link):not(.md-source):not(.blog-link):hover {
-  color: #ff9800;
-}
-
-/* ===== Orange accent heading permalink (idle opacity only; hover via accent var) ===== */
+/* ===== Accent heading permalink (idle opacity only; hover via accent var) ===== */
 
 .md-typeset .headerlink {
-  color: rgba(255, 152, 0, 0.45);
+  color: rgb(var(--specs-accent-rgb) / 0.45);
 }
 
-[data-md-color-scheme="default"] .md-typeset .headerlink {
-  color: rgba(230, 81, 0, 0.35);
-}
-
-/* ===== Orange accent ToC active link ===== */
+/* ===== Accent ToC active link ===== */
 
 .md-nav__item .md-nav__link--active {
-  color: #ff9800;
+  color: var(--specs-accent);
 }
 
-[data-md-color-scheme="default"] .md-nav__item .md-nav__link--active {
-  color: #e65100;
-}
-
-/* ===== Orange accent sidebar scrollbar (idle state; hover/focus via accent var) ===== */
+/* ===== Accent sidebar scrollbar (idle state; hover/focus via accent var) ===== */
 
 .md-sidebar__scrollwrap {
-  scrollbar-color: rgba(255, 152, 0, 0.3) transparent;
+  scrollbar-color: rgb(var(--specs-accent-rgb) / 0.3) transparent;
 }
 
-[data-md-color-scheme="default"] .md-sidebar__scrollwrap {
-  scrollbar-color: rgba(230, 81, 0, 0.25) transparent;
-}
-
-/* ===== Orange text selection highlight ===== */
+/* ===== Accent text selection highlight ===== */
 
 ::selection {
-  background: rgba(255, 152, 0, 0.25);
+  background: rgb(var(--specs-accent-rgb) / 0.25);
 }
 
-[data-md-color-scheme="default"] ::selection {
-  background: rgba(230, 81, 0, 0.2);
-}
-
-/* ===== Orange accent table header border ===== */
+/* ===== Accent table header border ===== */
 
 .md-typeset th {
-  border-bottom: 2px solid rgba(255, 152, 0, 0.4);
+  border-bottom: 2px solid rgb(var(--specs-accent-rgb) / 0.4);
 }
 
-[data-md-color-scheme="default"] .md-typeset th {
-  border-bottom-color: rgba(230, 81, 0, 0.35);
-}
-
-/* ===== Orange accent blockquote border ===== */
+/* ===== Accent blockquote border ===== */
 
 .md-typeset blockquote {
-  border-left: 3px solid rgba(255, 152, 0, 0.45);
+  border-left: 3px solid rgb(var(--specs-accent-rgb) / 0.45);
 }
 
-[data-md-color-scheme="default"] .md-typeset blockquote {
-  border-left-color: rgba(230, 81, 0, 0.4);
-}
-
-/* ===== Orange accent active navigation tab ===== */
+/* ===== Accent active navigation tab ===== */
 
 .md-tabs__link--active {
-  border-bottom: 2px solid #ff9800;
-}
-
-[data-md-color-scheme="default"] .md-tabs__link--active {
-  border-bottom-color: #e65100;
+  border-bottom: 2px solid var(--specs-accent);
 }
 
 /* ===== Team Page: Option B — Three-Column Portrait Cards ===== */
@@ -131,7 +128,7 @@
   border: 0;
 }
 
-/* Team avatar — orange accent ring with gap for visibility on any background */
+/* Team avatar — accent accent ring with gap for visibility on any background */
 .team-avatar {
   border-radius: 50%;
   width: 80px;
@@ -140,7 +137,7 @@
   border: none;
   box-shadow:
     0 0 0 3px var(--md-default-bg-color),
-    0 0 0 5px rgba(255, 152, 0, 0.45);
+    0 0 0 5px rgb(var(--specs-accent-rgb) / 0.45);
 }
 
 /* Card layout: centered vertical stack */
@@ -155,7 +152,7 @@
 
 .md-typeset .grid.cards > ul > li:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 152, 0, 0.45);
+  border-color: rgb(var(--specs-accent-rgb) / 0.45);
 }
 
 /* Avatar paragraph */
@@ -164,14 +161,14 @@
 }
 
 /* Name heading */
-.md-typeset .grid.cards > ul > li > h3 {
+.md-typeset .grid.cards > ul > li > h4 {
   margin: 0 0 0.3rem 0;
   font-size: 0.95rem;
   scroll-margin-top: 14rem;
 }
 
 /* Hide the permanent link so it doesn't offset the centered name */
-.md-typeset .grid.cards > ul > li > h3 .headerlink {
+.md-typeset .grid.cards > ul > li > h4 .headerlink {
   position: absolute;
 }
 
@@ -209,8 +206,8 @@
 }
 
 .grid.cards .md-button:hover {
-  border-color: rgba(255, 152, 0, 0.6);
-  color: #ff9800;
+  border-color: rgb(var(--specs-accent-rgb) / 0.6);
+  color: var(--specs-accent);
 }
 
 .grid.cards .md-button svg {
@@ -232,12 +229,12 @@
 /* Theme-aware header logo switching */
 [data-md-color-scheme="default"] .md-header__button.md-logo img,
 [data-md-color-scheme="default"] .md-logo img {
-  content: url("../images/home/steel.png") !important;
+  content: url("../images/home/specs.png") !important;
 }
 
 [data-md-color-scheme="slate"] .md-header__button.md-logo img,
 [data-md-color-scheme="slate"] .md-logo img {
-  content: url("../images/home/steel-dark.png") !important;
+  content: url("../images/home/specs-dark.png") !important;
 }
 
 /* Blog metadata styling */
@@ -246,7 +243,7 @@
   font-size: 0.9rem;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 152, 0, 0.2);
+  border-bottom: 1px solid rgb(var(--specs-accent-rgb) / 0.2);
 }
 
 .blog-metadata .twemoji {
@@ -256,8 +253,8 @@
 }
 
 /* Blog links: post titles and "Continue reading" on the index, and author
-   names in bylines. Plain text colour, orange on hover, no underline.
-   Excluded from the orange accent link rule at the top of this file by
+   names in bylines. Plain text colour, accent on hover, no underline.
+   Excluded from the accent accent link rule at the top of this file by
    :not(.blog-link). */
 .md-typeset a.blog-link {
   color: inherit;
@@ -275,4 +272,143 @@
   object-fit: cover;
   vertical-align: middle;
   margin-right: 0.3em;
+}
+
+/* Focus tag under a team member's name, e.g. "Co-lead · EL" */
+.md-typeset .team-tag {
+  display: inline-block;
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--specs-accent);
+  background: rgb(var(--specs-accent-rgb) / 0.12);
+}
+
+.md-typeset .grid.cards > ul > li > p:has(> .team-tag) {
+  text-align: center !important;
+  margin-bottom: 0.6rem !important;
+}
+
+/* ===== Home page ===== */
+
+.hero-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem 4rem;
+}
+
+.hero-content {
+  max-width: 920px;
+}
+
+
+.md-typeset h1.hero-title {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset .hero-title .headerlink {
+  display: none;
+}
+
+.hero-content > p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  opacity: 0.88;
+  margin-bottom: 2.25rem;
+}
+
+.highlight {
+  font-weight: 700;
+  color: var(--specs-accent);
+}
+
+[data-md-color-scheme="slate"] .highlight {
+  color: var(--specs-spark);
+}
+
+/* Two cards, one per layer */
+.layer-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .layer-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.layer-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem 1.4rem 1.2rem;
+  border: 1px solid rgb(var(--specs-accent-rgb) / 0.3);
+  border-radius: 14px;
+  background: rgb(var(--specs-accent-rgb) / 0.05);
+}
+
+.md-typeset .layer-card p {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.md-typeset .layer-card__label {
+  font-family: var(--specs-display-font);
+  font-size: 1.5rem !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--specs-accent);
+  margin-bottom: 0.6rem !important;
+}
+
+.md-typeset .layer-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: auto 0 0 !important;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-decoration: none !important;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary {
+  background: var(--specs-accent);
+  color: var(--md-default-bg-color) !important;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgb(var(--specs-accent-rgb) / 0.35);
+}
+
+.btn-secondary {
+  border: 2px solid var(--specs-accent);
+  color: var(--specs-accent) !important;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  background: rgb(var(--specs-accent-rgb) / 0.1);
+}
+
+/* About page logo */
+.md-typeset img.about-logo {
+  width: 96px;
 }

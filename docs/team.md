@@ -1,25 +1,49 @@
 ---
 title: Team
+description: The people in the Ethereum Foundation Specs team, Specs [EL] and Specs [CL].
 ---
 
 ## Team { .toc-only }
+
+We are one team of nine with two focus areas. Specs [EL] works on the execution layer and Specs [CL] on the consensus layer. The two co-leads each focus on one layer. People still mostly work on their own layer, but more of our work now crosses between them.
+
+### Co-leads
 
 <div class="grid cards" markdown>
 
 - ![Mario Vega](assets/images/team/marioevz.png){ .team-avatar }
 
-    ### **Mario Vega**
+    #### **Mario Vega**
 
-    Team Lead, Protocol Tester.
+    <span class="team-tag">Co-lead · EL</span>
+
+    Protocol tester and co-lead with an execution-layer focus.
 
     [:fontawesome-brands-github:](https://github.com/marioevz){ .md-button target="_blank" }
     [:fontawesome-brands-x-twitter:](https://x.com/elbuenmayini){ .md-button target="_blank" }
 
+- ![Justin Traglia](assets/images/team/jtraglia.png){ .team-avatar }
+
+    #### **Justin Traglia**
+
+    <span class="team-tag">Co-lead · CL</span>
+
+    Protocol researcher and co-lead with a consensus-layer focus. Maintains the consensus specs and c-kzg-4844.
+
+    [:fontawesome-brands-github:](https://github.com/jtraglia){ .md-button target="_blank" }
+    [:fontawesome-brands-x-twitter:](https://x.com/jtraglia){ .md-button target="_blank" }
+
+</div>
+
+### Specs [EL]
+
+<div class="grid cards" markdown>
+
 - ![danceratopz](assets/images/team/danceratopz.jpg){ .team-avatar }
 
-    ### **danceratopz**
+    #### **danceratopz**
 
-    Protocol Tester who cares deeply about consensus and client test developer experience.
+    Protocol tester who cares deeply about consensus and client test developer experience.
 
     [:fontawesome-brands-github:](https://github.com/danceratopz){ .md-button target="_blank" }
     [:fontawesome-brands-x-twitter:](https://x.com/danceratopz){ .md-button target="_blank" }
@@ -28,20 +52,20 @@ title: Team
 
 - ![Felipe](assets/images/team/fselmo.jpg){ .team-avatar }
 
-    ### **Felipe**
+    #### **Felipe**
 
     [:fontawesome-brands-github:](https://github.com/fselmo){ .md-button target="_blank" }
     [:fontawesome-brands-x-twitter:](https://x.com/fselmo2){ .md-button target="_blank" }
 
 - ![Guru](assets/images/team/gurukamath.jpg){ .team-avatar }
 
-    ### **Guru**
+    #### **Guru**
 
     [:fontawesome-brands-github:](https://github.com/gurukamath){ .md-button target="_blank" }
 
 - ![Jochem](assets/images/team/jochem-brouwer.jpg){ .team-avatar }
 
-    ### **Jochem**
+    #### **Jochem**
 
     [:fontawesome-brands-github:](https://github.com/jochem-brouwer){ .md-button target="_blank" }
     [:fontawesome-brands-x-twitter:](https://x.com/JochemBrouwer96){ .md-button target="_blank" }
@@ -50,21 +74,35 @@ title: Team
 
 - ![Louis](assets/images/team/LouisTsai-Csie.jpg){ .team-avatar }
 
-    ### **Louis**
+    #### **Louis**
 
     [:fontawesome-brands-github:](https://github.com/LouisTsai-Csie){ .md-button target="_blank" }
     [:fontawesome-brands-x-twitter:](https://x.com/0xlouistsai){ .md-button target="_blank" }
 
 - ![Spencer Taylor-Brown](assets/images/team/spencer-tb.jpg){ .team-avatar }
 
-    ### **Spencer Taylor-Brown**
+    #### **Spencer Taylor-Brown**
 
-    Protocol Tester making it all red and then making it all green. Focusing on the next fork.
+    Protocol tester making it all red and then making it all green. Focusing on the next fork.
 
     [:fontawesome-brands-github:](https://github.com/spencer-tb){ .md-button target="_blank" }
     [:fontawesome-brands-x-twitter:](https://x.com/techbro_ccoli){ .md-button target="_blank" }
     [:fontawesome-brands-discord:](https://discord.com/users/spencer_tb){ .md-button target="_blank" }
     [:fontawesome-brands-telegram:](https://t.me/spencer_tb){ .md-button target="_blank" }
+
+</div>
+
+### Specs [CL]
+
+<div class="grid cards" markdown>
+
+- ![Jihoon Song](assets/images/team/jihoonsong.png){ .team-avatar }
+
+    #### **Jihoon Song**
+
+    Consensus specs, with a focus on FOCIL and its Engine API and EIP changes.
+
+    [:fontawesome-brands-github:](https://github.com/jihoonsong){ .md-button target="_blank" }
 
 </div>
 
@@ -74,46 +112,46 @@ title: Team
 
 - ![Carson](assets/images/team/Carsons-Eels.jpg){ .team-avatar }
 
-    ### **Carson**
+    #### **Carson**
 
     [:fontawesome-brands-github:](https://github.com/Carsons-Eels){ .md-button target="_blank" }
     [:fontawesome-brands-discord:](https://discord.com/users/carsonseels){ .md-button target="_blank" }
 
 - ![Dimitry](assets/images/team/winsvega.jpg){ .team-avatar }
 
-    ### **Dimitry**
+    #### **Dimitry**
 
     [:fontawesome-brands-github:](https://github.com/winsvega){ .md-button target="_blank" }
 
 - ![Felix](assets/images/team/felix314159.png){ .team-avatar }
 
-    ### **Felix**
+    #### **Felix**
 
     [:fontawesome-brands-github:](https://github.com/felix314159){ .md-button target="_blank" }
     [:fontawesome-brands-x-twitter:](https://x.com/felix314159_){ .md-button target="_blank" }
 
 - ![kclowes](assets/images/team/kclowes.jpg){ .team-avatar }
 
-    ### **kclowes**
+    #### **kclowes**
 
     [:fontawesome-brands-github:](https://github.com/kclowes){ .md-button target="_blank" }
 
 - ![Leo Lara](assets/images/team/leolara.jpg){ .team-avatar }
 
-    ### **Leo Lara**
+    #### **Leo Lara**
 
     [:fontawesome-brands-github:](https://github.com/leolara){ .md-button target="_blank" }
     [:fontawesome-brands-x-twitter:](https://x.com/leolarav){ .md-button target="_blank" }
 
 - ![Peter Miller](assets/images/team/petertdavies.jpg){ .team-avatar }
 
-    ### **Peter Miller**
+    #### **Peter Miller**
 
     [:fontawesome-brands-github:](https://github.com/petertdavies){ .md-button target="_blank" }
 
 - ![Sam Wilson](assets/images/team/SamWilsn.png){ .team-avatar }
 
-    ### **Sam Wilson**
+    #### **Sam Wilson**
 
     [:fontawesome-brands-github:](https://github.com/SamWilsn){ .md-button target="_blank" }
 
