@@ -1,6 +1,6 @@
-# Social card layout for steel.ethereum.foundation: the site's dark
-# background, white title, orange site name and a thin orange bar at the
-# bottom. Adapted from the default layout of Zensical's social plugin
+# Social card layout for the Specs team website: the site's dark ink
+# background, white title, lime site name and a thin lime bar at the bottom
+# (the EF Protocol colours). Adapted from the default layout of Zensical's social plugin
 # (Material for MkDocs).
 #
 # Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
@@ -26,11 +26,16 @@
 definitions:
   - &site_name >-
     {{ config.site_name }}
+  # The title drawn on the card: card_title from the page's front matter if
+  # set (the home page uses its headline), else the page title.
   - &page_title >-
-    {{ page.meta.get("title", page.title) }}
-  - &page_title_with_site_name >-
+    {{ page.meta.get("card_title", page.meta.get("title", page.title)) }}
+  # The og:title / twitter:title: the page title alone (platforms show the
+  # site name separately, from og:site_name), or the site name on the home
+  # page, so link previews don't truncate a long combined title.
+  - &og_title >-
     {%- if not page.is_homepage -%}
-      {{ page.meta.get("title", page.title) }} - {{ config.site_name }}
+      {{ page.meta.get("title", page.title) }}
     {%- else -%}
       {{ config.site_name }}
     {%- endif -%}
@@ -41,15 +46,17 @@ definitions:
 
 tags:
   og:type: website
-  og:title: *page_title_with_site_name
+  og:site_name: *site_name
+  og:title: *og_title
   og:description: *page_description
   og:image: "{{ image.url }}"
   og:image:type: "{{ image.type }}"
   og:image:width: "{{ image.width }}"
   og:image:height: "{{ image.height }}"
+  og:image:alt: *og_title
   og:url: "{{ page.canonical_url }}"
   twitter:card: summary_large_image
-  twitter:title: *page_title_with_site_name
+  twitter:title: *og_title
   twitter:description: *page_description
   twitter:image: "{{ image.url }}"
 
@@ -57,25 +64,25 @@ size: { width: 1200, height: 630 }
 layers:
   # Background: the site's dark mode background
   - background:
-      color: "#0b0c0f"
-  # Orange bar along the bottom edge
+      color: "#191525"
+  # Lime bar along the bottom edge
   - size: { width: 1200, height: 10 }
     offset: { x: 0, y: 620 }
     background:
-      color: "#ff9800"
+      color: "#ceff05"
   # Logo
   - size: { width: 144, height: 144 }
     offset: { x: 992, y: 64 }
     background:
       image: *logo
-  # Site name, in orange
+  # Site name, in lime
   - size: { width: 832, height: 42 }
     offset: { x: 64, y: 64 }
     typography:
       content: *site_name
-      color: "#ff9800"
+      color: "#ceff05"
       font:
-        family: IBM Plex Sans
+        family: Funnel Display
         style: Bold
   # Page title
   - size: { width: 832, height: 310 }
@@ -88,7 +95,7 @@ layers:
         amount: 3
         height: 1.25
       font:
-        family: IBM Plex Sans
+        family: Funnel Display
         style: Bold
   # Page description
   - size: { width: 832, height: 64 }
@@ -101,5 +108,5 @@ layers:
         amount: 2
         height: 1.5
       font:
-        family: IBM Plex Sans
+        family: Funnel Display
         style: Regular

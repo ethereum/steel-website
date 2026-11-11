@@ -1,13 +1,14 @@
-# Zensical configuration for steel.ethereum.foundation.
+# Zensical configuration for the Ethereum Foundation Specs team website,
+# served at steel.ethereum.foundation.
 # Reference: https://zensical.org/docs/setup/basics/
 
 [project]
-site_name = "STEEL - Specifications and Testing for the Ethereum Execution Layer"
-site_description = "The Ethereum Foundation STEEL Team's website."
-site_author = "steel@ethereum.foundation"
+site_name = "Ethereum Foundation · Protocol · Specs"
+site_description = "The Ethereum Foundation Specs team maintains the specifications and reference tests for Ethereum's execution and consensus layers."
+site_author = "specs@ethereum.foundation"
 site_url = "https://steel.ethereum.foundation/"
 copyright = """
-Copyright &copy; 2026 The Ethereum Foundation STEEL Team
+Copyright &copy; 2026 The Ethereum Foundation Specs Team
 """
 
 # The repository is linked in the header, and edit_uri gives every page an
@@ -22,7 +23,8 @@ edit_uri = "edit/main/docs/"
 nav = [
     { "Home" = "index.md" },
     { "About" = "about.md" },
-    { "Responsibilities" = "responsibilities.md" },
+    { "Specs [EL]" = "el.md" },
+    { "Specs [CL]" = "cl.md" },
     { "Team" = "team.md" },
     { "Docs" = "docs/index.md" },
     { "Blog" = "blog/index.md" },
@@ -31,16 +33,16 @@ nav = [
 extra_css = ["assets/stylesheets/fonts.css", "assets/stylesheets/extra.css"]
 
 [project.theme]
-logo = "assets/images/home/steel-dark.png"
+logo = "assets/images/home/specs-dark.png"
 favicon = "assets/images/favicon.ico"
 language = "en"
 
 # Template overrides: the 404 page and the blog partials.
 custom_dir = "overrides"
 
-# Don't load fonts from Google Fonts. IBM Plex Sans (text) and JetBrains Mono
-# (code) are self-hosted in docs/assets/fonts/ and set up in
-# docs/assets/stylesheets/fonts.css, so pages make no third-party requests and
+# Don't load fonts from Google Fonts. Funnel Display (headings), Funnel Sans
+# (text) and JetBrains Mono (code) are self-hosted in docs/assets/fonts/ and
+# set up in docs/assets/stylesheets/fonts.css, so pages make no third-party requests and
 # the build needs no network.
 font = false
 
@@ -70,16 +72,17 @@ features = [
     "toc.follow",
 ]
 
-# Light and dark mode, both with the orange accent.
+# Light and dark mode. The colours themselves are set in
+# docs/assets/stylesheets/extra.css (see "Palette" at the top).
 [[project.theme.palette]]
 scheme = "default"
-accent = "orange"
+accent = "indigo"
 toggle.icon = "lucide/sun"
 toggle.name = "Switch to dark mode"
 
 [[project.theme.palette]]
 scheme = "slate"
-accent = "orange"
+accent = "indigo"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
 
@@ -106,7 +109,8 @@ categories = false
 # are the target pages.
 [project.plugins.redirects.redirect_maps]
 "home/main.md" = "index.md"
-"responsibilities/main.md" = "responsibilities.md"
+"responsibilities/main.md" = "el.md"
+"responsibilities.md" = "el.md"
 "team/main.md" = "team.md"
 "blog_posts/blog/2025-09-11_weld-announcement.md" = "blog/posts/2025-09-11_weld-announcement.md"
 "blog_posts/blog/2025-09-15_eth-config.md" = "blog/posts/2025-09-15_eth-config.md"
@@ -115,14 +119,15 @@ categories = false
 # Generate /llms.txt (an index for LLM tools) and /llms-full.txt (all pages
 # as Markdown in one file).
 [project.plugins.llmstxt]
-markdown_description = "STEEL (Specifications and Testing for the Ethereum Execution Layer) is the Ethereum Foundation team that maintains the Ethereum execution layer specifications and test suites in ethereum/execution-specs."
+markdown_description = "Specs is the Ethereum Foundation team that maintains the specifications and reference tests of Ethereum's execution layer (Specs [EL], ethereum/execution-specs) and consensus layer (Specs [CL], ethereum/consensus-specs). It was formed in 2026 when STEEL (Specifications and Testing for the Ethereum Execution Layer) and the consensus specs team merged."
 full_output = "llms-full.txt"
 
 [project.plugins.llmstxt.sections]
-"About STEEL" = [
-    { "index.md" = "What STEEL is and what it works on" },
-    { "about.md" = "Team history and mission" },
-    { "responsibilities.md" = "Projects and areas STEEL owns" },
+"About Specs" = [
+    { "index.md" = "What the Specs team is and what it works on" },
+    { "about.md" = "Mission, collaborators and team history" },
+    { "el.md" = "Specs [EL]: execution layer specs, tests, tools and releases" },
+    { "cl.md" = "Specs [CL]: consensus layer specs, reference tests, c-kzg-4844 and releases" },
     { "team.md" = "Team members" },
     { "docs/index.md" = "Entry point to the execution-specs documentation" },
 ]
@@ -130,12 +135,12 @@ full_output = "llms-full.txt"
 
 # Social cards: a 1200 x 630 preview image per page, plus the og: and twitter:
 # meta tags that X, Telegram, Discord and LinkedIn read when a link is shared.
-# layouts/steel.yml draws them in the site's colours. The plugin downloads its
-# font (IBM Plex Sans) from Google Fonts on every build, so building needs
+# layouts/specs.yml draws them in the site's colours. The plugin downloads its
+# font (Funnel Display) from Google Fonts on every build, so building needs
 # internet access; if Google Fonts can't be reached, the build fails.
 [project.plugins.social]
 cards_layout_dir = "layouts"
-cards_layout = "steel"
+cards_layout = "specs"
 
 # Minify HTML (including inline scripts and styles) and the custom CSS.
 # cache_safe adds a content hash to the minified CSS file names (for example

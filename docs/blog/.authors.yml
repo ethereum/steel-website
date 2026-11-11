@@ -3,26 +3,36 @@
 authors:
   danceratopz:
     name: danceratopz
-    description: STEEL
+    description: Specs [EL]
     avatar: assets/images/team/danceratopz.jpg
     url: team/#danceratopz
   felix:
     name: Felix
-    description: STEEL
+    description: Specs [EL]
     avatar: assets/images/team/felix314159.png
     url: team/#felix
   guru:
     name: Guru
-    description: STEEL
+    description: Specs [EL]
     avatar: assets/images/team/gurukamath.jpg
     url: team/#guru
   leo:
     name: Leo Lara
-    description: STEEL
+    description: Specs [EL]
     avatar: assets/images/team/leolara.jpg
     url: team/#leo-lara
   mario:
     name: Mario Vega
-    description: STEEL
+    description: Specs [EL]
     avatar: assets/images/team/marioevz.png
     url: team/#mario-vega
+  justin:
+    name: Justin Traglia
+    description: Specs [CL]
+    avatar: assets/images/team/jtraglia.png
+    url: team/#justin-traglia
+  jihoon:
+    name: Jihoon Song
+    description: Specs [CL]
+    avatar: assets/images/team/jihoonsong.png
+    url: team/#jihoon-song

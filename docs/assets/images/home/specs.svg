@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 68 68" role="img" aria-label="Specs">
+  <title>Specs</title>
+  <path d="M17 7H7v50h10M47 7h10v50H47" fill="none" stroke="#313a88" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M32 11l12 20-12 7-12-7z" fill="#313a88"/>
+  <path d="M32 41l12-7-12 18-12-18z" fill="#313a88" fill-opacity="0.6"/>
+</svg>

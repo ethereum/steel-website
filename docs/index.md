@@ -1,5 +1,7 @@
 ---
 title: Home
+card_title: "Specifications and tests for Ethereum [EL] + [CL]"
+description: The Ethereum Foundation Specs team maintains the specifications and reference tests for Ethereum's execution and consensus layers.
 hide:
   - navigation
   - toc
@@ -9,163 +11,42 @@ hide:
 
 <div class="hero-content" markdown>
 
-<p class="hero-label">SPECIFICATIONS & TESTING FOR THE ETHEREUM EXECUTION LAYER</p>
+# Specifications and tests for Ethereum <span class="highlight">[EL]&nbsp;+&nbsp;[CL]</span> { .hero-title }
 
-# The Source of Truth for Ethereum’s Execution Layer
+We write the <span class="highlight">specifications</span> of Ethereum's execution and consensus layers as executable code, and generate the <span class="highlight">reference tests</span> from them. We help researchers turn [EIPs](https://eips.ethereum.org/) into precise specs, and provide client developers with test vectors and frameworks to verify their implementations.
 
-<!--
-STEEL bridges EVM research, prototyping, and production, forging [EIP](https://eips.ethereum.org/) proposals into rigorous specifications and test suites used to validate Ethereum’s diverse Execution Layer client ecosystem.
+<div class="layer-cards" markdown>
 
-We help EIP researchers transform proposals into executable specifications and test cases, while providing the test vectors and frameworks that Execution Layer client developers rely on to verify their implementations.
--->
+<div class="layer-card" markdown>
 
-STEEL <span class="highlight">bridges</span> EVM research, prototyping, and production: we help <span class="highlight">researchers</span> forge [EIP](https://eips.ethereum.org/) proposals into rigorous specifications and test suites, and we provide the test vectors and frameworks that Execution Layer <span class="highlight">client developers</span> depend on to verify their implementations.
+<p class="layer-card__label">Specs [EL]</p>
 
-<div class="hero-buttons">
-  <a href="about/" class="btn-secondary">
-    More about STEEL
-  </a>
-  <a href="/docs/execution-specs/specs/reference/src/ethereum/index.html" class="btn-primary" target="_blank">
-    Read the Specs
-  </a>
-  <a href="/docs/execution-specs/tests/" class="btn-primary" target="_blank">
-    Browse the Tests
-  </a>
+**Execution layer.** The EVM and state transition in [ethereum/execution-specs](https://github.com/ethereum/execution-specs), its test fixtures, and the tools that run them against clients.
+
+<p class="layer-card__links">
+  <a href="el/" class="btn-secondary">Overview</a>
+  <a href="/docs/execution-specs/specs/reference/src/ethereum/index.html" class="btn-primary">Specs</a>
+  <a href="/docs/execution-specs/tests/" class="btn-primary">Tests</a>
+</p>
+
+</div>
+
+<div class="layer-card" markdown>
+
+<p class="layer-card__label">Specs [CL]</p>
+
+**Consensus layer.** The beacon chain and fork choice in [ethereum/consensus-specs](https://github.com/ethereum/consensus-specs), its reference tests, and the c-kzg-4844 library.
+
+<p class="layer-card__links">
+  <a href="cl/" class="btn-secondary">Overview</a>
+  <a href="https://ethereum.github.io/consensus-specs/" class="btn-primary">Specs</a>
+  <a href="https://github.com/ethereum/consensus-specs/releases" class="btn-primary">Tests</a>
+</p>
+
 </div>
 
 </div>
 
 </div>
 
-<style>
-.hero-container {
-  min-height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 2rem 4rem 2rem;
-}
-
-.hero-content {
-  max-width: 800px;
-  text-align: left;
-}
-
-.hero-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #ff9800;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-}
-
-[data-md-color-scheme="default"] .hero-label {
-  color: #e65100;
-}
-
-.hero-container h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-}
-
-.hero-container p:not(.hero-label) {
-  font-size: 1.25rem;
-  line-height: 1.6;
-  margin-bottom: 2.5rem;
-  opacity: 0.85;
-}
-
-.highlight {
-  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 700;
-  position: relative;
-}
-
-[data-md-color-scheme="default"] .highlight {
-  background: linear-gradient(135deg, #e65100 0%, #d84315 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-/* Ensure uniform button widths for clean wrapping */
-.hero-buttons .btn-primary,
-.hero-buttons .btn-secondary {
-  flex: 0 0 225px;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.btn-primary {
-  display: inline-block;
-  padding: 0.875rem 1.25rem;
-  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
-  color: #ffffff !important;
-  text-decoration: none !important;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
-}
-
-.btn-secondary {
-  display: inline-block;
-  padding: 0.875rem 1.25rem;
-  background: transparent;
-  color: #ff9800 !important;
-  text-decoration: none !important;
-  border: 2px solid #ff9800;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-[data-md-color-scheme="default"] .btn-secondary {
-  color: #e65100 !important;
-  border-color: #e65100;
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 152, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-[data-md-color-scheme="default"] .btn-secondary:hover {
-  background: rgba(230, 81, 0, 0.1);
-}
-
-@media (max-width: 768px) {
-  .hero-container {
-    min-height: 50vh;
-    padding: 3rem 1.5rem;
-  }
-
-  .hero-container h1 {
-    font-size: 2rem;
-  }
-
-  .hero-container p:not(.hero-label) {
-    font-size: 1.125rem;
-  }
-}
-</style>
+</div>

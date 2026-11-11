@@ -1,27 +1,34 @@
 ---
 title: About
+description: The Ethereum Foundation Specs team maintains the specifications and reference tests for Ethereum's execution and consensus layers.
 ---
 
-<img src="assets/images/home/steel.png" alt="STEEL Logo" class="logo-light" style="margin: 0 auto; width: 15%;">
-<img src="assets/images/home/steel-dark.png" alt="STEEL Logo" class="logo-dark" style="margin: 0 auto; width: 15%;">
+![Specs logo](assets/images/home/specs.svg){ .logo-light .about-logo }
+![Specs logo](assets/images/home/specs-dark.svg){ .logo-dark .about-logo }
 
-The STEEL Team (Specifications and Testing for the Ethereum Execution Layer) is an Ethereum Foundation team in [Protocol](https://protocol.ethereum.foundation/) that is responsible for maintaining Ethereum's Execution Layer [specifications](/docs/execution-specs/specs/reference/src/ethereum/index.html), [consensus tests](/docs/execution-specs/tests/) and EVM [benchmark tests](/docs/execution-specs/tests/benchmark/).
+Specs is a team in [Ethereum Foundation Protocol](https://protocol.ethereum.foundation/). We maintain the specifications of Ethereum's two layers, and the tests that check clients against them:
 
-Our main focus is ensuring **accurate specifications and comprehensive testing coverage** for the next [Ethereum hard fork](https://forkcast.org/). Alongside this work, we aim to **accelerate Ethereum development** by supporting researchers to implement specifications and tests proposed for subsequent forks and contribute to the effort to [**Scale the L1**](https://protocol.ethereum.foundation/) by providing [computational- and state-intensive test cases](/docs/execution-specs/tests/benchmark/) that help client teams prepare for pathological scenarios and support Ethereum safely raise the block gas limit.
+- **[Specs [EL]](el.md)** maintains the execution layer specifications and their test suite in [ethereum/execution-specs](https://github.com/ethereum/execution-specs), and the tools that run those tests against execution clients.
+- **[Specs [CL]](cl.md)** maintains the consensus layer specifications and their reference tests in [ethereum/consensus-specs](https://github.com/ethereum/consensus-specs), and the [c-kzg-4844](https://github.com/ethereum/c-kzg-4844) library.
 
-As such, our work is a deeply collaborative effort with many other teams in EF Protocol (such as [Prototyping](https://prototyping.ethereum.foundation/), [ethPandaOps](https://ethpandaops.io/), [Geth](https://geth.ethereum.org/), [Stateless Consensus](https://stateless.fyi/), [zkEVM](https://zkevm.ethereum.foundation/) and [Security](https://security.ethereum.org/)), the Mainnet Execution Layer client teams (e.g., Geth, Nethermind, Besu, Erigon, Reth) and other independent Ethereum researchers.
+Both sides write their specifications as executable Python, and both generate their reference tests from them. Our first job is to make sure the next [network upgrade](https://forkcast.org/) is clearly specified and well tested before it reaches mainnet. Alongside that, we help researchers turn proposals into specifications and tests for the upgrades after it, and we write the stress tests that help clients [scale the L1](https://protocol.ethereum.foundation/) safely.
 
-One of our major goals is to empower these Ethereum core developers to expedite Ethereum development. We aim to enable:
+An upgrade changes both layers, and more and more EIPs touch both. Inclusion lists, enshrined proposer-builder separation, shorter slots and execution proofs all need the two specifications, the [Engine API](https://github.com/ethereum/execution-apis/tree/main/src/engine) between them and both test suites to change together. Working as one team lets us plan, review and test such changes in one place. The team page lists [who we are](team.md).
 
-- **Researchers** by providing the best tooling to quickly prototype and verify specifications, facilitating the EIP inclusion process for future forks and enabling parallel development.
-- **Client Developers** by providing new test formats and frameworks in order to quickly verify client functionality and easily debug problems when they arise.
+## Who we work with
 
-We maintain the [ethereum/execution-specs](https://github.com/ethereum/execution-specs) repository which contains the EL specifications as executable code and the specification tests. You can learn more about our work on the [responsibilities page](responsibilities.md) or from our [previous presentations](https://github.com/ethsteel/presentations/blob/main/README.md).
+- **Researchers and EIP authors**: to make proposals clear, complete and correct before they are included in an upgrade.
+- **Client teams** on both layers: to check implementations, help debug failures and get clients ready for each upgrade.
+- **Other EF Protocol teams**, such as [ethPandaOps](https://ethpandaops.io/), [Prototyping](https://prototyping.ethereum.foundation/), [Geth](https://geth.ethereum.org/), [zkEVM](https://zkevm.ethereum.foundation/) and [Security](https://security.ethereum.org/).
 
-!!! success "Contact Us"
-    You can reach us via:
+We coordinate in the [ethspecs](https://github.com/ethspecs) GitHub organisation, which holds our [project management](https://github.com/ethspecs/pm), [presentations](https://github.com/ethspecs/presentations) and shared tooling.
 
-    <steel@ethereum.foundation>
+!!! success "Contact us"
+    <specs@ethereum.foundation>
 
 !!! danger "Reporting mainnet bugs"
-    To find out how to disclose a vulnerability in Ethereum visit [https://bounty.ethereum.org](https://bounty.ethereum.org) or email <bounty@ethereum.org>.
+    To find out how to disclose a vulnerability in Ethereum, visit [bounty.ethereum.org](https://bounty.ethereum.org) or email <bounty@ethereum.org>.
+
+## Where the name comes from
+
+Until July 2026 these were two teams. STEEL (Specifications and Testing for the Ethereum Execution Layer) maintained the execution layer specs and tests, and the consensus specs team maintained the consensus layer specs. To foster closer collaboration between the specification teams in the Ethereum Foundation, the two teams merged and are now known as **Specs**, with the sub-teams **Specs [EL]** and **Specs [CL]**. This site was STEEL's site, and older blog posts still use that name.
