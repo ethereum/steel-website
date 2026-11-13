@@ -12,7 +12,5 @@ product: execution-specs
 default_branch: forks/bogota
 
 branches:
-  - path: mainnet
-    label: Mainnet (BPO2)
   - path: forks/bogota
     label: Bogota

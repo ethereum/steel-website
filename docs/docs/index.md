@@ -11,4 +11,3 @@ HTML documentation is available for multiple [ethereum/execution-specs](https://
 | execution-specs branch | HTML docs |
 | --- | --- |
 | [forks/bogota](https://github.com/ethereum/execution-specs/tree/forks/bogota) | [Latest (Bogota)](/docs/execution-specs/) |
-| [mainnet](https://github.com/ethereum/execution-specs/tree/mainnet) | [Mainnet (BPO2)](/docs/execution-specs/mainnet/) |
