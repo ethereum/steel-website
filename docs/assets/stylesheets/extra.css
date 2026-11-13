@@ -293,10 +293,24 @@
 
 /* ===== Home page ===== */
 
+/* Hide the "View source" and "Edit this page" buttons on the home page. They
+   float right, and the hero's flex container sits beside them instead of
+   below, which narrows and shifts the hero (badly so on phones). */
+.md-content__inner:has(.hero-container) > .md-content__button {
+  display: none;
+}
+
 .hero-container {
   display: flex;
   justify-content: center;
   padding: 2rem 1rem 4rem;
+}
+
+/* On phones, the page already has side margins; don't add more. */
+@media (max-width: 600px) {
+  .hero-container {
+    padding: 1rem 0 3rem;
+  }
 }
 
 .hero-content {
@@ -389,6 +403,8 @@
 }
 
 .btn-primary {
+  /* Same border width as .btn-secondary, so the buttons line up. */
+  border: 2px solid var(--specs-accent);
   background: var(--specs-accent);
   color: var(--md-default-bg-color) !important;
 }
