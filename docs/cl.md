@@ -5,7 +5,7 @@ description: Specs [CL] maintains the Ethereum consensus layer specifications, t
 
 # Specs [CL]
 
-Specs [CL] maintains the specification of Ethereum's proof-of-stake consensus layer: the rules every beacon node must follow. Its main home is [ethereum/consensus-specs](https://github.com/ethereum/consensus-specs), a Markdown specification that is also executable Python (the _pyspec_). Each release of the specs comes with the reference tests that consensus layer clients run to check their implementations.
+We maintain the specification of Ethereum's proof-of-stake consensus layer: the rules every beacon node must follow. Its main home is [ethereum/consensus-specs](https://github.com/ethereum/consensus-specs), a Markdown specification that is also executable Python (the _pyspec_). Each release of the specs comes with the reference tests that consensus layer clients run to check their implementations.
 
 ## What we maintain
 
@@ -34,7 +34,7 @@ Releases are cut from `master` with a [release workflow](https://github.com/ethe
 
 1. A "Bump version to vX" pull request sets the new version in `pyproject.toml`.
 2. The workflow tags the release and drafts release notes, grouped by upgrade and feature.
-3. It generates the reference tests for every upgrade with the `general`, `minimal` and `mainnet` presets, and attaches them to the [GitHub release](https://github.com/ethereum/consensus-specs/releases) as `general.tar.gz`, `minimal.tar.gz` and `mainnet.tar.gz`.
+3. It generates the reference tests for every upgrade, the preset-independent `general` tests and the `minimal` and `mainnet` presets, and attaches them to the [GitHub release](https://github.com/ethereum/consensus-specs/releases) as `general.tar.gz`, `minimal.tar.gz` and `mainnet.tar.gz`.
 4. It builds the pyspec and publishes it to [PyPI](https://pypi.org/project/eth-consensus-specs/).
 5. A follow-up workflow generates the compliance tests and attaches `comptests.tar.gz`.
 

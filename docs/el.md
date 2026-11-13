@@ -5,7 +5,7 @@ description: Specs [EL] maintains the Ethereum execution layer specifications (E
 
 # Specs [EL]
 
-Specs [EL] maintains the specification of Ethereum's execution layer and the tests that check clients against it. Both live in [ethereum/execution-specs](https://github.com/ethereum/execution-specs):
+We maintain the specification of Ethereum's execution layer and the tests that check clients against it. Both live in [ethereum/execution-specs](https://github.com/ethereum/execution-specs):
 
 - **The specs (EELS)**: the Ethereum Execution Layer Specification, written in executable Python. It is both documentation and a reference implementation of the EVM and the state transition.
 - **The tests**: a Python test framework and the test cases written with it. The tests run against the specs to produce test vectors (_fixtures_), which execution layer clients run to check their implementations.
@@ -24,7 +24,7 @@ Until 2025 the tests lived in their own repository, `ethereum/execution-spec-tes
 ### Tests
 
 - Write test cases for every EIP in the next fork, and for the effort to scale the L1.
-- Generate and release the consensus test fixtures that every execution layer client runs in CI.
+- Generate and release the execution layer consensus test fixtures that every execution layer client runs in CI.
 - Write [benchmark tests](/docs/execution-specs/tests/benchmark/): computation- and state-heavy worst cases that help client teams prepare for higher gas limits.
 - Write zkEVM and stateless witness tests for the zkEVM effort.
 - Help client teams debug failing tests, and feed what we learn back into the specs and tests.
@@ -56,24 +56,26 @@ The [documentation](docs/index.md) is built for the fork in development.
 
 ## How we release
 
-Test fixtures are released with a [release workflow](https://github.com/ethereum/execution-specs/blob/forks/bogota/.github/workflows/release_fixtures.yaml). A maintainer starts it for a feature and version. The workflow builds the fixtures and drafts a pre-release, and a maintainer reviews it and publishes it. Publishing also builds the Hive simulator images for that release. Each release has a tracking issue, and a nightly run rehearses the release.
+Test fixtures are released with a [release workflow](https://github.com/ethereum/execution-specs/blob/HEAD/.github/workflows/release_fixtures.yaml). A maintainer starts it for a feature and version. The workflow builds the fixtures and drafts a pre-release, and a maintainer reviews it and publishes it. Publishing also builds the Hive simulator images for that release. Each release has a tracking issue, and a nightly run rehearses the release.
 
 | Release | What it contains |
 | --- | --- |
-| `tests@vX.Y.Z` | The fixtures every client should pass: all forks up to the one clients have on their main branch. Released when there are changes, often once or twice a week. |
-| `tests-<feature>-devnet@vX.Y.Z` | Fixtures for an active devnet, for example Glamsterdam, FOCIL or Bogota devnets. Advisory, not required to pass. |
+| `tests@vX.Y.Z` | The fixtures every client should pass: all forks up to the one clients have on their main branch. Released regularly, when there are changes. |
+| `tests-<feature>-devnet@vX.Y.Z` | Fixtures for an active devnet, for example `tests-bogota-devnet@v2.0.0` or `tests-heze-devnet@v3.0.0`. Advisory, not required to pass. |
 | `tests-benchmark@vX.Y.Z` | Benchmark fixtures at a range of gas limits. |
 | `tests-zkevm@vX.Y.Z` | zkEVM and stateless witness fixtures. |
 | `vX.Y.Z` | The [`ethereum-execution`](https://pypi.org/project/ethereum-execution/) specs package on PyPI. |
+
+The zkEVM team releases `tests-zkevm-benchmark@vX.Y.Z` fixtures from the same repository.
 
 In `tests@vX.Y.Z`, X is the fork number, Y changes on a consensus-breaking change and Z on new tests or other changes. Clients can download the latest release with `uv run consume cache --input=tests@latest`. See [Releases](/docs/execution-specs/running_tests/releases/) for details.
 
 ## Current focus
 
-- **[Glamsterdam](https://forkcast.org/upgrade/glamsterdam)**: finishing specs and tests for the Amsterdam execution layer upgrade as it moves from testnets to mainnet.
+- **[Glamsterdam](https://forkcast.org/upgrade/glamsterdam)**: finishing the specs and tests for the Amsterdam execution layer upgrade.
 - **Hegotá**: specifying and testing the EIPs proposed for the Bogota execution layer upgrade, and the devnets that try them out, including FOCIL together with Specs [CL].
 - **Scaling the L1**: benchmark and worst-case tests that help clients raise the gas limit safely, and test vectors for zkEVMs.
-- **One test corpus**: bringing the remaining tests from [ethereum/tests](https://github.com/ethereum/tests) into the new framework, so that clients have one source of consensus tests and [retesteth](https://github.com/ethereum/retesteth) can retire.
+- **One test corpus**: bringing the remaining tests from [ethereum/tests](https://github.com/ethereum/tests) into the new framework, so that clients have one source of execution layer consensus tests and [retesteth](https://github.com/ethereum/retesteth) can retire.
 
 ## Resources
 
