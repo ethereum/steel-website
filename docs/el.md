@@ -52,7 +52,7 @@ execution-specs uses a branch per fork:
 - **`eips/<fork>/eip-<n>`**: one branch per EIP. It is merged into the fork branch once the EIP is confirmed for that fork.
 - **`devnets/<feature>/<n>`**: the combination of EIPs that a devnet runs.
 
-The [documentation](docs/index.md) is built for `mainnet` and for the fork in development.
+The [documentation](docs/index.md) is built for the fork in development.
 
 ## How we release
 
