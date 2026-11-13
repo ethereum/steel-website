@@ -7,7 +7,7 @@ description: "The Ethereum Foundation's execution layer and consensus layer spec
 
 In July 2026, two Ethereum Foundation teams merged:
 
-- **STEEL** (Specifications and Testing for the Ethereum Execution Layer), which maintains the execution layer specifications and tests in [ethereum/execution-specs](https://github.com/ethereum/execution-specs).
+- **STEEL** (Specifications and Testing for the Ethereum Execution Layer), which maintained the execution layer specifications and tests in [ethereum/execution-specs](https://github.com/ethereum/execution-specs).
 - **The consensus specs team**, which maintains the consensus layer specifications and reference tests in [ethereum/consensus-specs](https://github.com/ethereum/consensus-specs) and the [c-kzg-4844](https://github.com/ethereum/c-kzg-4844) library.
 
 Together we are **Specs**: nine people, led by [Mario Vega](../../team.md#mario-vega) and [Justin Traglia](../../team.md#justin-traglia). For now most of us still work on one layer, so the team has two focus areas, [Specs [EL]](../../el.md) and [Specs [CL]](../../cl.md). We expect that line to blur.
