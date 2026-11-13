@@ -5,7 +5,7 @@ description: The people in the Ethereum Foundation Specs team, Specs [EL] and Sp
 
 ## Team { .toc-only }
 
-We are one team of nine, with a co-lead for each layer. Most of us work mainly on the execution layer (Specs [EL]) or the consensus layer (Specs [CL]), but more and more of our work crosses between them.
+We are one team, with a co-lead for each layer. Most of us work mainly on the execution layer (Specs [EL]) or the consensus layer (Specs [CL]), but our work increasingly crosses between them.
 
 ### Co-leads
 
