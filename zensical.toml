@@ -1,12 +1,12 @@
 # Zensical configuration for the Ethereum Foundation Specs team website,
-# served at steel.ethereum.foundation.
+# served at specs.ethereum.foundation.
 # Reference: https://zensical.org/docs/setup/basics/
 
 [project]
 site_name = "Ethereum Foundation · Protocol · Specs"
 site_description = "The Ethereum Foundation Specs team maintains the specifications and reference tests for Ethereum's execution and consensus layers."
 site_author = "specs@ethereum.foundation"
-site_url = "https://steel.ethereum.foundation/"
+site_url = "https://specs.ethereum.foundation/"
 copyright = """
 Copyright &copy; 2026 The Ethereum Foundation Specs Team
 """
@@ -14,8 +14,8 @@ Copyright &copy; 2026 The Ethereum Foundation Specs Team
 # The repository is linked in the header, and edit_uri gives every page an
 # "Edit this page" and a "View source" button. edit_uri must sit here in
 # [project], not in [project.theme], or the buttons don't appear.
-repo_url = "https://github.com/ethereum/steel-website"
-repo_name = "ethereum/steel-website"
+repo_url = "https://github.com/ethereum/protocol-specs-website"
+repo_name = "ethereum/protocol-specs-website"
 edit_uri = "edit/main/docs/"
 
 # The execution-specs docs under /docs/execution-specs/ are not built here:

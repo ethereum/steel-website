@@ -11,7 +11,7 @@ jobs:
     name: Static checks (uv.lock, spellcheck, actionlint)
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout ethereum/steel-website
+      - name: Checkout ethereum/protocol-specs-website
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: ./.github/actions/setup-uv
       - name: Run static checks
@@ -21,7 +21,7 @@ jobs:
     name: Build the site and check its links
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout ethereum/steel-website
+      - name: Checkout ethereum/protocol-specs-website
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: ./.github/actions/setup-uv
       # A pinned lychee release, verified against its SHA-256. To update, take

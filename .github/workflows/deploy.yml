@@ -8,7 +8,7 @@
 #   - repository_dispatch: Triggered by execution-specs when docs are updated
 #   - workflow_dispatch: Manual trigger for testing/recovery
 #
-# Site structure at steel.ethereum.foundation:
+# Site structure at specs.ethereum.foundation:
 #   /                                         - Zensical site
 #   /docs/                                    - Zensical landing page (docs/docs/index.md)
 #   /docs/<product>/                          - Default branch docs (deployed at root)

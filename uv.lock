@@ -182,6 +182,49 @@ wheels = [
 ]
 
 [[package]]
+name = "protocol-specs-website"
+version = "0.1.0"
+source = { virtual = "." }
+
+[package.dev-dependencies]
+actionlint = [
+    { name = "actionlint-py" },
+    { name = "pyflakes" },
+    { name = "shellcheck-py" },
+]
+build = [
+    { name = "zensical" },
+]
+dev = [
+    { name = "actionlint-py" },
+    { name = "codespell" },
+    { name = "pyflakes" },
+    { name = "shellcheck-py" },
+    { name = "zensical" },
+]
+spellcheck = [
+    { name = "codespell" },
+]
+
+[package.metadata]
+
+[package.metadata.requires-dev]
+actionlint = [
+    { name = "actionlint-py", specifier = ">=1.7" },
+    { name = "pyflakes", specifier = ">=3.2" },
+    { name = "shellcheck-py", specifier = ">=0.10" },
+]
+build = [{ name = "zensical", specifier = "==0.1.0" }]
+dev = [
+    { name = "actionlint-py", specifier = ">=1.7" },
+    { name = "codespell", specifier = ">=2.4.1,<3" },
+    { name = "pyflakes", specifier = ">=3.2" },
+    { name = "shellcheck-py", specifier = ">=0.10" },
+    { name = "zensical", specifier = "==0.1.0" },
+]
+spellcheck = [{ name = "codespell", specifier = ">=2.4.1,<3" }]
+
+[[package]]
 name = "pyflakes"
 version = "3.4.0"
 source = { registry = "https://pypi.org/simple" }
@@ -269,49 +312,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/96/55/250e0e3367613a5c22bd82e33b16b889287d81ab0f7dda67e6514a4cccf4/shellcheck_py-0.11.0.1-py2.py3-none-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl", hash = "sha256:1b274df81de5b000ff78db433e7328b87e52e3c38481c60f8e488c3095beef05", size = 3800600, upload-time = "2025-08-09T17:53:38.643Z" },
     { url = "https://files.pythonhosted.org/packages/15/5b/bb14c0a7474463b1aa3c09e866cb172dffc66ed2993b7ea8f1db581e86ee/shellcheck_py-0.11.0.1-py2.py3-none-win_amd64.whl", hash = "sha256:784156289ecb17e91c692cd783ab5152333309588cabb10032a047331c63e759", size = 8027541, upload-time = "2025-08-09T17:53:40.889Z" },
 ]
-
-[[package]]
-name = "steel-website"
-version = "0.1.0"
-source = { virtual = "." }
-
-[package.dev-dependencies]
-actionlint = [
-    { name = "actionlint-py" },
-    { name = "pyflakes" },
-    { name = "shellcheck-py" },
-]
-build = [
-    { name = "zensical" },
-]
-dev = [
-    { name = "actionlint-py" },
-    { name = "codespell" },
-    { name = "pyflakes" },
-    { name = "shellcheck-py" },
-    { name = "zensical" },
-]
-spellcheck = [
-    { name = "codespell" },
-]
-
-[package.metadata]
-
-[package.metadata.requires-dev]
-actionlint = [
-    { name = "actionlint-py", specifier = ">=1.7" },
-    { name = "pyflakes", specifier = ">=3.2" },
-    { name = "shellcheck-py", specifier = ">=0.10" },
-]
-build = [{ name = "zensical", specifier = "==0.1.0" }]
-dev = [
-    { name = "actionlint-py", specifier = ">=1.7" },
-    { name = "codespell", specifier = ">=2.4.1,<3" },
-    { name = "pyflakes", specifier = ">=3.2" },
-    { name = "shellcheck-py", specifier = ">=0.10" },
-    { name = "zensical", specifier = "==0.1.0" },
-]
-spellcheck = [{ name = "codespell", specifier = ">=2.4.1,<3" }]
 
 [[package]]
 name = "tomli"
