@@ -1,6 +1,6 @@
 # Specs Team Website
 
-This repository contains the [Zensical](https://zensical.org)-based website of the Ethereum Foundation Specs team (Specs [EL] and Specs [CL]), formerly STEEL. It is served at <https://steel.ethereum.foundation/>.
+This repository contains the [Zensical](https://zensical.org)-based website of the Ethereum Foundation Specs team (Specs [EL] and Specs [CL]), formerly STEEL. It is served at <https://specs.ethereum.foundation/>. The old address, <https://steel.ethereum.foundation/>, redirects every page to the new one from [ethspecs/steel-website-redirect](https://github.com/ethspecs/steel-website-redirect).
 
 ## Prerequisites
 
